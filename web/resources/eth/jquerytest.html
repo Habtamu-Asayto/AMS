@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+
+<script src="jquery-1.11.1.min.js"></script>
+
+<script type="text/javascript" src="js/jquery.calendars.plus.js"></script>
+<link rel="stylesheet" type="text/css" href="css/jquery.calendars.picker.css"> 
+<script type="text/javascript" src="js/jquery.plugin.js"></script> 
+<script type="text/javascript" src="js/jquery.calendars.picker.js"></script>
+
+
+<!-- Ethiopian -->
+
+
+<script>
+$(document).ready(function(){
+   // $.calendars.instance('persian', 'fa');
+  $('#configPicker').calendarsPicker({ 
+   showTrigger: '#calImg'
+    });
+  
+   
+ 
+});
+
+</script>
+</head>
+    
+    <body>
+        <input type="text" id="configPicker" size="10" 
+    class="{showOtherMonths: true, firstDay: 1, dateFormat: 'yyyy-mm-dd', 
+    minDate: calendar.newDate(2012, 12, 25)}">
+       
+
+        <div>TODO write content</div>
+    </body>
+</html>

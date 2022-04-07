@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AppointmentViewDlg" widgetVar="AppointmentViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewAppointmentTitle}">
+            <h:form id="AppointmentViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{appointmentController.selected != null}">
+                        <h:outputText value="#{bundle.ViewAppointmentLabel_id}"/>
+                        <h:outputText value="#{appointmentController.selected.id}" title="#{bundle.ViewAppointmentTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewAppointmentLabel_customerName}"/>
+                        <h:outputText value="#{appointmentController.selected.customerName}" title="#{bundle.ViewAppointmentTitle_customerName}"/>
+                        <h:outputText value="#{bundle.ViewAppointmentLabel_customerEmail}"/>
+                        <h:outputText value="#{appointmentController.selected.customerEmail}" title="#{bundle.ViewAppointmentTitle_customerEmail}"/>
+                        <h:outputText value="#{bundle.ViewAppointmentLabel_customerPhone}"/>
+                        <h:outputText value="#{appointmentController.selected.customerPhone}" title="#{bundle.ViewAppointmentTitle_customerPhone}"/>
+                        <h:outputText value="#{bundle.ViewAppointmentLabel_sex}"/>
+                        <h:outputText value="#{appointmentController.selected.sex}" title="#{bundle.ViewAppointmentTitle_sex}"/>
+                        <h:outputText value="#{bundle.ViewAppointmentLabel_appointmentdate}"/>
+                        <h:outputText value="#{appointmentController.selected.appointmentdate}" title="#{bundle.ViewAppointmentTitle_appointmentdate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewAppointmentLabel_appointmenttime}"/>
+                        <h:outputText value="#{appointmentController.selected.appointmenttime}" title="#{bundle.ViewAppointmentTitle_appointmenttime}">
+                            <f:convertDateTime pattern="HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewAppointmentLabel_detail}"/>
+                        <h:outputText value="#{appointmentController.selected.detail}" title="#{bundle.ViewAppointmentTitle_detail}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="AppointmentViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+ 
+    <ui:composition>
+
+        <p:dialog id="GroupsCreateDlg" widgetVar="GroupsCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateGroupsTitle}">
+            <h:form id="GroupsCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{groupsController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateGroupsLabel_groupname}" for="groupname" />
+                        <p:inputText id="groupname" value="#{groupsController.selected.groupname}" title="#{bundle.CreateGroupsTitle_groupname}" required="true" requiredMessage="#{bundle.CreateGroupsRequiredMessage_groupname}"/>
+                        <p:outputLabel value="#{bundle.CreateGroupsLabel_username}" for="username" />
+                        <p:selectOneMenu id="username" value="#{groupsController.selected.username}" >
+                            <f:selectItems value="#{usersController.itemsAvailableSelectOne}"
+                                           var="usernameItem"
+                                           itemValue="#{usernameItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{groupsController.create}" value="#{bundle.Save}" update="display,:GroupsListForm:datalist,:growl" oncomplete="handleSubmit(args,'GroupsCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="GroupsCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

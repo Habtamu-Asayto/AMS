@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListAppointmentTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="AppointmentListForm">
+                <p:panel header="#{bundle.ListAppointmentTitle}">
+                    <p:dataTable id="datalist" value="#{appointmentController.items}" var="item"
+                                 selectionMode="single" selection="#{appointmentController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.id}"
+                                 rows="10"
+                                 rowsPerPageTemplate="5,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+                        
+                         <!-- Column choice -->
+                        <f:facet  name="header">
+                                 <p:outputPanel>
+                                       <h:outputText value="Filter a column  " />
+                                       <p:inputText id="globalFilter" onkeyup="PF('fileTable').filter()" style="width:150px" placeholder="Enter Key word"/>
+                                       <p:commandButton id="toggler" type="button" value="Columns" style="float:right" icon="ui-icon-calculator" />
+                                       <p:columnToggler datasource="datalist" trigger="toggler" />
+                                 </p:outputPanel>
+                       </f:facet> 
+                       <!-- Column choice end -->
+                       
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAppointmentTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAppointmentTitle_customerName}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.customerName}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAppointmentTitle_customerEmail}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.customerEmail}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAppointmentTitle_customerPhone}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.customerPhone}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAppointmentTitle_sex}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.sex}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAppointmentTitle_appointmentdate}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.appointmentdate}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAppointmentTitle_appointmenttime}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.appointmenttime}">
+                                <f:convertDateTime pattern="HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAppointmentTitle_detail}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.detail}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{appointmentController.prepareCreate}" update=":AppointmentCreateForm" oncomplete="PF('AppointmentCreateDialog').show()"/>
+                            <p:commandButton style="margin-left: 1%" id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":AppointmentViewForm" oncomplete="PF('AppointmentViewDialog').show()" disabled="#{empty appointmentController.selected}"/>
+                            <p:commandButton style="margin-left: 1%" id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":AppointmentEditForm" oncomplete="PF('AppointmentEditDialog').show()" disabled="#{empty appointmentController.selected}"/>
+                            <p:commandButton style="margin-left: 1%" id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{appointmentController.destroy}" onclick="return confirm('Are you sure ?')"  update=":growl,datalist" disabled="#{empty appointmentController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

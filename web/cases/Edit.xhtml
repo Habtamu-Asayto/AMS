@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CasesEditDlg" widgetVar="CasesEditDialog" modal="true" appendTo="@(body)"
+                  header="#{bundle.EditCasesTitle}" 
+                  resizable="true" 
+                  minimizable="true" 
+                  maximizable="true"
+                  responsive="true"
+                  showEffect="fade" style="overflow: scroll;max-height: 96%;">
+            <h:form id="CasesEditForm">
+                  <h:panelGroup id="display" >
+                    <br/>
+                    <h6><h:outputText value="Fill required fields carefully(*)."/></h6> 
+                    <p:panel header="Case detail" toggleable="true">
+                        <p:panelGrid columns="6" rendered="#{casesController.selected != null}">
+
+                            <p:outputLabel value="#{bundle.CreateCasesLabel_customerName}" for="customerName" />
+                            <p:inputText id="customerName" value="#{casesController.selected.customerName}" title="#{bundle.CreateCasesTitle_customerName}" required="true">
+                               <f:validateLength minimum="3"/>
+                            </p:inputText> 
+
+                            <p:outputLabel value="#{bundle.CreateCasesLabel_phone}" for="phone" />
+                            <p:inputText id="phone" value="#{casesController.selected.phone}" title="#{bundle.CreateCasesTitle_phone}" required="true">
+
+                            </p:inputText> 
+                            <p:outputLabel value="#{bundle.CreateCasesLabel_email}" for="email" />
+                            <p:inputText id="email" value="#{casesController.selected.email}" title="#{bundle.CreateCasesTitle_email}" />
+                            
+                            <p:outputLabel value="Case Status" for="casestatus" />
+                            <p:inputText id="casestatus" value="#{casesController.selected.caseStatus}"/>
+
+                            <p:outputLabel value="#{bundle.CreateCasesLabel_status}" for="status" /> 
+                            <p:selectOneRadio id="status" value="#{casesController.selected.status}" unselectable="true" >
+                                <f:selectItem itemLabel="Defendant" itemValue="Defendant"/>
+                                <f:selectItem itemLabel="plaintiff" itemValue="plaintiff"/> 
+                            </p:selectOneRadio> 
+
+                            <p:outputLabel value="#{bundle.CreateCasesLabel_sex}" for="sex" />
+                            <p:selectOneRadio id="sex" value="#{casesController.selected.sex}" unselectable="true"> 
+                                <f:selectItem itemLabel="Male" itemValue="Male"/>
+                                <f:selectItem itemLabel="Female" itemValue="Female"/> 
+                            </p:selectOneRadio> 
+
+
+                        </p:panelGrid>
+                    </p:panel>
+                    
+                    <p:panel header="About cases" toggleable="true">
+                        <p:panelGrid columns="6" >
+                            <p:outputLabel value="#{bundle.CreateCasesLabel_caseType}" for="caseType" /> 
+                            <p:selectOneMenu id="caseType" value="#{casesController.selected.caseType}">
+                                <f:selectItem itemLabel="Select Case Type" itemValue=""/>
+                                <f:selectItem itemLabel="Regional" itemValue="Regional"/>
+                                <f:selectItem itemLabel="National" itemValue="National"/>
+                                <f:selectItem itemLabel="International" itemValue="International"/> 
+                            </p:selectOneMenu>
+
+                            <p:outputLabel value="#{bundle.CreateCasesLabel_caseLevel}" for="caseLevel" /> 
+                            <p:selectOneMenu id="caseLevel" value="#{casesController.selected.caseLevel}">
+                                <f:selectItem itemLabel="Select Case Type" itemValue=""/>
+                                <f:selectItem itemLabel="High" itemValue="High"/>
+                                <f:selectItem itemLabel="Medium" itemValue="Medium"/>
+                                <f:selectItem itemLabel="Low" itemValue="Low"/> 
+                            </p:selectOneMenu>
+
+                            <p:outputLabel value="#{bundle.CreateCasesLabel_caseDetail}" for="caseDetail" />
+                            <p:inputTextarea id="caseDetail" value="#{casesController.selected.caseDetail}" title="#{bundle.CreateCasesTitle_caseDetail}" />
+                        </p:panelGrid> 
+                    </p:panel>
+                    
+                    <p:panel header="About court judgment" toggleable="true">
+                        <p:panelGrid columns="6" >
+                             <p:outputLabel value="#{bundle.CreateCasesLabel_judgeName}" for="judgeName" />
+                             <p:inputText id="judgeName" value="#{casesController.selected.judgeName}" title="#{bundle.CreateCasesTitle_judgeName}" />
+                             
+                             <p:outputLabel value="#{bundle.CreateCasesLabel_courtType}" for="courtType" />
+                             <p:selectOneMenu id="courtType" value="#{casesController.selected.courtType}">
+                                <f:selectItem itemLabel="Select Court Type" itemValue=""/>
+                                <f:selectItem itemLabel="Regional" itemValue="Regional"/>
+                                <f:selectItem itemLabel="National" itemValue="National"/>
+                                <f:selectItem itemLabel="International" itemValue="International"/> 
+                             </p:selectOneMenu>
+                             
+                             <p:outputLabel value="#{bundle.CreateCasesLabel_courtPlace}" for="courtPlace" />
+                             <p:inputText id="courtPlace" value="#{casesController.selected.courtPlace}" title="#{bundle.CreateCasesTitle_courtPlace}" />
+
+                             <p:outputLabel value="#{bundle.CreateCasesLabel_beginDate}" for="beginDate" />
+                             <p:calendar id="beginDate" pattern="MM/dd/yyyy" value="#{casesController.selected.beginDate}" title="#{bundle.EditCasesTitle_beginDate}"  showOn="button"/>
+                             
+                             <p:outputLabel value="#{bundle.CreateCasesLabel_courtProcessDetail}" for="courtProcessDetail" />
+                             <p:inputTextarea id="courtProcessDetail" value="#{casesController.selected.courtProcessDetail}" title="#{bundle.CreateCasesTitle_courtProcessDetail}" />
+
+                        </p:panelGrid> 
+                   
+                    </p:panel>
+                     
+                       <!--Dynamic Form Start 2-->
+                        <p:panel header="Add Witneses form" toggleable="true"> 
+                            
+                            <ui:repeat value="#{casesController.findByCaseId(casesController.selected.id)}" var="witnes"> 
+                                    <p:inputText id="wname" placeholder="Enter Witnes name" value="#{witnes.fullname}"  required="true"/>
+                                    <p:inputText style="margin-left: 1%"  placeholder="Enter Email" value="#{witnes.email}" />
+                                    <p:inputText style="margin-left: 1%" placeholder="Enter Phone" value="#{witnes.phone}" />
+                                    <p:inputText style="margin-left: 1%" placeholder="Witness Answer" value="#{witnes.answer}" />
+                                        <p:commandButton value="Remove" style="background-color: red">
+                                            <f:ajax listener="#{casesController.remove(witnes)}" render="@form" />
+                                        </p:commandButton> 
+                                        <br/>
+                                </ui:repeat> 
+                                <p:commandButton value="Add Witness">
+                                    <f:ajax listener="#{casesController.add()}" render="@form" />
+                                </p:commandButton>  
+                        </p:panel>
+                    <p:commandButton actionListener="#{casesController.update}" value="#{bundle.Save}" update="display,:CasesListForm:datalist,:growl" oncomplete="handleSubmit(args, 'CasesEditDialog');"/>
+                    <p:commandButton style="margin-left: 1%" value="#{bundle.Cancel}" onclick="CasesEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

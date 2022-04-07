@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+ 
+    <ui:composition>
+
+        <p:dialog id="GroupsEditDlg" widgetVar="GroupsEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditGroupsTitle}">
+            <h:form id="GroupsEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{groupsController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditGroupsLabel_groupname}" for="groupname" />
+                        <p:inputText id="groupname" value="#{groupsController.selected.groupname}" title="#{bundle.EditGroupsTitle_groupname}" required="true" requiredMessage="#{bundle.EditGroupsRequiredMessage_groupname}"/>
+                        <p:outputLabel value="#{bundle.EditGroupsLabel_username}" for="username" />
+                        <p:selectOneMenu id="username" value="#{groupsController.selected.username}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{usersController.itemsAvailableSelectOne}"
+                                           var="usernameItem"
+                                           itemValue="#{usernameItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{groupsController.update}" value="#{bundle.Save}" update="display,:GroupsListForm:datalist,:growl" oncomplete="handleSubmit(args, 'GroupsEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="GroupsEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

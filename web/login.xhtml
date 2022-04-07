@@ -1,0 +1,106 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui" 
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+         <title><ui:insert name="title">AMS</ui:insert></title>
+         <meta charset="utf-8"/>
+         <meta name="viewport" content="width=device-width, initial-scale=1" />
+         <h:outputStylesheet library="css" name="jsfcrud.css"/>
+         <h:outputScript library="js" name="jsfcrud.js"/> 
+         <h:outputStylesheet library="css" name="bootstrap.css"/>
+         <h:outputScript library="js" name="jquery.js"/>
+    </h:head>
+    
+     <ui:composition template="/templatenormal.xhtml">
+     <ui:define name="body">    
+     <p:messages id="msgs" showDetail="true" showSummary="false" >
+             <p:effect type="pulsate" event="load" delay="500" /></p:messages>
+      <h:form>   
+          
+         <div class="row justify-content-center">
+            
+             <div class="col-xl-8"  style="margin: 0% 1% 2% 1%;">
+                 
+                 <div class="card shadow mb-4">
+                    <!-- Card Header - Dropdown -->
+                    <div
+                        class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">New 1</h6>
+                        <div class="dropdown no-arrow">
+
+                        </div>
+                    </div>
+                   <!-- Card Body -->
+                    <p:card style="width: 100%;">
+                        <f:facet name="header">
+                            <img alt="user header" src="resources/images/man.jpg"/>
+                        </f:facet>
+                        <f:facet name="title">
+                            Advanced Card
+                        </f:facet>
+                        <f:facet name="subtitle">
+                            Card subtitle
+                        </f:facet>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt
+                            quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!</p>
+                            <h:form>
+                                <f:facet name="footer">
+                                    <p:commandButton icon="pi pi-check" value="Save"/>
+                                    <p:commandButton icon="pi pi-times" value="Cancel" styleClass="ui-button-secondary" style="margin-left: .5em"/>
+                                </f:facet>
+                            </h:form>
+                        </p:card>
+                   
+                </div>
+
+                <div class="card shadow mb-4">
+                    <!-- Card Header - Dropdown -->
+                    <div
+                        class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">New 2</h6>
+                        <div class="dropdown no-arrow">
+
+
+                        </div>
+                    </div>
+                    <!-- Card Body -->
+                     
+                    <p:card style="width: 100%;">
+                        <f:facet name="header">
+                            <img alt="user header" src="resources/images/attorney.jpg"/>
+                        </f:facet>
+                        <f:facet name="title">
+                            Advanced Card
+                        </f:facet>
+                        <f:facet name="subtitle">
+                            Card subtitle
+                        </f:facet>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt
+                            quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!</p>
+                            <h:form>
+                                <f:facet name="footer">
+                                    <p:commandButton icon="pi pi-check" value="Save"/>
+                                    <p:commandButton icon="pi pi-times" value="Cancel" styleClass="ui-button-secondary" style="margin-left: .5em"/>
+                                </f:facet>
+                            </h:form>
+                        </p:card>
+ 
+                </div>
+
+            </div>
+
+             
+        </div> 
+          
+      </h:form>
+                  
+
+
+        </ui:define>
+     </ui:composition>
+  
+</html>

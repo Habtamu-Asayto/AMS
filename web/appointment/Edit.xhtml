@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AppointmentEditDlg" widgetVar="AppointmentEditDialog" 
+                  modal="true"  
+                  appendTo="@(body)" header="#{bundle.EditAppointmentTitle}" 
+                  resizable="true" 
+                  minimizable="true" 
+                  maximizable="true"
+                  responsive="true"
+                  showEffect="fade">
+            <h:form id="AppointmentEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="4" rendered="#{appointmentController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditAppointmentLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{appointmentController.selected.id}" title="#{bundle.EditAppointmentTitle_id}" required="true" requiredMessage="#{bundle.EditAppointmentRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditAppointmentLabel_customerName}" for="customerName" />
+                        <p:inputText id="customerName" value="#{appointmentController.selected.customerName}" title="#{bundle.EditAppointmentTitle_customerName}" />
+                        <p:outputLabel value="#{bundle.EditAppointmentLabel_customerEmail}" for="customerEmail" />
+                        <p:inputText id="customerEmail" value="#{appointmentController.selected.customerEmail}" title="#{bundle.EditAppointmentTitle_customerEmail}" />
+                        <p:outputLabel value="#{bundle.EditAppointmentLabel_customerPhone}" for="customerPhone" />
+                        <p:inputText id="customerPhone" value="#{appointmentController.selected.customerPhone}" title="#{bundle.EditAppointmentTitle_customerPhone}" />
+                        <p:outputLabel value="#{bundle.EditAppointmentLabel_sex}" for="sex" />
+                        <p:inputText id="sex" value="#{appointmentController.selected.sex}" title="#{bundle.EditAppointmentTitle_sex}" />
+                        <p:outputLabel value="#{bundle.EditAppointmentLabel_appointmentdate}" for="appointmentdate" />
+                        <p:calendar id="appointmentdate" pattern="MM/dd/yyyy" value="#{appointmentController.selected.appointmentdate}" title="#{bundle.EditAppointmentTitle_appointmentdate}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditAppointmentLabel_appointmenttime}" for="appointmenttime" />
+                        <p:calendar id="appointmenttime" pattern="HH:mm:ss" value="#{appointmentController.selected.appointmenttime}" title="#{bundle.EditAppointmentTitle_appointmenttime}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditAppointmentLabel_detail}" for="detail" />
+                        <p:inputText id="detail" value="#{appointmentController.selected.detail}" title="#{bundle.EditAppointmentTitle_detail}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{appointmentController.update}" value="#{bundle.Save}" update="display,:AppointmentListForm:datalist,:growl" oncomplete="handleSubmit(args, 'AppointmentEditDialog');"/>
+                    <p:commandButton style="margin-left: 1%" value="#{bundle.Cancel}" onclick="AppointmentEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

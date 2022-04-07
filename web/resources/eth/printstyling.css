@@ -1,0 +1,21 @@
+ .paragraph{
+    line-height: 2;
+    font-size: 18px;
+    font-weight: 200;
+    line-height: 1.8;
+    margin-left: 0.5em; 
+    margin-right: 0.5em;
+    text-align:justify;
+    font-family: Power Geez Unicode1;
+        
+}  
+ .paragraphindent{
+    line-height: 2;
+    font-size: 18px;
+    font-weight: 200;
+    line-height: 1.6;
+    margin-left: 2em; 
+    margin-right: 0.5em;
+    text-align:justify;
+      font-family: Power Geez Unicode1;
+}  

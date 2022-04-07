@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="WitnessViewDlg" widgetVar="WitnessViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewWitnessTitle}">
+            <h:form id="WitnessViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{witnessController.selected != null}">
+                        <h:outputText value="#{bundle.ViewWitnessLabel_id}"/>
+                        <h:outputText value="#{witnessController.selected.id}" title="#{bundle.ViewWitnessTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewWitnessLabel_fullname}"/>
+                        <h:outputText value="#{witnessController.selected.fullname}" title="#{bundle.ViewWitnessTitle_fullname}"/>
+                        <h:outputText value="#{bundle.ViewWitnessLabel_phone}"/>
+                        <h:outputText value="#{witnessController.selected.phone}" title="#{bundle.ViewWitnessTitle_phone}"/>
+                        <h:outputText value="#{bundle.ViewWitnessLabel_email}"/>
+                        <h:outputText value="#{witnessController.selected.email}" title="#{bundle.ViewWitnessTitle_email}"/>
+                        <h:outputText value="#{bundle.ViewWitnessLabel_address}"/>
+                        <h:outputText value="#{witnessController.selected.address}" title="#{bundle.ViewWitnessTitle_address}"/>
+                        <h:outputText value="#{bundle.ViewWitnessLabel_answer}"/>
+                        <h:outputText value="#{witnessController.selected.answer}" title="#{bundle.ViewWitnessTitle_answer}"/>
+                        <h:outputText value="#{bundle.ViewWitnessLabel_onecase}"/>
+                        <h:outputText value="#{witnessController.selected.onecase}" title="#{bundle.ViewWitnessTitle_onecase}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="WitnessViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

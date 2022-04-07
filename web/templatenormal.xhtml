@@ -1,0 +1,299 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+   
+  <h:head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <link rel="icon" type="image/png" href="resources/images/heart.jpg"/>
+    <f:metadata>
+
+</f:metadata>
+   <title>AMS</title>
+       <h:outputStylesheet  name="admintemplate/vendor/fontawesome-free/css/all.min.css" />
+       <h:outputStylesheet  name="admintemplate/css/sb-admin-2.min.css" />
+       <h:outputStylesheet library="css" name="jsfcrud.css"/>
+       <h:outputScript library="js" name="jsfcrud.js"/>
+       
+        <h:outputStylesheet library="vendor" name="fontawesome-free/css/all.min.css" />
+        <h:outputStylesheet library="css" name="sb-admin-2.min.css"/>
+      <style type="text/css">
+   .ui-fieldset-toggleable .ui-fieldset-legend {
+         padding: 5px 5px !important;
+         background: #3e9817;
+         color: white;
+         font-size: 18px;
+   }
+</style>
+
+ 
+
+     </h:head>
+  
+   
+  <h:body id="page-top">
+  
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+ 
+          <!-- Sidebar -->
+            <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+                <!-- Sidebar - Brand -->
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.xhtml">
+                    <div class="sidebar-brand-icon rotate-n-15">
+                        <i class="fas fa-align-justify"></i>
+                    </div>
+                    <div class="sidebar-brand-text mx-3">JIMS <sup>Attorney</sup></div>
+
+                </a>
+
+                <!-- Divider -->
+                <hr class="sidebar-divider my-0"/>
+ 
+                <!-- Heading -->
+                <div class="sidebar-heading">
+                    Main Activities
+                </div> 
+                
+                <li class="nav-item">
+                     
+                    <li class="nav-item active">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilitiesNews"
+                            aria-expanded="true" aria-controls="collapseUtilities">
+                            <i class="fas fa-fw fa-newspaper"></i>
+                            <span>News Portal</span>
+                        </a>
+                        <div id="collapseUtilitiesNews" class="collapse" aria-labelledby="headingUtilities"
+                            data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">All about news</h6> 
+                                <h:link class="collapse-item" value="News"    outcome="index.xhtml" /> 
+                            </div>
+                        </div>
+                     </li>  
+                     
+                     <li class="nav-item active">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilitiesAccount"
+                            aria-expanded="true" aria-controls="collapseUtilities">
+                            <i class="fas fa-fw fa-user"></i>
+                            <span>Account</span>
+                        </a>
+                        <div id="collapseUtilitiesAccount" class="collapse" aria-labelledby="headingUtilities"
+                            data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">All about Account</h6> 
+                                <h:link class="collapse-item" value="Create account" outcome="createAccount.xhtml" />                                
+                                <h:link class="collapse-item" value="Create user" outcome="createAccount.xhtml" />
+                            </div>
+                        </div>
+                     </li>   
+                     
+                </li> 
+                <!-- Divider -->
+                <hr class="sidebar-divider d-none d-md-block" />
+
+                <!-- Sidebar Toggler (Sidebar) -->
+                <div class="text-center d-none d-md-inline">
+                    <button class="rounded-circle border-0" id="sidebarToggle"></button>
+                </div>
+
+                <!-- Sidebar Message -->
+                <div class="sidebar-card d-none d-lg-flex">
+
+                    <!-- Put some thing here -->
+
+                </div>
+
+
+            </ul>
+            <!-- End of Sidebar -->
+        
+        
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+               <!-- Topbar --> 
+                    <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                        <!-- Sidebar Toggle (Topbar) -->
+                        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                            <i class="fa fa-bars"></i>
+                        </button>
+
+                        <!-- Topbar Search -->
+                        <form
+                            class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                            <div class="input-group">
+                                <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                                       aria-label="Search" aria-describedby="basic-addon2"/>
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="button">
+                                        <i class="fas fa-search fa-sm"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+
+                        <!-- Topbar Navbar -->
+                        <ul class="navbar-nav ml-auto"> 
+
+                            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                            <li class="nav-item dropdown no-arrow d-sm-none">
+                                <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-search fa-fw"></i>
+                                </a>
+                                <!-- Dropdown - Messages -->
+                                <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                                     aria-labelledby="searchDropdown">
+                                    <form class="form-inline mr-auto w-100 navbar-search">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control bg-light border-0 small"
+                                                   placeholder="Search for..." aria-label="Search"
+                                                   aria-describedby="basic-addon2"/>
+                                            <div class="input-group-append">
+                                                <button class="btn btn-primary" type="button">
+                                                    <i class="fas fa-search fa-sm"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </li> 
+                             
+                           
+                            <li class="nav-item dropdown no-arrow"> 
+                                
+                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#loginModal">
+                                    <i class="fas fa-sign-in-alt fa-sm"></i>
+                                        Login
+                                </a>
+ 
+                            </li>
+                            
+
+                        </ul>
+
+                    </nav>
+             <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+      
+           
+ <ui:insert name="body"/>
+            </div>
+            <!-- End of Main Content -->
+           
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; University Of Gondar Specialized Hospital  2021 </span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+  
+      <!-- Login Modal-->
+        <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Attorney Login</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    
+                    <h:form> 
+                    <p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true"/>
+                    <div class="modal-body">
+                        Please fill Valid username and password.
+                        <br/><br/>
+                        <div class="ui-fluid p-formgrid p-grid">
+                            <div class="p-field p-col">
+                                <label for="username">Username</label>
+                                <p:inputText id="username" value="#{newJSFManagedBean.name}" style="width: 100%;padding: 10px" type="text" placeholder="Enter username"/>
+                            </div>
+                            <div class="p-field p-col">
+                                <label for="password">Password</label>
+                                <p:password value="#{newJSFManagedBean.password}" style="width: 100%;padding: 10px" id="password" toggleMask="true" redisplay="true" placeholder="Enter  password" /> 
+                            </div>
+                        </div>
+
+                    </div>
+
+                        <div class="modal-footer">
+                           <button class="btn btn-secondary" type="button"  data-dismiss="modal">Cancel</button>
+                           <a href="#">
+                              
+                               <h:commandLink  action="#{newJSFManagedBean.mylogin()}"  value="Login" class="btn btn-primary"   /> 
+                               
+                           </a>
+                        </div> 
+                    </h:form>
+                    
+                    
+                </div>
+            </div>
+        </div>
+         
+        <!-- Register Modal-->
+        <div class="modal fade" id="adduserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelR"
+             aria-hidden="true">
+             <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabelR">Attorney Register</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <a href="#">
+                            <h:link value="Logout" class="btn btn-primary"  outcome="dashboard" /> 
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>         
+ 
+   <h:outputScript  name="admintemplate/vendor/bootstrap/js/bootstrap.bundle.min.js"/>
+
+    <!-- Core plugin JavaScript-->
+     <h:outputScript  name="admintemplate/vendor/jquery-easing/jquery.easing.min.js"/>
+
+    <!-- Custom scripts for all pages-->
+     <h:outputScript  name="admintemplate/js/sb-admin-2.min.js"/>
+
+   
+  </h:body>
+</html>

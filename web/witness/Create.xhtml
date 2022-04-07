@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="WitnessCreateDlg" widgetVar="WitnessCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateWitnessTitle}">
+            <h:form id="WitnessCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{witnessController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateWitnessLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{witnessController.selected.id}" title="#{bundle.CreateWitnessTitle_id}" required="true" requiredMessage="#{bundle.CreateWitnessRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.CreateWitnessLabel_fullname}" for="fullname" />
+                        <p:inputText id="fullname" value="#{witnessController.selected.fullname}" title="#{bundle.CreateWitnessTitle_fullname}" />
+                        <p:outputLabel value="#{bundle.CreateWitnessLabel_phone}" for="phone" />
+                        <p:inputText id="phone" value="#{witnessController.selected.phone}" title="#{bundle.CreateWitnessTitle_phone}" />
+                        <p:outputLabel value="#{bundle.CreateWitnessLabel_email}" for="email" />
+                        <p:inputText id="email" value="#{witnessController.selected.email}" title="#{bundle.CreateWitnessTitle_email}" />
+                        <p:outputLabel value="#{bundle.CreateWitnessLabel_address}" for="address" />
+                        <p:inputText id="address" value="#{witnessController.selected.address}" title="#{bundle.CreateWitnessTitle_address}" />
+                        <p:outputLabel value="#{bundle.CreateWitnessLabel_answer}" for="answer" />
+                        <p:inputText id="answer" value="#{witnessController.selected.answer}" title="#{bundle.CreateWitnessTitle_answer}" />
+                        <p:outputLabel value="#{bundle.CreateWitnessLabel_onecase}" for="onecase" />
+                        <p:selectOneMenu id="onecase" value="#{witnessController.selected.onecase}" >
+                            <f:selectItems value="#{casesController.itemsAvailableSelectOne}"
+                                           var="onecaseItem"
+                                           itemValue="#{onecaseItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{witnessController.create}" value="#{bundle.Save}" update="display,:WitnessListForm:datalist,:growl" oncomplete="handleSubmit(args,'WitnessCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="WitnessCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

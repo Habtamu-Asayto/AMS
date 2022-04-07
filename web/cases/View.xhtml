@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CasesViewDlg" widgetVar="CasesViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewCasesTitle}">
+            <h:form id="CasesViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{casesController.selected != null}">
+                        <h:outputText value="#{bundle.ViewCasesLabel_id}"/>
+                        <h:outputText value="#{casesController.selected.id}" title="#{bundle.ViewCasesTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewCasesLabel_customerName}"/>
+                        <h:outputText value="#{casesController.selected.customerName}" title="#{bundle.ViewCasesTitle_customerName}"/>
+                        <h:outputText value="#{bundle.ViewCasesLabel_phone}"/>
+                        <h:outputText value="#{casesController.selected.phone}" title="#{bundle.ViewCasesTitle_phone}"/>
+                        <h:outputText value="#{bundle.ViewCasesLabel_email}"/>
+                        <h:outputText value="#{casesController.selected.email}" title="#{bundle.ViewCasesTitle_email}"/>
+                        <h:outputText value="#{bundle.ViewCasesLabel_status}"/>
+                        <h:outputText value="#{casesController.selected.status}" title="#{bundle.ViewCasesTitle_status}"/>
+                        <h:outputText value="#{bundle.ViewCasesLabel_caseType}"/>
+                        <h:outputText value="#{casesController.selected.caseType}" title="#{bundle.ViewCasesTitle_caseType}"/>
+                        <h:outputText value="#{bundle.ViewCasesLabel_caseLevel}"/>
+                        <h:outputText value="#{casesController.selected.caseLevel}" title="#{bundle.ViewCasesTitle_caseLevel}"/>
+                        <h:outputText value="#{bundle.ViewCasesLabel_caseDetail}"/>
+                        <h:outputText value="#{casesController.selected.caseDetail}" title="#{bundle.ViewCasesTitle_caseDetail}"/>
+                        <h:outputText value="#{bundle.ViewCasesLabel_judgeName}"/>
+                        <h:outputText value="#{casesController.selected.judgeName}" title="#{bundle.ViewCasesTitle_judgeName}"/>
+                        <h:outputText value="#{bundle.ViewCasesLabel_courtType}"/>
+                        <h:outputText value="#{casesController.selected.courtType}" title="#{bundle.ViewCasesTitle_courtType}"/>
+                        <h:outputText value="#{bundle.ViewCasesLabel_courtPlace}"/>
+                        <h:outputText value="#{casesController.selected.courtPlace}" title="#{bundle.ViewCasesTitle_courtPlace}"/>
+                        <h:outputText value="#{bundle.ViewCasesLabel_courtProcessDetail}"/>
+                        <h:outputText value="#{casesController.selected.courtProcessDetail}" title="#{bundle.ViewCasesTitle_courtProcessDetail}"/>
+                        <h:outputText value="#{bundle.ViewCasesLabel_sex}"/>
+                        <h:outputText value="#{casesController.selected.sex}" title="#{bundle.ViewCasesTitle_sex}"/>
+                        <h:outputText value="#{bundle.ViewCasesLabel_beginDate}"/>
+                        <h:outputText value="#{casesController.selected.beginDate}" title="#{bundle.ViewCasesTitle_beginDate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewCasesLabel_caseStatus}"/>
+                        <h:outputText value="#{casesController.selected.caseStatus}" title="#{bundle.ViewCasesTitle_caseStatus}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="CasesViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

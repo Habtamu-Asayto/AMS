@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+ 
+    <ui:composition>
+      <h:form>
+          
+           <!-- Heading -->
+                <div class="sidebar-heading">
+                    Main Activities
+                </div> 
+           
+                <li class="nav-item">
+                   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilitiesSenedoch"
+                       aria-expanded="true" aria-controls="collapseUtilities">
+                       <i class="fas fa-fw fa-user"></i>
+                       <span>customers</span>
+                   </a>
+                   <div id="collapseUtilitiesSenedoch" class="collapse" aria-labelledby="headingUtilities"
+                       data-parent="#accordionSidebar">
+                       <div class="bg-white py-2 collapse-inner rounded">
+                           <h6 class="collapse-header">All customers</h6> 
+                           <h:link class="collapse-item" value="Customers" outcome="/users/List.xhtml" /> 
+                       </div>
+                   </div>
+                </li>  
+           
+                <!-- Nav Item - Pages Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                       aria-expanded="true" aria-controls="collapseTwo">
+                        <i class="fas fa-fw fa-gavel"></i>
+                        <span>Cases</span>
+                    </a>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Major Cases:</h6>  
+                            <h:link class="collapse-item" value="All cases" outcome="/cases/List.xhtml" /> 
+                            <h:link class="collapse-item" value="Running cases" outcome="/users/List.xhtml" /> 
+                            <h:link class="collapse-item" value="Archived cases" outcome="/users/List.xhtml" /> 
+                            <h:link class="collapse-item" value="important cases" outcome="/users/List.xhtml" /> 
+                        </div>
+                    </div>
+                </li> 
+ 
+                
+                <li class="nav-item">
+                   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilitiesAppointment"
+                       aria-expanded="true" aria-controls="collapseUtilities">
+                       <i class="fas fa-fw fa-plane-arrival"></i>
+                       <span>Appointments</span>
+                   </a>
+                   <div id="collapseUtilitiesAppointment" class="collapse" aria-labelledby="headingUtilities"
+                       data-parent="#accordionSidebar">
+                       <div class="bg-white py-2 collapse-inner rounded">
+                           <h6 class="collapse-header">Appointments</h6> 
+                           <h:link class="collapse-item" value="Manage Appointment" outcome="/appointment/List.xhtml" /> 
+                       </div>
+                   </div>
+                </li>  
+           
+                
+                
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTask"
+                       aria-expanded="true" aria-controls="collapseTwo">
+                        <i class="fas fa-fw fa-tasks"></i>
+                        <span>Tasks</span>
+                    </a>
+                    <div id="collapseTask" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Major Tasks</h6> 
+                            <h:link class="collapse-item" value="This Week" outcome="/witness/List.xhtml" /> 
+                            <h:link class="collapse-item" value="This Month" outcome="/users/List.xhtml" /> 
+                            <h:link class="collapse-item" value="This Year" outcome="/users/List.xhtml" /> 
+                          </div>
+                    </div>
+                </li> 
+                
+                <h:panelGroup rendered="#{request.isUserInRole('Admin')}"> 
+                    <li class="nav-item">
+                       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSetting"
+                          aria-expanded="true" aria-controls="collapseTwo">
+                           <i class="fas fa-fw fa-cog"></i>
+                           <span>Setting</span>
+                       </a>
+                       <div id="collapseSetting" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                           <div class="bg-white py-2 collapse-inner rounded">
+                               <h6 class="collapse-header">Major Setting</h6> 
+                               <h:link class="collapse-item" value="Groups" outcome="/groups/List.xhtml" /> 
+                               <h:link class="collapse-item" value="Roles" outcome="/roles/List.xhtml" /> 
+                               <h:link class="collapse-item" value="Regions" outcome="/regions/List.xhtml" /> 
+                               <h:link class="collapse-item" value="Zones" outcome="/zones/List.xhtml" /> 
+                               <h:link class="collapse-item" value="Woredas" outcome="/weredas/List.xhtml" /> 
+                             </div>
+                       </div>
+                    </li>  
+                </h:panelGroup>
+                
+           </h:form>
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block" />
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+            <!-- Sidebar Message -->
+            <div class="sidebar-card d-none d-lg-flex">
+
+                <!-- Put some thing here -->
+
+            </div>
+
+    </ui:composition>
+</html>
+

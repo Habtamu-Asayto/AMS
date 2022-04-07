@@ -1,0 +1,68 @@
+.ui-widget {
+    font-size: 12px !important;
+}
+.ui-layout-north {
+    z-index: 20 !important;
+    overflow: visible !important;;
+}
+.ui-layout-north .ui-layout-unit-content {
+    overflow: visible !important;
+}
+.ui-widget-header {
+    text-align: center;
+    text-transform: uppercase;
+ background: #ccffcc;
+    border: none;
+    
+}
+
+
+.ui-button {
+    margin-top: 10px !important;
+}
+.ui-dialog.ui-widget-content .ui-dialog-title{
+    color: white;
+    text-transform: capitalize;
+    font-style: inherit;
+     text-align: center;
+}
+.ui-dialog.ui-widget-content .ui-dialog-titlebar {
+    padding: 4px 10px;
+    border-bottom: 1px solid #eee;
+    background-color:  #578255;
+    color: white;
+   
+
+}
+
+.ui-widget-overlay {
+    background: none;
+    opacity: .80;
+    filter: Alpha(Opacity=80);
+}
+
+.h1{
+    font-size: 36px;
+     
+    font-family:  Helvetica, sans-serif;
+    margin-bottom: 200px;
+    font-weight: bolder;
+}
+.ui-selectonemenu-panel.hideDisabled .ui-selectonemenu-item.ui-state-disabled {
+    display: none;
+}
+.blue{
+    background-color: blue;
+    color:white;
+    width:20%; 
+     
+}
+.red{
+    background:   red;
+    color:white;
+    width:20%; 
+     
+}
+
+
+

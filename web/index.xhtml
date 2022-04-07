@@ -1,0 +1,229 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui" 
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+        <title><ui:insert name="title">Default Title</ui:insert></title>
+         <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <h:outputStylesheet library="css" name="jsfcrud.css"/>
+       <h:outputScript library="js" name="jsfcrud.js"/>
+  
+ <h:outputStylesheet library="css" name="bootstrap.css"/>
+        <h:outputScript library="js" name="jquery.js"/>
+    </h:head>
+     <ui:composition template="/template.xhtml">
+     <ui:define name="body">    
+       <p:messages id="msgs" showDetail="true" showSummary="false" >
+             <p:effect type="pulsate" event="load" delay="500" /></p:messages>
+      <h:form>  
+          
+           <!-- Begin Page Content -->
+                    <div class="container-fluid">
+
+                        <!-- Page Heading -->
+                        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                            <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                    class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                        </div>
+
+                        <!-- Content Row -->
+                        <div class="row">
+
+                            <!-- Earnings (Monthly) Card Example -->
+                            <div class="col-xl-3 col-md-6 mb-4">
+                                <div class="card border-left-primary shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                    Running cases</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                    
+                                                    #{casesController.countCasesByID(1)}
+                                                    
+                                                </div>
+                                            </div>
+                                            <div class="col-auto"> 
+                                                <i class="fas fa-running fa-2x text-gray-300"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Earnings (Monthly) Card Example -->
+                            <div class="col-xl-3 col-md-6 mb-4">
+                                <div class="card border-left-success shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                    Important cases</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                     #{casesController.countImportantCasesByID("High")}
+                                                    
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fas fa-fast-forward fa-2x text-gray-300"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Earnings (Monthly) Card Example -->
+                            <div class="col-xl-3 col-md-6 mb-4">
+                                <div class="card border-left-info shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                    Archived cases                                                
+                                                </div>
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col-auto">
+                                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                                         #{casesController.countCasesByID(0)}
+                                                        </div>
+                                                    </div>
+                                                   
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fas fa-archive fa-2x text-gray-300"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Pending Requests Card Example -->
+                            <div class="col-xl-3 col-md-6 mb-4">
+                                <div class="card border-left-warning shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                    New Cases</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">+</div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fas fa-newspaper fa-2x text-gray-300"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Content Row -->
+                        <h5 style="margin-left: 0.7%">Appointments</h5>
+                        <div class="row">
+                           
+                            <!-- Area Chart -->
+                            <div class="col-xl-8 col-lg-7">
+                                 
+                                <p:tabView value="#{appointmentController.items}" var="item"> 
+                                    <p:tab title="Appointment #{item.id}">
+                                    <div class="card shadow mb-4">
+                                        <div
+                                            class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                            <h6 class="m-0 font-weight-bold text-primary">
+                                                    Appointment Date :  
+                                                <h:outputText value="#{item.appointmentdate}">
+                                                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                                                </h:outputText> 
+                                                    at 
+                                                <h:outputText value="#{item.appointmenttime}">
+                                                    <f:convertDateTime pattern="HH:mm:ss" />
+                                                </h:outputText> 
+                                            </h6>
+                                        </div>
+                                        <!-- Card Body -->
+                                        <div class="card-body">
+                                            <h6 style="margin-top: -1%">
+                                                Customer name : #{item.customerName}
+                                            </h6>
+                                            <p style="font-size: 13px;margin-top: 1%">
+                                                #{item.detail} 
+                                            </p> 
+                                            
+                                             <h:form> 
+                                                <p:textEditor widgetVar="editor1" value="#{appointmentController.text}" height="200" secure="false"  />
+                                             </h:form>
+                                             <br/>
+                                           
+                                            <a href="#" data-toggle="modal" data-target="#adduserModal" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                                class="fas fa-comment fa-sm text-white-50"></i> Contact</a>
+                                             <a href="#" style="background-color: rgba(240, 86, 59, 0.822);" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                                class="fas fa-remove-format fa-sm text-white-50"></i> Decline</a>
+                                        </div>
+                                    </div> 
+                                    </p:tab>
+                                </p:tabView> 
+                                                            
+                                <!-- I will check it -->
+                                 <div class="card shadow mb-4">
+                                        <div
+                                            class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                            <h6 class="m-0 font-weight-bold text-primary">Appointment 1 on Date : 12/2/2022 at 8:00 AM</h6>
+
+                                        </div>
+                                        <!-- Card Body -->
+                                        <div class="card-body">
+                                            <h5 style="margin-top: -1%">
+                                                #{item.customerName}
+                                            </h5> 
+                                            <p style="font-size: 13px;">
+                                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum porro quis nobis cumque pariatur eveniet? Asperiores iste rem, quisquam accusamus ad vel voluptatibus, ratione quidem similique eum assumenda distinctio debitis?
+                                            </p>
+                                             <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                                class="fas fa-comment fa-sm text-white-50"></i> Contact</a>
+                                             <a href="#" style="background-color: rgba(240, 86, 59, 0.822);" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                                class="fas fa-remove-format fa-sm text-white-50"></i> Decline</a>
+                                        </div>
+                                    </div> 
+                                                               
+                            </div> 
+                        </div>
+                                           
+                    </div>
+                    <!-- /.container-fluid -->
+                    
+                     <!-- Register Modal-->
+                    <div class="modal fade" id="adduserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelR"
+                         aria-hidden="true">
+                         <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabelR">Contact with #{item.customerName}(#{item.customerEmail})</h5>
+                                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                </div>
+                                <h:form>
+                                <div style="margin: 3%">
+                                    <p:inputTextarea style="width: 100%" />
+                                </div>
+                                </h:form>
+
+                                <div class="modal-footer">
+                                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                                    <a href="#">
+                                        <h:link value="Send" class="btn btn-primary"/> 
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>         
+                     
+             </h:form>
+                   
+        </ui:define>
+     </ui:composition>
+  
+</html>
