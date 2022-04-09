@@ -65,6 +65,20 @@ public class NewJSFManagedBean {
             doRedirect("/AMS/faces/login.xhtml");
         }
     }
+    public void verifyAdminLogin(){
+        HttpServletRequest obj = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        if(!obj.isUserInRole("Admin")){
+            doRedirect("/AMS/faces/login.xhtml");
+            System.err.println("Verify Check");
+        }
+    }
+    public void verifyManagerLogin(){
+        HttpServletRequest obj = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        if(!obj.isUserInRole("Manager")){
+            doRedirect("/AMS/faces/login.xhtml");
+            System.err.println("Verify Check");
+        }
+    }
      
     public void doRedirect(String url){
         try {
@@ -108,11 +122,15 @@ public class NewJSFManagedBean {
     }
     
     public void myLogout(){
+        final Logger logger = Logger.getLogger(NewJSFManagedBean.class); 
+        String uname;
+        uname = (String) session.getAttribute("name");
        HttpServletRequest obj = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         try { 
             this.isLoggedin = false;
             obj.logout();
             doRedirect("/AMS/faces/login.xhtml");
+            logger.debug(uname + " is Logged out ");
         } catch (ServletException e) {
             System.err.println(e);
         }

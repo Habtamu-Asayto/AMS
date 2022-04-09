@@ -1,0 +1,173 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui" 
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+         <title><ui:insert name="title">AMS</ui:insert></title>
+         <meta charset="utf-8"/>
+         <meta name="viewport" content="width=device-width, initial-scale=1" />
+         <h:outputStylesheet library="css" name="jsfcrud.css"/>
+         <h:outputScript library="js" name="jsfcrud.js"/> 
+         <h:outputStylesheet library="css" name="bootstrap.css"/>
+         <h:outputScript library="js" name="jquery.js"/>
+    </h:head>
+    
+     <ui:composition template="/template.xhtml">
+         
+     <ui:define name="body">    
+     <p:messages id="msgs" showDetail="true" showSummary="false" >
+             <p:effect type="pulsate" event="load" delay="500" /></p:messages>
+         
+      <h:form>   
+          
+         <div class="row justify-content-center">
+             
+             <div class="col-xl-8" style="margin: 0% 1% 0% 1%;">
+                 
+                 <div class="card shadow mb-4">
+                    <!-- Card Header - Dropdown -->
+                    <div
+                        class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">Family Representation</h6>
+                        <div class="dropdown no-arrow">
+
+                        </div>
+                    </div>
+                   <!-- Card Body -->
+                   <p:card style="width: 100%;">
+                        <form id="myForm" action="" method="post" autocomplete = "off">
+                           
+                            <div class="stepContainer">
+                                <div class="step-one">
+                                    <span>Grantor</span>
+                                    <br />
+                                   <span class="step" id = "step-1">1</span> 
+                                </div> 
+
+                                <div class="step-one">
+                                    
+                                    <span>Representative</span>
+                                    <br />
+                                    <span class="step" id = "step-2">2</span>
+                                </div>
+
+
+                                <div class="step-one"> 
+                                    <span>Property</span>
+                                    <br />
+                                    <span class="step" id = "step-3">3</span>
+                                </div>
+
+                                <div class="step-one"> 
+                                    <span>Overview</span>
+                                    <br />
+                                    <span class="step" id = "step-4">4</span>
+                                </div>
+                               
+                              
+                            </div>
+                            <br/>
+                            <div class="tab" id = "tab-1">
+                                <div class="grantordetail">Grantor detail :-</div>
+                                <p:panelGrid columns="4" style="width: 100%">
+                                     <p:outputLabel value="Fullname1" for="customerName1"/>
+                                     <p:inputText id="customerName1" value="" required="true">
+                                        <f:validateLength minimum="3"/>
+                                     </p:inputText>   
+                                     
+                                     <p:outputLabel value="Fullname2" for="customerName2"/>
+                                     <p:inputText id="customerName2" value="" required="true">
+                                        <f:validateLength minimum="3"/>
+                                     </p:inputText>   
+                                     <p:outputLabel value="Fullname3" for="customerName3"/>
+                                     <p:inputText id="customerName3" value="" required="true">
+                                        <f:validateLength minimum="3"/>
+                                     </p:inputText>   
+                                     <p:outputLabel value="Fullname4" for="customerName4"/>
+                                     <p:inputText id="customerName4" value="" required="true">
+                                        <f:validateLength minimum="3"/>
+                                     </p:inputText>   
+                                     <p:outputLabel value="Fullname5" for="customerName5"/>
+                                     <p:inputText id="customerName5" value="" required="true">
+                                        <f:validateLength minimum="3"/>
+                                     </p:inputText>   
+                                     <p:outputLabel value="Fullname6" for="customerName6"/>
+                                     <p:inputText id="customerName6" value="" required="true">
+                                        <f:validateLength minimum="3"/>
+                                     </p:inputText>   
+                                     <p:outputLabel value="Fullname7" for="customerName7"/>
+                                     <p:inputText id="customerName7" value="" required="true">
+                                        <f:validateLength minimum="3"/>
+                                     </p:inputText>   
+                                     <p:outputLabel value="Fullname8" for="customerName8"/>
+                                     <p:inputText id="customerName8" value="" required="true">
+                                        <f:validateLength minimum="3"/>
+                                     </p:inputText>  
+                                </p:panelGrid>
+                                <div class="index-btn-wrapper">
+                                    <div class="index-btn" onclick="run(1, 2);">Next</div>
+                                </div>
+                            </div>
+
+                            <div class="tab" id = "tab-2"> 
+                              <div class="repdetail">Representative detail :-</div>
+                                <p:panelGrid columns="4" style="width: 100%">
+                                     <p:outputLabel value="Next" for="new"/>
+                                     <p:inputText id="new" value="" required="true">
+                                        <f:validateLength minimum="3"/>
+                                     </p:inputText>   
+                                      
+                                </p:panelGrid>
+                              <div class="index-btn-wrapper">
+                                <div class="index-btn" onclick="run(2, 1);">Previous</div>
+                                <div class="index-btn" onclick="run(2, 3);">Next</div>
+                              </div>
+                            </div>
+
+                            <div class="tab" id = "tab-3"> 
+                             <div class="propdetail">Property detail :-</div>
+                                <p:panelGrid columns="4" style="width: 100%">
+                                     <p:outputLabel value="Next" for="new2"/>
+                                     <p:inputText id="new2" value="" required="true">
+                                        <f:validateLength minimum="3"/>
+                                     </p:inputText>   
+                                      
+                                </p:panelGrid>
+                              <div class="index-btn-wrapper">
+                                <div class="index-btn" onclick="run(3, 2);">Previous</div>
+                                <div class="index-btn" onclick="run(3, 4);">Next</div>
+                              </div>
+                            </div>
+
+                            <div class="tab" id = "tab-4"> 
+                              <div class="propdetail">Overview of Representation</div>
+                                <p:panelGrid columns="4" style="width: 100%">
+                                     <p:outputLabel value="Next" for="new3"/>
+                                     <p:inputText id="new3" value="" required="true">
+                                        <f:validateLength minimum="3"/>
+                                     </p:inputText>   
+                                      
+                                </p:panelGrid>
+                              <div class="index-btn-wrapper">
+                                <div class="index-btn" type="submit" onclick="run(4, 3);">Previous</div>
+                                 <button class = "index-btn" type="submit" name="submit" style = "background: blue;">Submit</button>
+                              </div>
+                            </div>
+
+                            
+                          </form>
+                    </p:card>
+ 
+                </div>
+
+            </div>
+
+             
+        </div> 
+          
+            </h:form> 
+        </ui:define>
+     </ui:composition>
+
+</html>

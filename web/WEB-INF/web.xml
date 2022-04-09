@@ -4,34 +4,34 @@
         <param-name>javax.faces.PROJECT_STAGE</param-name>
         <param-value>Production</param-value>
     </context-param>
-     <error-page>
-      <exception-type>java.lang.Throwable</exception-type>
-      <location>/faces/*</location>
-     </error-page>
-     <error-page>
-      <error-code>500</error-code>
-      <location>/faces/login.xhtml</location>
-     </error-page>
-     <error-page>
-      <error-code>404</error-code>
-      <location>/faces/login.xhtml</location>
-     </error-page>
-     <error-page>
-      <error-code>400</error-code>
-      <location>/faces/login.xhtml</location>
-     </error-page>
-     <error-page>
+    <error-page>
+        <exception-type>java.lang.Throwable</exception-type>
+        <location>/faces/*</location>
+    </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/faces/login.xhtml</location>
+    </error-page>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/faces/login.xhtml</location>
+    </error-page>
+    <error-page>
+        <error-code>400</error-code>
+        <location>/faces/login.xhtml</location>
+    </error-page>
+    <error-page>
         <exception-type>javax.servlet.ServletException</exception-type>
         <location>/faces/*</location>
-      </error-page>
-      <error-page>
+    </error-page>
+    <error-page>
         <exception-type>javax.faces.FacesException</exception-type>
         <location>/faces/*</location>
-      </error-page>
-        <error-page>
+    </error-page>
+    <error-page>
         <exception-type>java.lang.NullPointerException</exception-type>
         <location>/faces/*</location>
-      </error-page>
+    </error-page>
     <context-param>
         <param-name>javax.faces.WEBAPP_RESOURCES_DIRECTORY</param-name>
         <param-value>/resources</param-value>
@@ -58,7 +58,7 @@
         <web-resource-collection>
             <web-resource-name>AdminResource</web-resource-name>
             <description/>
-            <url-pattern>/faces/index.xhtml</url-pattern>
+            <url-pattern>/users/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <description/>
@@ -74,11 +74,27 @@
         <web-resource-collection>
             <web-resource-name>UserResource</web-resource-name>
             <description/>
-            <url-pattern>/faces/index.xhtml</url-pattern>
+            <url-pattern>/cases/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <description/>
             <role-name>User</role-name>
+        </auth-constraint>
+        <user-data-constraint>
+            <description/>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>ManagerConstraint1</display-name>
+        <web-resource-collection>
+            <web-resource-name>ManagerResource</web-resource-name>
+            <description/>
+            <url-pattern>/manager/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>Manager</role-name>
         </auth-constraint>
         <user-data-constraint>
             <description/>
@@ -100,5 +116,9 @@
     <security-role>
         <description/>
         <role-name>User</role-name>
+    </security-role>
+    <security-role>
+        <description/>
+        <role-name>Manager</role-name>
     </security-role>
 </web-app>

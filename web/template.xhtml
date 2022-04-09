@@ -13,25 +13,30 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content=""/>
     <meta name="author" content=""/>
-    <link rel="icon" type="image/png" href="resources/images/heart.jpg"/>
+    <link rel="icon" type="image/png" href="../resources/images/heart.jpg"/>
     
      <!-- How to Stop user going back after logout start-->
     <meta HTTP-EQUIV="Pragma" content="no-cache" />
     <meta HTTP-EQUIV="Expires" content="-1"/>
      <!-- How to Stop user going back after logout end-->
     
+     
+     <!-- There is hidden content here-->
     <f:metadata>
         <f:event listener="#{newJSFManagedBean.verifyLogin()}" type="preRenderView"></f:event>
     </f:metadata>
+     <!-- There is hidden content here end-->
      
    <title>AMS</title>
        <h:outputStylesheet  name="admintemplate/vendor/fontawesome-free/css/all.min.css" />
        <h:outputStylesheet  name="admintemplate/css/sb-admin-2.min.css" />
        <h:outputStylesheet library="css" name="jsfcrud.css"/>
        <h:outputScript library="js" name="jsfcrud.js"/>
-       
+        
         <h:outputStylesheet library="vendor" name="fontawesome-free/css/all.min.css" />
-        <h:outputStylesheet library="css" name="sb-admin-2.min.css"/>
+        <h:outputStylesheet library="css" name="sb-admin-2.min.css"/>        
+        <h:outputStylesheet library="css" name="style.css"/>
+
       <style type="text/css">
         .ui-fieldset-toggleable .ui-fieldset-legend {
               padding: 5px 5px !important;
@@ -346,7 +351,6 @@
 
     <!-- Custom scripts for all pages-->
      <h:outputScript  name="admintemplate/js/sb-admin-2.min.js"/>
-
-   
+     <h:outputScript name="js/script.js"/> 
   </h:body>
 </html>

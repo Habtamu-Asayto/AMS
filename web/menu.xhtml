@@ -79,6 +79,21 @@
                     </div>
                 </li> 
                 
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRepresentation"
+                       aria-expanded="true" aria-controls="collapseTwo">
+                        <i class="fas fa-fw fa-tasks"></i>
+                        <span>Representation</span>
+                    </a>
+                    <div id="collapseRepresentation" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Representation Types</h6> 
+                            <h:link class="collapse-item" value="Family Representation" outcome="/representation/Representation.xhtml" /> 
+                            <h:link class="collapse-item" value="Attorney Representation" outcome="/representation/Representation.xhtml" /> 
+                          </div>
+                    </div>
+                </li> 
+                
                 <h:panelGroup rendered="#{request.isUserInRole('Admin')}"> 
                     <li class="nav-item">
                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSetting"
