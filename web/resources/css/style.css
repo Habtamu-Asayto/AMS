@@ -21,7 +21,14 @@ input{
 .index-btn-wrapper{
   display: flex;
 }
-
+.index-btn-wrapper .index-btn{
+    background-color:#17c2c2;
+    background-image:linear-gradient(180deg,#17c2c2, 10%,#069999 100%);
+}
+.index-btn-wrapper .index-btn:hover{
+   
+    background-image:linear-gradient(180deg,#17c2c2, 10%,#069999 100%);
+}
 .index-btn{
   margin: 20px 15px 0 0;
   background: #04AA6D;
@@ -58,7 +65,18 @@ input{
   display: inline-block;
   opacity: 0.25;
 }
+.steptitle{
+    opacity: 0.25;
+} 
 .grantordetail, .repdetail, .propdetail{
     font-size: 14px;
     font-weight: 700;
+}
+.properyGrid{
+    width: 100%;
+} 
+#customertype{
+    padding: 6px 16px;
+    border-radius: 3px;
+    
 }

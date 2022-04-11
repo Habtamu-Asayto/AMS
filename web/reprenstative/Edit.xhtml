@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ReprenstativeEditDlg" widgetVar="ReprenstativeEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditReprenstativeTitle}">
+            <h:form id="ReprenstativeEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{reprenstativeController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditReprenstativeLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{reprenstativeController.selected.id}" title="#{bundle.EditReprenstativeTitle_id}" required="true" requiredMessage="#{bundle.EditReprenstativeRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditReprenstativeLabel_customertype}" for="customertype" />
+                        <p:inputText id="customertype" value="#{reprenstativeController.selected.customertype}" title="#{bundle.EditReprenstativeTitle_customertype}" />
+                        <p:outputLabel value="#{bundle.EditReprenstativeLabel_firstname}" for="firstname" />
+                        <p:inputText id="firstname" value="#{reprenstativeController.selected.firstname}" title="#{bundle.EditReprenstativeTitle_firstname}" />
+                        <p:outputLabel value="#{bundle.EditReprenstativeLabel_middlename}" for="middlename" />
+                        <p:inputText id="middlename" value="#{reprenstativeController.selected.middlename}" title="#{bundle.EditReprenstativeTitle_middlename}" />
+                        <p:outputLabel value="#{bundle.EditReprenstativeLabel_lastname}" for="lastname" />
+                        <p:inputText id="lastname" value="#{reprenstativeController.selected.lastname}" title="#{bundle.EditReprenstativeTitle_lastname}" />
+                        <p:outputLabel value="#{bundle.EditReprenstativeLabel_country}" for="country" />
+                        <p:inputText id="country" value="#{reprenstativeController.selected.country}" title="#{bundle.EditReprenstativeTitle_country}" />
+                        <p:outputLabel value="#{bundle.EditReprenstativeLabel_sex}" for="sex" />
+                        <p:inputText id="sex" value="#{reprenstativeController.selected.sex}" title="#{bundle.EditReprenstativeTitle_sex}" />
+                        <p:outputLabel value="#{bundle.EditReprenstativeLabel_housenumber}" for="housenumber" />
+                        <p:inputText id="housenumber" value="#{reprenstativeController.selected.housenumber}" title="#{bundle.EditReprenstativeTitle_housenumber}" />
+                        <p:outputLabel value="#{bundle.EditReprenstativeLabel_phone}" for="phone" />
+                        <p:inputText id="phone" value="#{reprenstativeController.selected.phone}" title="#{bundle.EditReprenstativeTitle_phone}" />
+                        <p:outputLabel value="#{bundle.EditReprenstativeLabel_tinnumber}" for="tinnumber" />
+                        <p:inputText id="tinnumber" value="#{reprenstativeController.selected.tinnumber}" title="#{bundle.EditReprenstativeTitle_tinnumber}" />
+                        <p:outputLabel value="#{bundle.EditReprenstativeLabel_grantid}" for="grantid" />
+                        <p:inputText id="grantid" value="#{reprenstativeController.selected.grantid}" title="#{bundle.EditReprenstativeTitle_grantid}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{reprenstativeController.update}" value="#{bundle.Save}" update="display,:ReprenstativeListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ReprenstativeEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ReprenstativeEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

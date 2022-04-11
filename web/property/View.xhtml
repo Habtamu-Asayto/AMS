@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PropertyViewDlg" widgetVar="PropertyViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewPropertyTitle}">
+            <h:form id="PropertyViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{propertyController.selected != null}">
+                        <h:outputText value="#{bundle.ViewPropertyLabel_id}"/>
+                        <h:outputText value="#{propertyController.selected.id}" title="#{bundle.ViewPropertyTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewPropertyLabel_propertyname}"/>
+                        <h:outputText value="#{propertyController.selected.propertyname}" title="#{bundle.ViewPropertyTitle_propertyname}"/>
+                        <h:outputText value="#{bundle.ViewPropertyLabel_motornumber}"/>
+                        <h:outputText value="#{propertyController.selected.motornumber}" title="#{bundle.ViewPropertyTitle_motornumber}"/>
+                        <h:outputText value="#{bundle.ViewPropertyLabel_chansinumber}"/>
+                        <h:outputText value="#{propertyController.selected.chansinumber}" title="#{bundle.ViewPropertyTitle_chansinumber}"/>
+                        <h:outputText value="#{bundle.ViewPropertyLabel_librenumber}"/>
+                        <h:outputText value="#{propertyController.selected.librenumber}" title="#{bundle.ViewPropertyTitle_librenumber}"/>
+                        <h:outputText value="#{bundle.ViewPropertyLabel_code}"/>
+                        <h:outputText value="#{propertyController.selected.code}" title="#{bundle.ViewPropertyTitle_code}"/>
+                        <h:outputText value="#{bundle.ViewPropertyLabel_platenumber}"/>
+                        <h:outputText value="#{propertyController.selected.platenumber}" title="#{bundle.ViewPropertyTitle_platenumber}"/>
+                        <h:outputText value="#{bundle.ViewPropertyLabel_vehicletype}"/>
+                        <h:outputText value="#{propertyController.selected.vehicletype}" title="#{bundle.ViewPropertyTitle_vehicletype}"/>
+                        <h:outputText value="#{bundle.ViewPropertyLabel_housenumber}"/>
+                        <h:outputText value="#{propertyController.selected.housenumber}" title="#{bundle.ViewPropertyTitle_housenumber}"/>
+                        <h:outputText value="#{bundle.ViewPropertyLabel_residencearea}"/>
+                        <h:outputText value="#{propertyController.selected.residencearea}" title="#{bundle.ViewPropertyTitle_residencearea}"/>
+                        <h:outputText value="#{bundle.ViewPropertyLabel_housetype}"/>
+                        <h:outputText value="#{propertyController.selected.housetype}" title="#{bundle.ViewPropertyTitle_housetype}"/>
+                        <h:outputText value="#{bundle.ViewPropertyLabel_companyname}"/>
+                        <h:outputText value="#{propertyController.selected.companyname}" title="#{bundle.ViewPropertyTitle_companyname}"/>
+                        <h:outputText value="#{bundle.ViewPropertyLabel_businessregno}"/>
+                        <h:outputText value="#{propertyController.selected.businessregno}" title="#{bundle.ViewPropertyTitle_businessregno}"/>
+                        <h:outputText value="#{bundle.ViewPropertyLabel_businessliceno}"/>
+                        <h:outputText value="#{propertyController.selected.businessliceno}" title="#{bundle.ViewPropertyTitle_businessliceno}"/>
+                        <h:outputText value="#{bundle.ViewPropertyLabel_tinno}"/>
+                        <h:outputText value="#{propertyController.selected.tinno}" title="#{bundle.ViewPropertyTitle_tinno}"/>
+                        <h:outputText value="#{bundle.ViewPropertyLabel_businesscategory}"/>
+                        <h:outputText value="#{propertyController.selected.businesscategory}" title="#{bundle.ViewPropertyTitle_businesscategory}"/>
+                        <h:outputText value="#{bundle.ViewPropertyLabel_detail}"/>
+                        <h:outputText value="#{propertyController.selected.detail}" title="#{bundle.ViewPropertyTitle_detail}"/>
+                        <h:outputText value="#{bundle.ViewPropertyLabel_grantid}"/>
+                        <h:outputText value="#{propertyController.selected.grantid}" title="#{bundle.ViewPropertyTitle_grantid}"/>
+                        <h:outputText value="#{bundle.ViewPropertyLabel_repid}"/>
+                        <h:outputText value="#{propertyController.selected.repid}" title="#{bundle.ViewPropertyTitle_repid}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="PropertyViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

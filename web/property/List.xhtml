@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListPropertyTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="PropertyListForm">
+                <p:panel header="#{bundle.ListPropertyTitle}">
+                    <p:dataTable id="datalist" value="#{propertyController.items}" var="item"
+                                 selectionMode="single" selection="#{propertyController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.id}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPropertyTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPropertyTitle_propertyname}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.propertyname}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPropertyTitle_motornumber}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.motornumber}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPropertyTitle_chansinumber}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.chansinumber}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPropertyTitle_librenumber}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.librenumber}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPropertyTitle_code}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.code}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPropertyTitle_platenumber}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.platenumber}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPropertyTitle_vehicletype}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.vehicletype}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPropertyTitle_housenumber}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.housenumber}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPropertyTitle_residencearea}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.residencearea}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPropertyTitle_housetype}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.housetype}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPropertyTitle_companyname}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.companyname}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPropertyTitle_businessregno}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.businessregno}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPropertyTitle_businessliceno}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.businessliceno}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPropertyTitle_tinno}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tinno}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPropertyTitle_businesscategory}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.businesscategory}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPropertyTitle_detail}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.detail}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPropertyTitle_grantid}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.grantid}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPropertyTitle_repid}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.repid}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{propertyController.prepareCreate}" update=":PropertyCreateForm" oncomplete="PF('PropertyCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":PropertyViewForm" oncomplete="PF('PropertyViewDialog').show()" disabled="#{empty propertyController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":PropertyEditForm" oncomplete="PF('PropertyEditDialog').show()" disabled="#{empty propertyController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{propertyController.destroy}" update=":growl,datalist" disabled="#{empty propertyController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

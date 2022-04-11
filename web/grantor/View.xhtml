@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="GrantorViewDlg" widgetVar="GrantorViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewGrantorTitle}">
+            <h:form id="GrantorViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{grantorController.selected != null}">
+                        <h:outputText value="#{bundle.ViewGrantorLabel_id}"/>
+                        <h:outputText value="#{grantorController.selected.id}" title="#{bundle.ViewGrantorTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewGrantorLabel_customertype}"/>
+                        <h:outputText value="#{grantorController.selected.customertype}" title="#{bundle.ViewGrantorTitle_customertype}"/>
+                        <h:outputText value="#{bundle.ViewGrantorLabel_firstname}"/>
+                        <h:outputText value="#{grantorController.selected.firstname}" title="#{bundle.ViewGrantorTitle_firstname}"/>
+                        <h:outputText value="#{bundle.ViewGrantorLabel_middlename}"/>
+                        <h:outputText value="#{grantorController.selected.middlename}" title="#{bundle.ViewGrantorTitle_middlename}"/>
+                        <h:outputText value="#{bundle.ViewGrantorLabel_lastname}"/>
+                        <h:outputText value="#{grantorController.selected.lastname}" title="#{bundle.ViewGrantorTitle_lastname}"/>
+                        <h:outputText value="#{bundle.ViewGrantorLabel_country}"/>
+                        <h:outputText value="#{grantorController.selected.country}" title="#{bundle.ViewGrantorTitle_country}"/>
+                        <h:outputText value="#{bundle.ViewGrantorLabel_sex}"/>
+                        <h:outputText value="#{grantorController.selected.sex}" title="#{bundle.ViewGrantorTitle_sex}"/>
+                        <h:outputText value="#{bundle.ViewGrantorLabel_housenumber}"/>
+                        <h:outputText value="#{grantorController.selected.housenumber}" title="#{bundle.ViewGrantorTitle_housenumber}"/>
+                        <h:outputText value="#{bundle.ViewGrantorLabel_phone}"/>
+                        <h:outputText value="#{grantorController.selected.phone}" title="#{bundle.ViewGrantorTitle_phone}"/>
+                        <h:outputText value="#{bundle.ViewGrantorLabel_tinnumber}"/>
+                        <h:outputText value="#{grantorController.selected.tinnumber}" title="#{bundle.ViewGrantorTitle_tinnumber}"/>
+                        <h:outputText value="#{bundle.ViewGrantorLabel_repid}"/>
+                        <h:outputText value="#{grantorController.selected.repid}" title="#{bundle.ViewGrantorTitle_repid}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="GrantorViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

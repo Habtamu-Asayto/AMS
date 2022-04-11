@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="GrantorEditDlg" widgetVar="GrantorEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditGrantorTitle}">
+            <h:form id="GrantorEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{grantorController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditGrantorLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{grantorController.selected.id}" title="#{bundle.EditGrantorTitle_id}" required="true" requiredMessage="#{bundle.EditGrantorRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditGrantorLabel_customertype}" for="customertype" />
+                        <p:inputText id="customertype" value="#{grantorController.selected.customertype}" title="#{bundle.EditGrantorTitle_customertype}" />
+                        <p:outputLabel value="#{bundle.EditGrantorLabel_firstname}" for="firstname" />
+                        <p:inputText id="firstname" value="#{grantorController.selected.firstname}" title="#{bundle.EditGrantorTitle_firstname}" />
+                        <p:outputLabel value="#{bundle.EditGrantorLabel_middlename}" for="middlename" />
+                        <p:inputText id="middlename" value="#{grantorController.selected.middlename}" title="#{bundle.EditGrantorTitle_middlename}" />
+                        <p:outputLabel value="#{bundle.EditGrantorLabel_lastname}" for="lastname" />
+                        <p:inputText id="lastname" value="#{grantorController.selected.lastname}" title="#{bundle.EditGrantorTitle_lastname}" />
+                        <p:outputLabel value="#{bundle.EditGrantorLabel_country}" for="country" />
+                        <p:inputText id="country" value="#{grantorController.selected.country}" title="#{bundle.EditGrantorTitle_country}" />
+                        <p:outputLabel value="#{bundle.EditGrantorLabel_sex}" for="sex" />
+                        <p:inputText id="sex" value="#{grantorController.selected.sex}" title="#{bundle.EditGrantorTitle_sex}" />
+                        <p:outputLabel value="#{bundle.EditGrantorLabel_housenumber}" for="housenumber" />
+                        <p:inputText id="housenumber" value="#{grantorController.selected.housenumber}" title="#{bundle.EditGrantorTitle_housenumber}" />
+                        <p:outputLabel value="#{bundle.EditGrantorLabel_phone}" for="phone" />
+                        <p:inputText id="phone" value="#{grantorController.selected.phone}" title="#{bundle.EditGrantorTitle_phone}" />
+                        <p:outputLabel value="#{bundle.EditGrantorLabel_tinnumber}" for="tinnumber" />
+                        <p:inputText id="tinnumber" value="#{grantorController.selected.tinnumber}" title="#{bundle.EditGrantorTitle_tinnumber}" />
+                        <p:outputLabel value="#{bundle.EditGrantorLabel_repid}" for="repid" />
+                        <p:selectOneMenu id="repid" value="#{grantorController.selected.repid}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{reprenstativeController.itemsAvailableSelectOne}"
+                                           var="repidItem"
+                                           itemValue="#{repidItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{grantorController.update}" value="#{bundle.Save}" update="display,:GrantorListForm:datalist,:growl" oncomplete="handleSubmit(args, 'GrantorEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="GrantorEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
