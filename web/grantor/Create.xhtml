@@ -11,25 +11,19 @@
         <p:dialog id="GrantorCreateDlg" widgetVar="GrantorCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateGrantorTitle}">
             <h:form id="GrantorCreateForm">
                 <h:panelGroup id="display">
-                    <p:panelGrid columns="2" rendered="#{grantorController.selected != null}">
+                    <p:panelGrid columns="6" rendered="#{grantorController.selected != null}">
                         <p:outputLabel value="#{bundle.CreateGrantorLabel_id}" for="id" />
                         <p:inputText id="id" value="#{grantorController.selected.id}" title="#{bundle.CreateGrantorTitle_id}" required="true" requiredMessage="#{bundle.CreateGrantorRequiredMessage_id}"/>
-                        
                         <p:outputLabel value="#{bundle.CreateGrantorLabel_customertype}" for="customertype" />
                         <p:inputText id="customertype" value="#{grantorController.selected.customertype}" title="#{bundle.CreateGrantorTitle_customertype}" />
-                        
                         <p:outputLabel value="#{bundle.CreateGrantorLabel_firstname}" for="firstname" />
                         <p:inputText id="firstname" value="#{grantorController.selected.firstname}" title="#{bundle.CreateGrantorTitle_firstname}" />
-                        
                         <p:outputLabel value="#{bundle.CreateGrantorLabel_middlename}" for="middlename" />
                         <p:inputText id="middlename" value="#{grantorController.selected.middlename}" title="#{bundle.CreateGrantorTitle_middlename}" />
-                        
                         <p:outputLabel value="#{bundle.CreateGrantorLabel_lastname}" for="lastname" />
                         <p:inputText id="lastname" value="#{grantorController.selected.lastname}" title="#{bundle.CreateGrantorTitle_lastname}" />
-                        
                         <p:outputLabel value="#{bundle.CreateGrantorLabel_country}" for="country" />
                         <p:inputText id="country" value="#{grantorController.selected.country}" title="#{bundle.CreateGrantorTitle_country}" />
-                        
                         <p:outputLabel value="#{bundle.CreateGrantorLabel_sex}" for="sex" />
                         <p:inputText id="sex" value="#{grantorController.selected.sex}" title="#{bundle.CreateGrantorTitle_sex}" />
                         <p:outputLabel value="#{bundle.CreateGrantorLabel_housenumber}" for="housenumber" />
@@ -38,6 +32,10 @@
                         <p:inputText id="phone" value="#{grantorController.selected.phone}" title="#{bundle.CreateGrantorTitle_phone}" />
                         <p:outputLabel value="#{bundle.CreateGrantorLabel_tinnumber}" for="tinnumber" />
                         <p:inputText id="tinnumber" value="#{grantorController.selected.tinnumber}" title="#{bundle.CreateGrantorTitle_tinnumber}" />
+                        <p:outputLabel value="#{bundle.CreateGrantorLabel_address}" for="address" />
+                        <p:inputText id="address" value="#{grantorController.selected.address}" title="#{bundle.CreateGrantorTitle_address}" />
+                        <p:outputLabel value="#{bundle.CreateGrantorLabel_orgname}" for="orgname" />
+                        <p:inputText id="orgname" value="#{grantorController.selected.orgname}" title="#{bundle.CreateGrantorTitle_orgname}" />
                         <p:outputLabel value="#{bundle.CreateGrantorLabel_repid}" for="repid" />
                         <p:selectOneMenu id="repid" value="#{grantorController.selected.repid}" >
                             <f:selectItems value="#{reprenstativeController.itemsAvailableSelectOne}"

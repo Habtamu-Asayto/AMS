@@ -24,7 +24,13 @@ public class UsersController implements Serializable {
     @EJB
     private com.database.UsersFacade ejbFacade;
     private List<Users> items = null;
-    private Users selected;
+    private Users selected = new Users();
+    
+    public void insert() {
+        this.ejbFacade.create(selected);
+        this.selected = new Users();
+        
+    }
 
     public UsersController() {
     }

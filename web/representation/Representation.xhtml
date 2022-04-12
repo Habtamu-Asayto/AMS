@@ -36,38 +36,39 @@
                             </div>
                             <!-- Card Body -->
                             <p:card style="width: 100%;">
-                                <form id="myForm" action="" method="post" autocomplete = "off">
+                                
+                                 <f:view>
+                                    <h:form> 
+                                        <div class="stepContainer">
+                                            <div class="step-one">
+                                                <span class="steptitle" id = "steptitle-1">Grantor</span>
+                                                <br />
+                                                <span class="step" id = "step-1">1</span> 
+                                            </div> 
 
-                                    <div class="stepContainer">
-                                        <div class="step-one">
-                                            <span class="steptitle" id = "steptitle-1">Grantor</span>
-                                            <br />
-                                            <span class="step" id = "step-1">1</span> 
-                                        </div> 
+                                            <div class="step-one">
 
-                                        <div class="step-one">
+                                                <span class="steptitle" id = "steptitle-2">Representative</span>
+                                                <br />
+                                                <span class="step" id = "step-2">2</span>
+                                            </div>
 
-                                            <span class="steptitle" id = "steptitle-2">Representative</span>
-                                            <br />
-                                            <span class="step" id = "step-2">2</span>
+
+                                            <div class="step-one"> 
+                                                <span class="steptitle" id = "steptitle-3">Property</span>
+                                                <br />
+                                                <span class="step" id = "step-3">3</span>
+                                            </div>
+
+                                            <div class="step-one"> 
+                                                <span class="steptitle" id = "steptitle-4">Overview</span>
+                                                <br />
+                                                <span class="step" id = "step-4">4</span>
+                                            </div>
+
+
                                         </div>
-
-
-                                        <div class="step-one"> 
-                                            <span class="steptitle" id = "steptitle-3">Property</span>
-                                            <br />
-                                            <span class="step" id = "step-3">3</span>
-                                        </div>
-
-                                        <div class="step-one"> 
-                                            <span class="steptitle" id = "steptitle-4">Overview</span>
-                                            <br />
-                                            <span class="step" id = "step-4">4</span>
-                                        </div>
-
-
-                                    </div>
-                                    <br/>
+                                        <br/>
                                     <div class="tab" id = "tab-1">
                                         <div class="grantordetail">Grantor detail :-</div>
                                         <p:panelGrid columns="4" style="width: 50%">
@@ -114,6 +115,10 @@
                                                     </p:selectOneRadio> 
 
                                             </p:panelGrid>
+                                                
+                                                 <p:panelGrid columns="2">
+                                                    <h:commandButton value="Next" action="#{grantorController.insert()}"/>
+                                                 </p:panelGrid>
                                             </p:panel>
                                         </div>
                                         
@@ -138,6 +143,7 @@
                                         </div>
                                         <div class="index-btn-wrapper"> 
                                             <p:commandButton class="index-btn" onclick="run(1, 2);" value="NEXT" />
+                                            
                                         </div>
                                     </div>
 
@@ -178,18 +184,9 @@
                                          <!--Dynamic Form Start 2-->
                                         <p:panel header="Another representative" toggleable="true" > 
                                             <p:panelGrid columns="4" style="width: 100%">
-                                                <ui:repeat value="#{casesController.witnesses}" var="witnes"> 
-                                                     <p:inputText style="margin-left: 1%" placeholder="Witness Answer" value="#{witnes.answer}" />
-                                                        <p:commandButton value="Remove" style="background-color: red">
-                                                            <f:ajax listener="#{casesController.remove(witnes)}" render="@form" />
-                                                        </p:commandButton> 
-                                                        <br/>
-                                                </ui:repeat> 
+                                               
                                             
-                                             </p:panelGrid> 
-                                           <p:commandButton value="Add Another representative">
-                                              <f:ajax  />
-                                           </p:commandButton>
+                                             </p:panelGrid>  
                                         </p:panel>
                                         
                                         <div class="index-btn-wrapper">
@@ -298,12 +295,13 @@
                                         </p:panelGrid>
                                         <div class="index-btn-wrapper">
                                             <p:commandButton class="index-btn" onclick="run(4, 3);" value="Previous"/>
-                                            <p:commandButton actionListener="#{grantorController.create()}" class="index-btn" value="SUBMIT" style = "background: rgb(5, 133, 207);margin-left: 1%"/> 
+                                            <h:commandButton action="#{grantorController.insert()}" class="index-btn" value="SUBMIT" style = "background: rgb(5, 133, 207);margin-left: 1%"/> 
                                         </div>
                                     </div>
 
 
-                                </form>
+                                </h:form>
+                                 </f:view>
                             </p:card>
 
                         </div>

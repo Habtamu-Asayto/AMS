@@ -12,6 +12,7 @@ import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -22,18 +23,10 @@ import javax.faces.convert.FacesConverter;
 public class GrantorController implements Serializable {
 
     @EJB
-    private PropertyFacade propertyFacade;
-
-    @EJB
-    private ReprenstativeFacade reprenstativeFacade;
-
-    @EJB
     private com.database.GrantorFacade ejbFacade;
     private List<Grantor> items = null;
-    private Grantor selected;
+    private Grantor selected = new Grantor();
 
-    
-    
     public GrantorController() {
     }
 
@@ -54,13 +47,10 @@ public class GrantorController implements Serializable {
     private GrantorFacade getFacade() {
         return ejbFacade;
     }
-
-    public List<Reprenstative> getReprenstatives() {
-        return reprenstatives;
-    }
-
-    public void setReprenstatives(List<Reprenstative> reprenstatives) {
-        this.reprenstatives = reprenstatives;
+    //Insert Grantor
+    public void insert(){
+        this.ejbFacade.create(selected); 
+        this.selected = new Grantor();
     }
 
     public Grantor prepareCreate() {
@@ -68,32 +58,9 @@ public class GrantorController implements Serializable {
         initializeEmbeddableKey();
         return selected;
     }
-    private List<Reprenstative> reprenstatives; 
-    private List<Property> propertys; 
-    public void addRep(){
-        for(Reprenstative r : reprenstatives){
-            Reprenstative rep = new Reprenstative();
-            rep=r;
-            System.out.println(r.getFirstname()+" : "+selected.getId());
-            
-            reprenstativeFacade.create(rep);
-        } 
-        //Add property
-        addProperty();
-    }
-    public void addProperty(){
-        for(Property p : propertys){
-            Property prop = new Property();
-            prop=p;
-            System.out.println(p.getBusinesscategory());
-            
-            propertyFacade.create(prop);
-        } 
-    }
+
     public void create() {
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("GrantorCreated"));
-        //Add representative
-        addRep();
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }

@@ -41,9 +41,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Grantor.findByHousenumber", query = "SELECT g FROM Grantor g WHERE g.housenumber = :housenumber"),
     @NamedQuery(name = "Grantor.findByPhone", query = "SELECT g FROM Grantor g WHERE g.phone = :phone"),
     @NamedQuery(name = "Grantor.findByTinnumber", query = "SELECT g FROM Grantor g WHERE g.tinnumber = :tinnumber"),
-    @NamedQuery(name = "Grantor.findByOrgName", query = "SELECT g FROM Grantor g WHERE g.orgname = :orgname"),
-    @NamedQuery(name = "Grantor.findByAddress", query = "SELECT g FROM Grantor g WHERE g.address = :address")})
-
+    @NamedQuery(name = "Grantor.findByAddress", query = "SELECT g FROM Grantor g WHERE g.address = :address"),
+    @NamedQuery(name = "Grantor.findByOrgname", query = "SELECT g FROM Grantor g WHERE g.orgname = :orgname")})
 public class Grantor implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -66,16 +65,7 @@ public class Grantor implements Serializable {
     private String lastname;
     @Size(max = 700)
     @Column(name = "country")
-    private String country; 
-    
-    @Size(max = 700)
-    @Column(name = "orgname")
-    private String orgname;
-    
-    @Size(max = 700)
-    @Column(name = "address")
-    private String address;
-    
+    private String country;
     @Size(max = 100)
     @Column(name = "sex")
     private String sex;
@@ -88,6 +78,12 @@ public class Grantor implements Serializable {
     private String phone;
     @Column(name = "tinnumber")
     private Integer tinnumber;
+    @Size(max = 700)
+    @Column(name = "address")
+    private String address;
+    @Size(max = 700)
+    @Column(name = "orgname")
+    private String orgname;
     @OneToMany(mappedBy = "grantid")
     private Collection<Property> propertyCollection;
     @JoinColumn(name = "repid", referencedColumnName = "id")
@@ -181,20 +177,20 @@ public class Grantor implements Serializable {
         this.tinnumber = tinnumber;
     }
 
-    public String getOrgname() {
-        return orgname;
-    }
-
-    public void setOrgname(String orgname) {
-        this.orgname = orgname;
-    }
-
     public String getAddress() {
         return address;
     }
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getOrgname() {
+        return orgname;
+    }
+
+    public void setOrgname(String orgname) {
+        this.orgname = orgname;
     }
 
     @XmlTransient

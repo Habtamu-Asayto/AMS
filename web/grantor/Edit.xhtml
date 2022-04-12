@@ -32,6 +32,10 @@
                         <p:inputText id="phone" value="#{grantorController.selected.phone}" title="#{bundle.EditGrantorTitle_phone}" />
                         <p:outputLabel value="#{bundle.EditGrantorLabel_tinnumber}" for="tinnumber" />
                         <p:inputText id="tinnumber" value="#{grantorController.selected.tinnumber}" title="#{bundle.EditGrantorTitle_tinnumber}" />
+                        <p:outputLabel value="#{bundle.EditGrantorLabel_address}" for="address" />
+                        <p:inputText id="address" value="#{grantorController.selected.address}" title="#{bundle.EditGrantorTitle_address}" />
+                        <p:outputLabel value="#{bundle.EditGrantorLabel_orgname}" for="orgname" />
+                        <p:inputText id="orgname" value="#{grantorController.selected.orgname}" title="#{bundle.EditGrantorTitle_orgname}" />
                         <p:outputLabel value="#{bundle.EditGrantorLabel_repid}" for="repid" />
                         <p:selectOneMenu id="repid" value="#{grantorController.selected.repid}" >
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
