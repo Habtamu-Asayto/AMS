@@ -13,7 +13,7 @@ import javax.persistence.PersistenceContext;
  * @author habtamu
  */
 @Stateless
-public class ReprenstativeFacade extends AbstractFacade<Reprenstative> {
+public class RepresentativeFacade extends AbstractFacade<Representative> {
 
     @PersistenceContext(unitName = "AMSPU")
     private EntityManager em;
@@ -23,8 +23,8 @@ public class ReprenstativeFacade extends AbstractFacade<Reprenstative> {
         return em;
     }
 
-    public ReprenstativeFacade() {
-        super(Reprenstative.class);
+    public RepresentativeFacade() {
+        super(Representative.class);
     }
     
 }

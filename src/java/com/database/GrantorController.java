@@ -4,15 +4,17 @@ import com.database.util.JsfUtil;
 import com.database.util.JsfUtil.PersistAction;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -29,7 +31,44 @@ public class GrantorController implements Serializable {
 
     public GrantorController() {
     }
+    public void insert(){
+        Random rand = new Random();
+        rand.setSeed(12345); 
+        System.out.println("Code : "+rand.nextInt());
+        selected.setCasecode(""+rand.nextInt());
+        this.ejbFacade.create(selected);
+        this.selected = new Grantor();
+    }
+     
+    //Add Rows Dynamically  
+    private List<Grantor> grantors; 
 
+     @PostConstruct
+    public void init() {
+        grantors = new ArrayList<Grantor>();
+    }
+    
+     public void add() { 
+        System.out.println("Try to add");
+        Grantor witnes=new Grantor();//Item item = new Item();
+        grantors.add(witnes); 
+    }
+
+    public void remove(Grantor witnes) {
+        System.out.println("Try to remove");
+        grantors.remove(witnes);
+    }
+    
+    public List<Grantor> getGrantors() {
+        return grantors;
+    }
+
+    public void setGrantors(List<Grantor> grantors) {
+        this.grantors = grantors;
+    }
+    
+    
+    
     public Grantor getSelected() {
         return selected;
     }
@@ -46,11 +85,6 @@ public class GrantorController implements Serializable {
 
     private GrantorFacade getFacade() {
         return ejbFacade;
-    }
-    //Insert Grantor
-    public void insert(){
-        this.ejbFacade.create(selected); 
-        this.selected = new Grantor();
     }
 
     public Grantor prepareCreate() {

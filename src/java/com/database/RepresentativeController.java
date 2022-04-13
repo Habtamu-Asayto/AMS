@@ -17,25 +17,42 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-@Named("reprenstativeController")
+@Named("representativeController")
 @SessionScoped
-public class ReprenstativeController implements Serializable {
+public class RepresentativeController implements Serializable {
 
     @EJB
-    private com.database.ReprenstativeFacade ejbFacade;
-    private List<Reprenstative> items = null;
-    private Reprenstative selected;
+    private com.database.RepresentativeFacade ejbFacade;
+    
+    @EJB
+    private com.database.GrantorFacade ejbGrantorFacade;
+    private Grantor gselected = new Grantor();
+    
+    private List<Representative> items = null;
+    private Representative selected = new Representative();
 
-    public ReprenstativeController() {
+    public RepresentativeController() {
+    } 
+    public void insert(){
+        this.ejbFacade.create(selected);
+        this.selected = new Representative(); 
     }
-
-    public Reprenstative getSelected() {
+    public Representative getSelected() {
         return selected;
     }
 
-    public void setSelected(Reprenstative selected) {
+    public void setSelected(Representative selected) {
         this.selected = selected;
     }
+
+    public Grantor getGselected() {
+        return gselected;
+    }
+
+    public void setGselected(Grantor gselected) {
+        this.gselected = gselected;
+    }
+    
 
     protected void setEmbeddableKeys() {
     }
@@ -43,36 +60,36 @@ public class ReprenstativeController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private ReprenstativeFacade getFacade() {
+    private RepresentativeFacade getFacade() {
         return ejbFacade;
     }
 
-    public Reprenstative prepareCreate() {
-        selected = new Reprenstative();
+    public Representative prepareCreate() {
+        selected = new Representative();
         initializeEmbeddableKey();
         return selected;
     }
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("ReprenstativeCreated"));
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("RepresentativeCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("ReprenstativeUpdated"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("RepresentativeUpdated"));
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("ReprenstativeDeleted"));
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("RepresentativeDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
-    public List<Reprenstative> getItems() {
+    public List<Representative> getItems() {
         if (items == null) {
             items = getFacade().findAll();
         }
@@ -107,29 +124,29 @@ public class ReprenstativeController implements Serializable {
         }
     }
 
-    public Reprenstative getReprenstative(java.lang.Integer id) {
+    public Representative getRepresentative(java.lang.Integer id) {
         return getFacade().find(id);
     }
 
-    public List<Reprenstative> getItemsAvailableSelectMany() {
+    public List<Representative> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
 
-    public List<Reprenstative> getItemsAvailableSelectOne() {
+    public List<Representative> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = Reprenstative.class)
-    public static class ReprenstativeControllerConverter implements Converter {
+    @FacesConverter(forClass = Representative.class)
+    public static class RepresentativeControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            ReprenstativeController controller = (ReprenstativeController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "reprenstativeController");
-            return controller.getReprenstative(getKey(value));
+            RepresentativeController controller = (RepresentativeController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "representativeController");
+            return controller.getRepresentative(getKey(value));
         }
 
         java.lang.Integer getKey(String value) {
@@ -149,11 +166,11 @@ public class ReprenstativeController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Reprenstative) {
-                Reprenstative o = (Reprenstative) object;
+            if (object instanceof Representative) {
+                Representative o = (Representative) object;
                 return getStringKey(o.getId());
             } else {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Reprenstative.class.getName()});
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Representative.class.getName()});
                 return null;
             }
         }

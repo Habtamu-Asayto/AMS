@@ -131,15 +131,15 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPropertyTitle_grantid}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.grantid}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
                                 <h:outputText value="#{bundle.ListPropertyTitle_repid}"/>
                             </f:facet>
                             <h:outputText value="#{item.repid}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPropertyTitle_grantid}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.grantid}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{propertyController.prepareCreate}" update=":PropertyCreateForm" oncomplete="PF('PropertyCreateDialog').show()"/>

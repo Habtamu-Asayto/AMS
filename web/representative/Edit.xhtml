@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="RepresentativeEditDlg" widgetVar="RepresentativeEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditRepresentativeTitle}">
+            <h:form id="RepresentativeEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{representativeController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditRepresentativeLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{representativeController.selected.id}" title="#{bundle.EditRepresentativeTitle_id}" required="true" requiredMessage="#{bundle.EditRepresentativeRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditRepresentativeLabel_repcustomertype}" for="repcustomertype" />
+                        <p:inputText id="repcustomertype" value="#{representativeController.selected.repcustomertype}" title="#{bundle.EditRepresentativeTitle_repcustomertype}" />
+                        <p:outputLabel value="#{bundle.EditRepresentativeLabel_repfirstname}" for="repfirstname" />
+                        <p:inputText id="repfirstname" value="#{representativeController.selected.repfirstname}" title="#{bundle.EditRepresentativeTitle_repfirstname}" />
+                        <p:outputLabel value="#{bundle.EditRepresentativeLabel_repmiddlename}" for="repmiddlename" />
+                        <p:inputText id="repmiddlename" value="#{representativeController.selected.repmiddlename}" title="#{bundle.EditRepresentativeTitle_repmiddlename}" />
+                        <p:outputLabel value="#{bundle.EditRepresentativeLabel_replastname}" for="replastname" />
+                        <p:inputText id="replastname" value="#{representativeController.selected.replastname}" title="#{bundle.EditRepresentativeTitle_replastname}" />
+                        <p:outputLabel value="#{bundle.EditRepresentativeLabel_repcountry}" for="repcountry" />
+                        <p:inputText id="repcountry" value="#{representativeController.selected.repcountry}" title="#{bundle.EditRepresentativeTitle_repcountry}" />
+                        <p:outputLabel value="#{bundle.EditRepresentativeLabel_repsex}" for="repsex" />
+                        <p:inputText id="repsex" value="#{representativeController.selected.repsex}" title="#{bundle.EditRepresentativeTitle_repsex}" />
+                        <p:outputLabel value="#{bundle.EditRepresentativeLabel_rephousenumber}" for="rephousenumber" />
+                        <p:inputText id="rephousenumber" value="#{representativeController.selected.rephousenumber}" title="#{bundle.EditRepresentativeTitle_rephousenumber}" />
+                        <p:outputLabel value="#{bundle.EditRepresentativeLabel_repphone}" for="repphone" />
+                        <p:inputText id="repphone" value="#{representativeController.selected.repphone}" title="#{bundle.EditRepresentativeTitle_repphone}" />
+                        <p:outputLabel value="#{bundle.EditRepresentativeLabel_reptinnumber}" for="reptinnumber" />
+                        <p:inputText id="reptinnumber" value="#{representativeController.selected.reptinnumber}" title="#{bundle.EditRepresentativeTitle_reptinnumber}" />
+                        <p:outputLabel value="#{bundle.EditRepresentativeLabel_repgrantid}" for="repgrantid" />
+                        <p:selectOneMenu id="repgrantid" value="#{representativeController.selected.repgrantid}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{grantorController.itemsAvailableSelectOne}"
+                                           var="repgrantidItem"
+                                           itemValue="#{repgrantidItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{representativeController.update}" value="#{bundle.Save}" update="display,:RepresentativeListForm:datalist,:growl" oncomplete="handleSubmit(args, 'RepresentativeEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="RepresentativeEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

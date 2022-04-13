@@ -44,7 +44,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Property.findByBusinessliceno", query = "SELECT p FROM Property p WHERE p.businessliceno = :businessliceno"),
     @NamedQuery(name = "Property.findByTinno", query = "SELECT p FROM Property p WHERE p.tinno = :tinno"),
     @NamedQuery(name = "Property.findByBusinesscategory", query = "SELECT p FROM Property p WHERE p.businesscategory = :businesscategory"),
-    @NamedQuery(name = "Property.findByDetail", query = "SELECT p FROM Property p WHERE p.detail = :detail")})
+    @NamedQuery(name = "Property.findByDetail", query = "SELECT p FROM Property p WHERE p.detail = :detail"),
+    @NamedQuery(name = "Property.findByRepid", query = "SELECT p FROM Property p WHERE p.repid = :repid")})
 public class Property implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -101,12 +102,11 @@ public class Property implements Serializable {
     @Size(max = 2147483647)
     @Column(name = "detail")
     private String detail;
+    @Column(name = "repid")
+    private Integer repid;
     @JoinColumn(name = "grantid", referencedColumnName = "id")
     @ManyToOne
     private Grantor grantid;
-    @JoinColumn(name = "repid", referencedColumnName = "id")
-    @ManyToOne
-    private Reprenstative repid;
 
     public Property() {
     }
@@ -251,20 +251,20 @@ public class Property implements Serializable {
         this.detail = detail;
     }
 
+    public Integer getRepid() {
+        return repid;
+    }
+
+    public void setRepid(Integer repid) {
+        this.repid = repid;
+    }
+
     public Grantor getGrantid() {
         return grantid;
     }
 
     public void setGrantid(Grantor grantid) {
         this.grantid = grantid;
-    }
-
-    public Reprenstative getRepid() {
-        return repid;
-    }
-
-    public void setRepid(Reprenstative repid) {
-        this.repid = repid;
     }
 
     @Override

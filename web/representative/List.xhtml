@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListRepresentativeTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="RepresentativeListForm">
+                <p:panel header="#{bundle.ListRepresentativeTitle}">
+                    <p:dataTable id="datalist" value="#{representativeController.items}" var="item"
+                                 selectionMode="single" selection="#{representativeController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.id}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRepresentativeTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRepresentativeTitle_repcustomertype}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.repcustomertype}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRepresentativeTitle_repfirstname}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.repfirstname}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRepresentativeTitle_repmiddlename}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.repmiddlename}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRepresentativeTitle_replastname}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.replastname}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRepresentativeTitle_repcountry}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.repcountry}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRepresentativeTitle_repsex}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.repsex}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRepresentativeTitle_rephousenumber}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.rephousenumber}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRepresentativeTitle_repphone}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.repphone}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRepresentativeTitle_reptinnumber}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.reptinnumber}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRepresentativeTitle_repgrantid}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.repgrantid}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{representativeController.prepareCreate}" update=":RepresentativeCreateForm" oncomplete="PF('RepresentativeCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":RepresentativeViewForm" oncomplete="PF('RepresentativeViewDialog').show()" disabled="#{empty representativeController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":RepresentativeEditForm" oncomplete="PF('RepresentativeEditDialog').show()" disabled="#{empty representativeController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{representativeController.destroy}" update=":growl,datalist" disabled="#{empty representativeController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

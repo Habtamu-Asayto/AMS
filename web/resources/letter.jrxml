@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="720" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fb6e0bed-0dad-4954-baa2-5eb52874d1e4">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="37"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="RECIEVER_NAME" class="java.lang.String"/>
 	<parameter name="LETTER_SUBJECT" class="java.lang.String"/>
 	<parameter name="LETTER_ONE" class="java.lang.String"/>
@@ -80,11 +80,6 @@
 				<textFieldExpression><![CDATA[$P{RECIEVER_NAME}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="194" y="288" width="328" height="20" uuid="d7a87bfd-f5e0-4d62-8a60-6a0b044eb69e"/>
-				<textElement verticalAlignment="Bottom" markup="html"/>
-				<textFieldExpression>kjndkgjhkdghkd</textFieldExpression>
-			</textField>
-			<textField>
 				<reportElement x="28" y="320" width="494" height="197" uuid="4ffb1f49-50b8-4937-950f-8956db0c3269"/>
 				<textElement markup="none">
 					<font size="11" isBold="false"/>
@@ -104,6 +99,11 @@
 				<reportElement x="422" y="82" width="114" height="20" uuid="acdc4e7b-d969-4557-8e38-f7b0e8804a5d"/>
 				<textElement verticalAlignment="Bottom" markup="html"/>
 				<textFieldExpression><![CDATA[$P{LETTER_REFERENCE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="194" y="288" width="328" height="20" uuid="3be98c7c-3604-4d1e-bbbe-ba1f4272ed29"/>
+				<textElement verticalAlignment="Bottom" markup="html"/>
+				<textFieldExpression><![CDATA["<b>"+$P{LETTER_SUBJECT}+"</b>"]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>

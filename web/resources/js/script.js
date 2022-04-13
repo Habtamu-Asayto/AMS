@@ -3,6 +3,7 @@
       $("#tab-1").css("display", "block");
 
       function run(hideTab, showTab){
+          document.getElementById("addgrantor").style.display = "block";
         if(hideTab<showTab){ // If not press previous button
           // Validation if press next button
           var currentTab = 0;
@@ -75,4 +76,5 @@
               }
           });
       });
+      
  

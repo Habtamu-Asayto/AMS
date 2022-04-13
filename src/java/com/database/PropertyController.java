@@ -24,9 +24,15 @@ public class PropertyController implements Serializable {
     @EJB
     private com.database.PropertyFacade ejbFacade;
     private List<Property> items = null;
-    private Property selected;
+    private Property selected = new Property();
 
     public PropertyController() {
+    }
+    
+    
+    public void insert(){
+        this.ejbFacade.create(selected);
+        this.selected = new Property(); 
     }
 
     public Property getSelected() {

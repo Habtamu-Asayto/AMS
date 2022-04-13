@@ -16,6 +16,8 @@
         <ui:define name="body">
             <h:form id="CasesListForm">
                 <h2>
+                    <h:link outcome="index.php" value="Print"/>
+                     <br/>
                      <p:commandButton ajax="false" value="Cases Report" actionListener="#{casesController.printPDF()}"/>
                 </h2>
                 <p:panel header="#{bundle.ListCasesTitle} of all cases">

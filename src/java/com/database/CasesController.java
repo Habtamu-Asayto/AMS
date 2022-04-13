@@ -230,7 +230,8 @@ public class CasesController implements Serializable {
 
     
     //Add Rows Dynamically  
-    private List<Witness> witnesses; // private List<Item> items;
+    private List<Witness> witnesses; 
+// private List<Item> items;
     
     
     @PostConstruct
@@ -278,12 +279,13 @@ public class CasesController implements Serializable {
     // Print PDF, ... , ...... using Jasper report
     public void printPDF() throws JRException, IOException{
         String fileName = "cases.pdf";
-        String jasperPath = "/resources/letter.jasper";
+        String jasperPath = "/resources/report1.jasper";
+        String str = "Please";
         
-        Map<String, Object> parameter = new HashMap<String, Object>();
+        Map<String, Object> parameter = new HashMap<>();
         parameter.put("LETTER_REFERENCE_NUMBER", "R/C/S/V/P/05/______2019");        
         parameter.put("RECIEVER_NAME", "Habtamu Asayto \n Some One \n Witness One \n Winess Two \n One Customer \n Two Customer \n Customer Three \n Witness One ");        
-        parameter.put("LETTER_SUBJECT", "<span><b>Decision To Award Community Service Grant </b></span>"); 
+        parameter.put("VAR", "Decision To Award Community Service Grant"); 
         parameter.put("LETTER_ONE", "It is to be reminded that in response to call for proposals by our university, you have submitted A Community\n" +
 "Service proposal entitled \"TOWARDS EVERGREEN AND RESILIENT AGRICULTURAL PRODUCTION SYSTEM: ESTABLISHMENT AND MANAGEMENT OF PILOT INTEGRATED SUBWATERSHED SITES IN MEGECH WATERSHED \" developed by " +
 "you and other team members. The proposal has been subjected to rigorous evaluation by panel of " +
@@ -295,7 +297,7 @@ public class CasesController implements Serializable {
 "2021. We wish you success in your project and look for ward to receiving outputs of the Community\n" +
 "Service project.");  
          
-        parameter.put("LETTER_NINE_REGARDS", "With regard, ");
+        parameter.put("LETTER_NINE_REGARDS", str);
         parameter.put("LETTER_TEN_CC", "Cc\n" +
 "Office of the President\n" +
 "Office of Vice President for Academic\n" +

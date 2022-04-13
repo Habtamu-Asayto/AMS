@@ -32,17 +32,14 @@
                         <p:inputText id="phone" value="#{grantorController.selected.phone}" title="#{bundle.EditGrantorTitle_phone}" />
                         <p:outputLabel value="#{bundle.EditGrantorLabel_tinnumber}" for="tinnumber" />
                         <p:inputText id="tinnumber" value="#{grantorController.selected.tinnumber}" title="#{bundle.EditGrantorTitle_tinnumber}" />
+                        <p:outputLabel value="#{bundle.EditGrantorLabel_repid}" for="repid" />
+                        <p:inputText id="repid" value="#{grantorController.selected.repid}" title="#{bundle.EditGrantorTitle_repid}" />
                         <p:outputLabel value="#{bundle.EditGrantorLabel_address}" for="address" />
                         <p:inputText id="address" value="#{grantorController.selected.address}" title="#{bundle.EditGrantorTitle_address}" />
                         <p:outputLabel value="#{bundle.EditGrantorLabel_orgname}" for="orgname" />
                         <p:inputText id="orgname" value="#{grantorController.selected.orgname}" title="#{bundle.EditGrantorTitle_orgname}" />
-                        <p:outputLabel value="#{bundle.EditGrantorLabel_repid}" for="repid" />
-                        <p:selectOneMenu id="repid" value="#{grantorController.selected.repid}" >
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{reprenstativeController.itemsAvailableSelectOne}"
-                                           var="repidItem"
-                                           itemValue="#{repidItem}"/>
-                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditGrantorLabel_casecode}" for="casecode" />
+                        <p:inputText id="casecode" value="#{grantorController.selected.casecode}" title="#{bundle.EditGrantorTitle_casecode}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{grantorController.update}" value="#{bundle.Save}" update="display,:GrantorListForm:datalist,:growl" oncomplete="handleSubmit(args, 'GrantorEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="GrantorEditDialog.hide()"/>

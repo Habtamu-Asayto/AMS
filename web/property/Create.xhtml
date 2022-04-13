@@ -46,17 +46,13 @@
                         <p:inputText id="businesscategory" value="#{propertyController.selected.businesscategory}" title="#{bundle.CreatePropertyTitle_businesscategory}" />
                         <p:outputLabel value="#{bundle.CreatePropertyLabel_detail}" for="detail" />
                         <p:inputText id="detail" value="#{propertyController.selected.detail}" title="#{bundle.CreatePropertyTitle_detail}" />
+                        <p:outputLabel value="#{bundle.CreatePropertyLabel_repid}" for="repid" />
+                        <p:inputText id="repid" value="#{propertyController.selected.repid}" title="#{bundle.CreatePropertyTitle_repid}" />
                         <p:outputLabel value="#{bundle.CreatePropertyLabel_grantid}" for="grantid" />
                         <p:selectOneMenu id="grantid" value="#{propertyController.selected.grantid}" >
                             <f:selectItems value="#{grantorController.itemsAvailableSelectOne}"
                                            var="grantidItem"
                                            itemValue="#{grantidItem}"/>
-                        </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.CreatePropertyLabel_repid}" for="repid" />
-                        <p:selectOneMenu id="repid" value="#{propertyController.selected.repid}" >
-                            <f:selectItems value="#{reprenstativeController.itemsAvailableSelectOne}"
-                                           var="repidItem"
-                                           itemValue="#{repidItem}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{propertyController.create}" value="#{bundle.Save}" update="display,:PropertyListForm:datalist,:growl" oncomplete="handleSubmit(args,'PropertyCreateDialog');"/>

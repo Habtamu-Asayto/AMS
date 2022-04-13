@@ -89,6 +89,12 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
+                                <h:outputText value="#{bundle.ListGrantorTitle_repid}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.repid}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
                                 <h:outputText value="#{bundle.ListGrantorTitle_address}"/>
                             </f:facet>
                             <h:outputText value="#{item.address}"/>
@@ -101,9 +107,9 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListGrantorTitle_repid}"/>
+                                <h:outputText value="#{bundle.ListGrantorTitle_casecode}"/>
                             </f:facet>
-                            <h:outputText value="#{item.repid}"/>
+                            <h:outputText value="#{item.casecode}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{grantorController.prepareCreate}" update=":GrantorCreateForm" oncomplete="PF('GrantorCreateDialog').show()"/>

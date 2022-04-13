@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="RepresentativeViewDlg" widgetVar="RepresentativeViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewRepresentativeTitle}">
+            <h:form id="RepresentativeViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{representativeController.selected != null}">
+                        <h:outputText value="#{bundle.ViewRepresentativeLabel_id}"/>
+                        <h:outputText value="#{representativeController.selected.id}" title="#{bundle.ViewRepresentativeTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewRepresentativeLabel_repcustomertype}"/>
+                        <h:outputText value="#{representativeController.selected.repcustomertype}" title="#{bundle.ViewRepresentativeTitle_repcustomertype}"/>
+                        <h:outputText value="#{bundle.ViewRepresentativeLabel_repfirstname}"/>
+                        <h:outputText value="#{representativeController.selected.repfirstname}" title="#{bundle.ViewRepresentativeTitle_repfirstname}"/>
+                        <h:outputText value="#{bundle.ViewRepresentativeLabel_repmiddlename}"/>
+                        <h:outputText value="#{representativeController.selected.repmiddlename}" title="#{bundle.ViewRepresentativeTitle_repmiddlename}"/>
+                        <h:outputText value="#{bundle.ViewRepresentativeLabel_replastname}"/>
+                        <h:outputText value="#{representativeController.selected.replastname}" title="#{bundle.ViewRepresentativeTitle_replastname}"/>
+                        <h:outputText value="#{bundle.ViewRepresentativeLabel_repcountry}"/>
+                        <h:outputText value="#{representativeController.selected.repcountry}" title="#{bundle.ViewRepresentativeTitle_repcountry}"/>
+                        <h:outputText value="#{bundle.ViewRepresentativeLabel_repsex}"/>
+                        <h:outputText value="#{representativeController.selected.repsex}" title="#{bundle.ViewRepresentativeTitle_repsex}"/>
+                        <h:outputText value="#{bundle.ViewRepresentativeLabel_rephousenumber}"/>
+                        <h:outputText value="#{representativeController.selected.rephousenumber}" title="#{bundle.ViewRepresentativeTitle_rephousenumber}"/>
+                        <h:outputText value="#{bundle.ViewRepresentativeLabel_repphone}"/>
+                        <h:outputText value="#{representativeController.selected.repphone}" title="#{bundle.ViewRepresentativeTitle_repphone}"/>
+                        <h:outputText value="#{bundle.ViewRepresentativeLabel_reptinnumber}"/>
+                        <h:outputText value="#{representativeController.selected.reptinnumber}" title="#{bundle.ViewRepresentativeTitle_reptinnumber}"/>
+                        <h:outputText value="#{bundle.ViewRepresentativeLabel_repgrantid}"/>
+                        <h:outputText value="#{representativeController.selected.repgrantid}" title="#{bundle.ViewRepresentativeTitle_repgrantid}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="RepresentativeViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

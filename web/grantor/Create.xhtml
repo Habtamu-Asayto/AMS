@@ -11,7 +11,7 @@
         <p:dialog id="GrantorCreateDlg" widgetVar="GrantorCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateGrantorTitle}">
             <h:form id="GrantorCreateForm">
                 <h:panelGroup id="display">
-                    <p:panelGrid columns="6" rendered="#{grantorController.selected != null}">
+                    <p:panelGrid columns="2" rendered="#{grantorController.selected != null}">
                         <p:outputLabel value="#{bundle.CreateGrantorLabel_id}" for="id" />
                         <p:inputText id="id" value="#{grantorController.selected.id}" title="#{bundle.CreateGrantorTitle_id}" required="true" requiredMessage="#{bundle.CreateGrantorRequiredMessage_id}"/>
                         <p:outputLabel value="#{bundle.CreateGrantorLabel_customertype}" for="customertype" />
@@ -32,16 +32,14 @@
                         <p:inputText id="phone" value="#{grantorController.selected.phone}" title="#{bundle.CreateGrantorTitle_phone}" />
                         <p:outputLabel value="#{bundle.CreateGrantorLabel_tinnumber}" for="tinnumber" />
                         <p:inputText id="tinnumber" value="#{grantorController.selected.tinnumber}" title="#{bundle.CreateGrantorTitle_tinnumber}" />
+                        <p:outputLabel value="#{bundle.CreateGrantorLabel_repid}" for="repid" />
+                        <p:inputText id="repid" value="#{grantorController.selected.repid}" title="#{bundle.CreateGrantorTitle_repid}" />
                         <p:outputLabel value="#{bundle.CreateGrantorLabel_address}" for="address" />
                         <p:inputText id="address" value="#{grantorController.selected.address}" title="#{bundle.CreateGrantorTitle_address}" />
                         <p:outputLabel value="#{bundle.CreateGrantorLabel_orgname}" for="orgname" />
                         <p:inputText id="orgname" value="#{grantorController.selected.orgname}" title="#{bundle.CreateGrantorTitle_orgname}" />
-                        <p:outputLabel value="#{bundle.CreateGrantorLabel_repid}" for="repid" />
-                        <p:selectOneMenu id="repid" value="#{grantorController.selected.repid}" >
-                            <f:selectItems value="#{reprenstativeController.itemsAvailableSelectOne}"
-                                           var="repidItem"
-                                           itemValue="#{repidItem}"/>
-                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateGrantorLabel_casecode}" for="casecode" />
+                        <p:inputText id="casecode" value="#{grantorController.selected.casecode}" title="#{bundle.CreateGrantorTitle_casecode}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{grantorController.create}" value="#{bundle.Save}" update="display,:GrantorListForm:datalist,:growl" oncomplete="handleSubmit(args,'GrantorCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="GrantorCreateDialog.hide()"/>

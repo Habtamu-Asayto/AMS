@@ -12,8 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -41,8 +39,10 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Grantor.findByHousenumber", query = "SELECT g FROM Grantor g WHERE g.housenumber = :housenumber"),
     @NamedQuery(name = "Grantor.findByPhone", query = "SELECT g FROM Grantor g WHERE g.phone = :phone"),
     @NamedQuery(name = "Grantor.findByTinnumber", query = "SELECT g FROM Grantor g WHERE g.tinnumber = :tinnumber"),
+    @NamedQuery(name = "Grantor.findByRepid", query = "SELECT g FROM Grantor g WHERE g.repid = :repid"),
     @NamedQuery(name = "Grantor.findByAddress", query = "SELECT g FROM Grantor g WHERE g.address = :address"),
-    @NamedQuery(name = "Grantor.findByOrgname", query = "SELECT g FROM Grantor g WHERE g.orgname = :orgname")})
+    @NamedQuery(name = "Grantor.findByOrgname", query = "SELECT g FROM Grantor g WHERE g.orgname = :orgname"),
+    @NamedQuery(name = "Grantor.findByCasecode", query = "SELECT g FROM Grantor g WHERE g.casecode = :casecode")})
 public class Grantor implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -78,17 +78,21 @@ public class Grantor implements Serializable {
     private String phone;
     @Column(name = "tinnumber")
     private Integer tinnumber;
+    @Column(name = "repid")
+    private Integer repid;
     @Size(max = 700)
     @Column(name = "address")
     private String address;
     @Size(max = 700)
     @Column(name = "orgname")
     private String orgname;
+    @Size(max = 100)
+    @Column(name = "casecode")
+    private String casecode;
     @OneToMany(mappedBy = "grantid")
     private Collection<Property> propertyCollection;
-    @JoinColumn(name = "repid", referencedColumnName = "id")
-    @ManyToOne
-    private Reprenstative repid;
+    @OneToMany(mappedBy = "repgrantid")
+    private Collection<Representative> representativeCollection;
 
     public Grantor() {
     }
@@ -177,6 +181,14 @@ public class Grantor implements Serializable {
         this.tinnumber = tinnumber;
     }
 
+    public Integer getRepid() {
+        return repid;
+    }
+
+    public void setRepid(Integer repid) {
+        this.repid = repid;
+    }
+
     public String getAddress() {
         return address;
     }
@@ -193,6 +205,14 @@ public class Grantor implements Serializable {
         this.orgname = orgname;
     }
 
+    public String getCasecode() {
+        return casecode;
+    }
+
+    public void setCasecode(String casecode) {
+        this.casecode = casecode;
+    }
+
     @XmlTransient
     public Collection<Property> getPropertyCollection() {
         return propertyCollection;
@@ -202,12 +222,13 @@ public class Grantor implements Serializable {
         this.propertyCollection = propertyCollection;
     }
 
-    public Reprenstative getRepid() {
-        return repid;
+    @XmlTransient
+    public Collection<Representative> getRepresentativeCollection() {
+        return representativeCollection;
     }
 
-    public void setRepid(Reprenstative repid) {
-        this.repid = repid;
+    public void setRepresentativeCollection(Collection<Representative> representativeCollection) {
+        this.representativeCollection = representativeCollection;
     }
 
     @Override
