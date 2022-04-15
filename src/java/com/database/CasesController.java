@@ -279,13 +279,13 @@ public class CasesController implements Serializable {
     // Print PDF, ... , ...... using Jasper report
     public void printPDF() throws JRException, IOException{
         String fileName = "cases.pdf";
-        String jasperPath = "/resources/report1.jasper";
+        String jasperPath = "/resources/letter.jasper";
         String str = "Please";
         
         Map<String, Object> parameter = new HashMap<>();
         parameter.put("LETTER_REFERENCE_NUMBER", "R/C/S/V/P/05/______2019");        
         parameter.put("RECIEVER_NAME", "Habtamu Asayto \n Some One \n Witness One \n Winess Two \n One Customer \n Two Customer \n Customer Three \n Witness One ");        
-        parameter.put("VAR", "Decision To Award Community Service Grant"); 
+        parameter.put("LETTER_SUBJECT", "Decision To Award Community Service Grant"); 
         parameter.put("LETTER_ONE", "It is to be reminded that in response to call for proposals by our university, you have submitted A Community\n" +
 "Service proposal entitled \"TOWARDS EVERGREEN AND RESILIENT AGRICULTURAL PRODUCTION SYSTEM: ESTABLISHMENT AND MANAGEMENT OF PILOT INTEGRATED SUBWATERSHED SITES IN MEGECH WATERSHED \" developed by " +
 "you and other team members. The proposal has been subjected to rigorous evaluation by panel of " +

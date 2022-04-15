@@ -77,4 +77,13 @@
           });
       });
       
- 
+ function testCancel() {
+
+if(document.getElementById('data_changed')!== null && document.getElementById('data_changed').value === "Y") {
+	submitJS();
+	return false;
+} else {
+	return true;
+}
+}
+

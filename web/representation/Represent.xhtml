@@ -18,8 +18,10 @@
         <ui:define name="body">    
             <p:messages id="msgs" showDetail="true" showSummary="false" >
                 <p:effect type="pulsate" event="load" delay="500" /></p:messages>
- 
-                <div class="row justify-content-start">
+
+            <h:form>   
+
+                <div class="row justify-content-center">
 
                     <div class="col-xl-12" style="margin: 0% 1% 0% 1%;">
 
@@ -33,297 +35,307 @@
                                 </div>
                             </div>
                             <!-- Card Body -->
-                            <p:card style="width: 100%;">
-                                
-                                <div class="stepContainer">
-                                        <div class="step-one">
-                                            <span class="steptitle" id = "steptitle-1">Grantor</span>
-                                            <br />
-                                            <span class="step" id = "step-1">1</span> 
-                                        </div> 
-                                    
-                                        <div class="step-one" style="display: none" id="addgrantor">
-
-                                            <span class="steptitle" id = "steptitle-2">Add Grantor</span>
-                                            <br />
-                                            <span class="step" id = "step-2">2</span>
-                                        </div>
-
-                                        <div class="step-one">
-
-                                            <span class="steptitle" id = "steptitle-2">Representative</span>
-                                            <br />
-                                            <span class="step" id = "step-2">3</span>
-                                        </div>
-
-
-                                        <div class="step-one"> 
-                                            <span class="steptitle" id = "steptitle-3">Property</span>
-                                            <br />
-                                            <span class="step" id = "step-3">4</span>
-                                        </div>
-
-                                </div>
-                                <br/> 
- 
-                                <f:view>
-                                    <h:form> 
-                                       <div class="tab" id = "tab-1">
-                                         <div class="grantordetail">Grantor detail :-</div>
-                                            <p:panelGrid columns="4" style="width: 80%"> 
-                                                
-                                            <select id="customertype" value="#{grantorController.selected.customertype}" name="customertype" onchange="showH()">
-                                                <option value="">Select One</option>
-                                                <option value="Individual">Individual</option>
-                                                <option value="Organization">Organization</option>
-                                            </select>
-                                                <p:outputLabel value="Customer Type :" for="customertypes" /> 
-                         
-                                                <p:selectOneMenu id="customertypes" value="#{grantorController.selected.customertype}" onchange="showH()">
-                                                    <f:selectItem itemLabel="Select Case Type" itemValue=""/>
-                                                    <f:selectItem itemLabel="Individual" itemValue="Individual"/>
-                                                    <f:selectItem itemLabel="Organization" itemValue="Organization"/> 
-                                                </p:selectOneMenu>
-                                            </p:panelGrid>
-                                             
-                                            <br/>
-                                            <div class="custOrg" id="custOrg" style="display: none;">
-                                                <p:panel  toggleable="true"  header="Organization">  
-                                                    <p:panelGrid columns="4" style="width: 100%"> 
-                                                        <p:outputLabel value="Orgname:" for="orgname" />
-                                                        <p:inputText id="orgname" value="#{grantorController.selected.orgname}" title="Orgname" />
-                                                    </p:panelGrid>
-                                                </p:panel>
-                                            </div> 
+                            <p:card style="width: 100%;"> 
+                                     
+                                <!-- Grantor started -->     
+                                <p:tabView> 
+                                    <p:tab title="Grantor">
+                                    <div class="card shadow mb-4">
+                                        <div
+                                            class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                             
-                                      <div class="custInd" id="custInd">
-                                          <p:panel  toggleable="true"  header="Individual" >  
-                                           
-                                            <p:panelGrid columns="4" style="width: 100%">
-                                                
-                                                <p:outputLabel value="Firstname:" for="firstname" />
-                                                <p:inputText id="firstname" value="#{grantorController.selected.firstname}" title="Firstname" />
-
-                                                <p:outputLabel value="Middlename:" for="middlename" />
-                                                <p:inputText id="middlename" value="#{grantorController.selected.middlename}" title="Middlename" />
-
-                                                <p:outputLabel value="Lastname:" for="lastname" />
-                                                <p:inputText id="lastname" value="#{grantorController.selected.lastname}" title="Lastname" />
-                                                <p:outputLabel value="Country:" for="country" />
-                                                <p:inputText id="country" value="#{grantorController.selected.country}" title="Country" />
-                                                <p:outputLabel value="Sex:" for="sex" />
-                                                <p:selectOneRadio id="sex" value="#{grantorController.selected.sex}" unselectable="true" > 
-                                                      <f:selectItem itemLabel="Male" itemValue="Male"/>
-                                                      <f:selectItem itemLabel="Female" itemValue="Female"/> 
-                                                 </p:selectOneRadio>  
-                                                
-                                            </p:panelGrid>
-                                              
-                                          </p:panel>
-                                          
-                                      </div>
-                                        <br/>
-                                        <div class="custaddress" id="custaddress">
-                                            <p:panel  toggleable="true"  header="Address" >  
-                                                <p:panelGrid columns="4" style="width: 100%"> 
-                                                    <p:outputLabel value="#{bundle.CreateGrantorLabel_housenumber}" for="housenumber" />
-                                                    <p:inputText id="housenumber" value="#{grantorController.selected.housenumber}" title="#{bundle.CreateGrantorTitle_housenumber}" />
-
-                                                    <p:outputLabel value="#{bundle.CreateGrantorLabel_phone}" for="phone" />
-                                                    <p:inputText id="phone" value="#{grantorController.selected.phone}" title="#{bundle.CreateGrantorTitle_phone}" />
-
-                                                    <p:outputLabel value="Address" for="address" />
-                                                    <p:inputText id="address" value="#{grantorController.selected.address}" title="Address" />
-                                                    
-                                                    <p:outputLabel value="#{bundle.CreateGrantorLabel_tinnumber}" for="tinnumber" />
-                                                    <p:inputText id="tinnumber" value="#{grantorController.selected.tinnumber}" title="#{bundle.CreateGrantorTitle_tinnumber}" />
-
-                                                </p:panelGrid>
-                                           </p:panel>
                                         </div>
-                                       
-                                        <div class="index-btn-wrapper"> 
-                                            <p:commandButton class="index-btn" onclick="run(1, 2);" value="Next" />
-                                            <p:commandButton style="margin-left: 1%" action="#{grantorController.insert()}" class="index-btn" onclick="run(1, 2);" value="Save" />
-                                        </div>
-                                          
-                                       </div>  
-                                    <div class="tab" id = "tab-2"> 
-                                       <div class="repdetail">Add another Grantor :-</div> 
-                                       <p:commandButton class="index-btn" value="Add Grantor" />
-                                       <p:commandButton value="Add Grant">
-                                            <f:ajax listener="#{grantorController.add()}" render="@form" />
-                                        </p:commandButton> 
-                                          <!--Dynamic Form Start 2-->
-                                        <p:panel header="Add Grantor" toggleable="true"> 
-
-                                            <ui:repeat value="#{grantorController.grantors}" var="grant"> 
-                                                <p:panelGrid columns="4" style="width: 100%"> 
-                                                    <p:inputText id="cusType" placeholder="Enter Witnes name" value="#{grant.customertype}"  required="true"/>
-                                                     <p:commandButton value="Remove" style="background-color: red">
-                                                         <f:ajax listener="#{grantorController.remove(grant)}" render="@form" />
-                                                    </p:commandButton> 
+                                        <!-- Card Body -->
+                                        <div class="card-body">
+                                            <f:view> 
+                                                <h:form > 
+                                                    <p:panelGrid columns="6" style="width:50%;">
+                                                        <p:outputLabel value="Customertype:" for="customertype" /> 
+                                                        <p:selectOneMenu id="customertype" value="#{grantorController.selected.customertype}" title="Customertype">
+                                                            <f:selectItem itemLabel="Select customer Type" itemValue=""/>
+                                                            <f:selectItem itemLabel="Individual" itemValue="Individual"/>
+                                                            <f:selectItem itemLabel="Organization" itemValue="Organization"/> 
+                                                            <f:ajax render="@form" />
+                                                        </p:selectOneMenu>
+                                                    </p:panelGrid>
                                                     <br/>
-                                                </p:panelGrid>
-                                            </ui:repeat> 
-                                            <p:commandButton value="Add Grant">
-                                                <f:ajax listener="#{grantorController.add()}" render="@form" />
-                                            </p:commandButton>  
-                                        </p:panel>
-                                    </div>
-                                        
-                                    <div class="tab" id = "tab-3"> 
-                                       <div class="repdetail">Representative detail :-</div>
-                                         <p:panel header="Reprensentative detail" toggleable="true"> 
-                                             <p:panelGrid columns="4" style="width: 100%"> 
+                                                    
+                                                    <!-- Individual -->
+                                                    <p:panel header="Individual" toggleable="true" rendered="#{grantorController.selected.customertype == 'Individual'}">  
+                                                        <p:panelGrid columns="4" style="width:100%;">
+                                                            <p:outputLabel value="Firstname:" for="firstname" />
+                                                            <p:inputText id="firstname" value="#{grantorController.selected.firstname}" title="Firstname" />
+                                                            <p:outputLabel value="Middlename:" for="middlename" />
+                                                            <p:inputText id="middlename" value="#{grantorController.selected.middlename}" title="Middlename" />
+                                                            <p:outputLabel value="Lastname:" for="lastname" />
+                                                            <p:inputText id="lastname" value="#{grantorController.selected.lastname}" title="Lastname" />
+                                                            <p:outputLabel value="Sex:" for="sex" />
+                                                            <p:inputText id="sex" value="#{grantorController.selected.sex}" title="Sex" />
+                                                        </p:panelGrid>
+                                                    </p:panel>
+                                                    
+                                                    <br/>
+                                                    
+                                                    <!-- Organization -->
+                                                    <p:panel style="margin-bottom: 2%" header="Organization" toggleable="true"  rendered="#{grantorController.selected.customertype == 'Organization'}">  
+                                                        <p:panelGrid columns="6" style="width:50%;">
 
-                                                 <p:outputLabel value="Repcustomertype:" for="repcustomertype" />
-                                                         <p:inputText id="repcustomertype" value="#{representativeController.selected.repcustomertype}" title="Repcustomertype" />
-                                                         <p:outputLabel value="Repfirstname:" for="repfirstname" />
-                                                         <p:inputText id="repfirstname" value="#{representativeController.selected.repfirstname}" title="Repfirstname" />
-                                                         <p:outputLabel value="Repmiddlename:" for="repmiddlename" />
-                                                         <p:inputText id="repmiddlename" value="#{representativeController.selected.repmiddlename}" title="Repmiddlename" />
-                                                         <p:outputLabel value="Replastname:" for="replastname" />
-                                                         <p:inputText id="replastname" value="#{representativeController.selected.replastname}" title="Replastname" />
-                                                         <p:outputLabel value="Repcountry:" for="repcountry" />
-                                                         <p:inputText id="repcountry" value="#{representativeController.selected.repcountry}" title="Repcountry" />
-                                                         <p:outputLabel value="Repsex:" for="repsex" />
-                                                         <p:inputText id="repsex" value="#{representativeController.selected.repsex}" title="Repsex" />
-                                                         <p:outputLabel value="Rephousenumber:" for="rephousenumber" />
-                                                         <p:inputText id="rephousenumber" value="#{representativeController.selected.rephousenumber}" title="Rephousenumber" />
-                                                         <p:outputLabel value="Repphone:" for="repphone" />
-                                                         <p:inputText id="repphone" value="#{representativeController.selected.repphone}" title="Repphone" />
-                                                         <p:outputLabel value="Reptinnumber:" for="reptinnumber" />
-                                                         <p:inputText id="reptinnumber" value="#{representativeController.selected.reptinnumber}" title="Reptinnumber" />
-                                                         <p:outputLabel value="Repgrantid:" for="repgrantid" />
-                                                         <p:selectOneMenu id="repgrantid" value="#{representativeController.selected.repgrantid}" >
-                                                             <!-- TODO: update below reference to list of available items-->
-                                                             <f:selectItems value="#{fixme}"/>
-                                                         </p:selectOneMenu>
+                                                            <p:outputLabel value="Orgname:" for="orgname" />
+                                                            <p:inputText id="orgname" value="#{grantorController.selected.orgname}" title="Orgname" />
+                                                           
+                                                        </p:panelGrid>
+                                                        
+                                                    </p:panel>
+                                                    
+                                                    <!-- Individual -->
+                                                    <p:panel header="Address" toggleable="true">  
+                                                        <p:panelGrid columns="4" style="width:100%;">
+ 
+                                                            <p:outputLabel value="Country:" for="country" />
+                                                            <p:inputText id="country" value="#{grantorController.selected.country}" title="Country" />
+                                                            <p:outputLabel value="Housenumber:" for="housenumber" />
+                                                            <p:inputText id="housenumber" value="#{grantorController.selected.housenumber}" title="Housenumber" />
+                                                            <p:outputLabel value="Phone:" for="phone" />
+                                                            <p:inputText id="phone" value="#{grantorController.selected.phone}" title="Phone" />
+                                                            <p:outputLabel value="Tinnumber:" for="tinnumber" />
+                                                            <p:inputText id="tinnumber" value="#{grantorController.selected.tinnumber}" title="Tinnumber" />
+                                                            <p:outputLabel value="Address:" for="address" />
+                                                            <p:inputText id="address" value="#{grantorController.selected.address}" title="Address" />
+                                                           
+                                                        </p:panelGrid>
+                                                    </p:panel> 
+                                                    
+                                                    <div class="index-btn-wrapper" style="width: 16%">  
+                                                        <p:commandButton class="index-btn" value="Add Grant">
+                                                            <f:ajax listener="#{grantorController.add()}" render="@form" />
+                                                        </p:commandButton> 
+                                                    </div>
+                                                     
+                                                    <ui:repeat value="#{grantorController.grantors}" var="grant"> 
+                                                        <p:panel header="Another Grantor" toggleable="true" style="margin-top: 2%">
+                                                             
+                                                            <p:panelGrid columns="6" style="width:50%;">
+                                                                <p:outputLabel value="Customertype:" for="customertype" /> 
+                                                                <p:selectOneMenu id="customertype" value="#{grantorController.selected.customertype}" title="Customertype">
+                                                                    <f:selectItem itemLabel="Select customer Type" itemValue=""/>
+                                                                    <f:selectItem itemLabel="Individual" itemValue="Individual"/>
+                                                                    <f:selectItem itemLabel="Organization" itemValue="Organization"/> 
+                                                                    <f:ajax render="@form" />
+                                                                </p:selectOneMenu>
+                                                            </p:panelGrid>
+                                                             <br/>
+                                                    
+                                                    <!-- Individual -->
+                                                    <p:panel header="Individual" toggleable="true" rendered="#{grantorController.selected.customertype == 'Individual'}">  
+                                                        <p:panelGrid columns="4" style="width:100%;">
+                                                            <p:outputLabel value="Firstname:" for="firstname" />
+                                                            <p:inputText id="firstname" value="#{grantorController.selected.firstname}" title="Firstname" />
+                                                            <p:outputLabel value="Middlename:" for="middlename" />
+                                                            <p:inputText id="middlename" value="#{grantorController.selected.middlename}" title="Middlename" />
+                                                            <p:outputLabel value="Lastname:" for="lastname" />
+                                                            <p:inputText id="lastname" value="#{grantorController.selected.lastname}" title="Lastname" />
+                                                            <p:outputLabel value="Sex:" for="sex" />
+                                                            <p:inputText id="sex" value="#{grantorController.selected.sex}" title="Sex" />
+                                                        </p:panelGrid>
+                                                    </p:panel>
+                                                    
+                                                    <br/>
+                                                    
+                                                    <!-- Organization -->
+                                                    <p:panel style="margin-bottom: 2%" header="Organization" toggleable="true"  rendered="#{grantorController.selected.customertype == 'Organization'}">  
+                                                        <p:panelGrid columns="6" style="width:50%;">
 
-
-                                             </p:panelGrid>
-                                         </p:panel>
-
-
-                                         <div class="index-btn-wrapper">
-                                             <p:commandButton class="index-btn" onclick="run(2, 1);" value="Previous"/>
-                                             <p:commandButton action="#{representativeController.insert()}" style="margin-left: 1%" class="index-btn" onclick="run(2, 3);" value="NEXT"/>
-                                         </div>
-                                     </div>
-
-   
-                                       <div class="tab whole" id = "tab-4"> 
-                                        <div class="propdetail">Property detail :-</div>
-                                        <p:panelGrid columns="4" style="width: 50%">
-
-                                            <p:outputLabel value="#{bundle.CreatePropertyLabel_propertyname}"/>
-                                            <p:selectBooleanCheckbox class="checkme" onchange="showVehicle(this.checked)" itemLabel="Vehicle"/>
-                                            <p:selectBooleanCheckbox onchange="showHouse(this.checked)" itemLabel="House"  />
-                                            <p:selectBooleanCheckbox onchange="showOrg(this.checked)" itemLabel="Organization"/>
-                                        </p:panelGrid>
-                                        <br/>
-
-                                        <div id="propertyVehicle" class="propertyVehicle" style="display: none;">
-                                            <p:panel  toggleable="true"  header="Vehicle detail" >  
-                                                <p:panelGrid columns="4" class="properyGrid property-vehicle">
-                                                    <p:outputLabel value="#{bundle.CreatePropertyLabel_motornumber}" for="motornumber" />
-                                                    <p:inputText id="motornumber" value="#{propertyController.selected.motornumber}" title="#{bundle.CreatePropertyTitle_motornumber}" />
-
-                                                    <p:outputLabel value="#{bundle.CreatePropertyLabel_chansinumber}" for="chansinumber" />
-                                                    <p:inputText id="chansinumber" value="#{propertyController.selected.chansinumber}" title="#{bundle.CreatePropertyTitle_chansinumber}" />
-
-                                                    <p:outputLabel value="#{bundle.CreatePropertyLabel_librenumber}" for="librenumber" />
-                                                    <p:inputText id="librenumber" value="#{propertyController.selected.librenumber}" title="#{bundle.CreatePropertyTitle_librenumber}" />
-
-                                                    <p:outputLabel value="#{bundle.CreatePropertyLabel_code}" for="code" />
-                                                    <p:inputText id="code" value="#{propertyController.selected.code}" title="#{bundle.CreatePropertyTitle_code}" />
-
-                                                    <p:outputLabel value="#{bundle.CreatePropertyLabel_platenumber}" for="platenumber" />
-                                                    <p:inputText id="platenumber" value="#{propertyController.selected.platenumber}" title="#{bundle.CreatePropertyTitle_platenumber}" />
-
-                                                    <p:outputLabel value="#{bundle.CreatePropertyLabel_vehicletype}" for="vehicletype" />
-                                                    <p:inputText id="vehicletype" value="#{propertyController.selected.vehicletype}" title="#{bundle.CreatePropertyTitle_vehicletype}" />
-
-                                                </p:panelGrid>
-                                            </p:panel>
+                                                            <p:outputLabel value="Orgname:" for="orgname" />
+                                                            <p:inputText id="orgname" value="#{grantorController.selected.orgname}" title="Orgname" />
+                                                           
+                                                        </p:panelGrid>
+                                                        
+                                                    </p:panel>
+                                                    
+                                                    <!-- Individual -->
+                                                    <p:panel header="Address" toggleable="true">  
+                                                        <p:panelGrid columns="4" style="width:100%;">
+ 
+                                                            <p:outputLabel value="Country:" for="country" />
+                                                            <p:inputText id="country" value="#{grantorController.selected.country}" title="Country" />
+                                                            <p:outputLabel value="Housenumber:" for="housenumber" />
+                                                            <p:inputText id="housenumber" value="#{grantorController.selected.housenumber}" title="Housenumber" />
+                                                            <p:outputLabel value="Phone:" for="phone" />
+                                                            <p:inputText id="phone" value="#{grantorController.selected.phone}" title="Phone" />
+                                                            <p:outputLabel value="Tinnumber:" for="tinnumber" />
+                                                            <p:inputText id="tinnumber" value="#{grantorController.selected.tinnumber}" title="Tinnumber" />
+                                                            <p:outputLabel value="Address:" for="address" />
+                                                            <p:inputText id="address" value="#{grantorController.selected.address}" title="Address" />
+                                                           
+                                                        </p:panelGrid>
+                                                    </p:panel> 
+                                                             <p:commandButton value="Remove" style="background-color: red">
+                                                                     <f:ajax listener="#{grantorController.remove(grant)}" render="@form" />
+                                                             </p:commandButton> 
+                                                        </p:panel> 
+                                                    </ui:repeat> 
+                                                    
+                                                    <div class="index-btn-wrapper" style="width: 12%">  
+                                                       <h:commandButton style="padding: 3px;border-radius: 3px;margin-left: 1%;font-size: 13px;" class="index-btn" actionListener="#{grantorController.insert()}" value="Save" /> 
+                                                    </div>
+                                                </h:form>
+                                            </f:view> 
                                         </div>
-
-
-                                        <div id="propertyHouse" class="propertyHouse" style="display: none;">
-                                            <br/>
-                                            <br/>
-                                            <p:panel  toggleable="true"  header="Residence detail" > 
-                                                <p:panelGrid columns="4" class="properyGrid propertyHouse">
-                                                    <p:outputLabel value="#{bundle.CreatePropertyLabel_housenumber}" for="residencehousenumber" />
-                                                    <p:inputText id="residencehousenumber" value="#{propertyController.selected.housenumber}" title="#{bundle.CreatePropertyTitle_housenumber}" />
-
-                                                    <p:outputLabel value="#{bundle.CreatePropertyLabel_residencearea}" for="residencearea" />
-                                                    <p:inputText id="residencearea" value="#{propertyController.selected.residencearea}" title="#{bundle.CreatePropertyTitle_residencearea}" />
-
-                                                    <p:outputLabel value="#{bundle.CreatePropertyLabel_housetype}" for="housetype" />
-                                                    <p:inputText id="housetype" value="#{propertyController.selected.housetype}" title="#{bundle.CreatePropertyTitle_housetype}" />
-
-                                                </p:panelGrid>
-                                            </p:panel>
-                                        </div>
-
-
-                                        <div id="propertyOrg" class="propertyOrg" style="display: none;">
-                                            <br/>
-                                            <br/>
-                                            <p:panel  toggleable="true"  header="Organization detail" > 
-                                                <p:panelGrid columns="4" class="properyGrid propertyOrg">
-
-                                                    <p:outputLabel value="#{bundle.CreatePropertyLabel_companyname}" for="companyname" />
-                                                    <p:inputText id="companyname" value="#{propertyController.selected.companyname}" title="#{bundle.CreatePropertyTitle_companyname}" />
-
-                                                    <p:outputLabel value="#{bundle.CreatePropertyLabel_businessregno}" for="businessregno" />
-                                                    <p:inputText id="businessregno" value="#{propertyController.selected.businessregno}" title="#{bundle.CreatePropertyTitle_businessregno}" />
-
-                                                    <p:outputLabel value="#{bundle.CreatePropertyLabel_businessliceno}" for="businessliceno" />
-                                                    <p:inputText id="businessliceno" value="#{propertyController.selected.businessliceno}" title="#{bundle.CreatePropertyTitle_businessliceno}" />
-
-                                                    <p:outputLabel value="#{bundle.CreatePropertyLabel_tinno}" for="tinno" />
-                                                    <p:inputText id="tinno" value="#{propertyController.selected.tinno}" title="#{bundle.CreatePropertyTitle_tinno}" />
-
-                                                    <p:outputLabel value="#{bundle.CreatePropertyLabel_businesscategory}" for="businesscategory" />
-                                                    <p:inputText id="businesscategory" value="#{propertyController.selected.businesscategory}" title="#{bundle.CreatePropertyTitle_businesscategory}" />
-
-                                                    <p:outputLabel value="#{bundle.CreatePropertyLabel_detail}" for="detail" />
-                                                    <p:inputText id="detail" value="#{propertyController.selected.detail}" title="#{bundle.CreatePropertyTitle_detail}" />
-
-                                                </p:panelGrid>
-                                            </p:panel>
-                                        </div>
-                                        <div class="index-btn-wrapper">
-                                            <p:commandButton class="index-btn" onclick="run(3, 2);" value="Previous"/>
-                                            <p:commandButton action="#{propertyController.insert()}" style="margin-left: 1%" class="index-btn" onclick="run(3, 4);" value="NEXT"/>
-                                        </div>
-                                    </div>
-                                
-                                   </h:form>
+                                    </div> 
+                                    </p:tab>
                                     
-                                </f:view>
-                                
-                                <f:view>
-                                    <h:form>
-                                        <div class="tab" id = "tab-4"> 
-                                              <div class="propdetail">Representation Finished</div>
-                                              <p:panelGrid columns="4" style="width: 100%">
-
-                                                  Congradulation !!!                                            
-
-                                              </p:panelGrid>
-                                              <br/>
-                                              <div class="index-btn-wrapper">
-                                                  <h:link class="collapse-item btn btn-secondary" value="Add Another" outcome="/representation/Represent.xhtml" /> 
-                                              </div>
-                                        </div>
-                                  </h:form>
+                                <!-- Grantor ended --> 
                                     
-                                </f:view>
-                                
+                                 <!-- Representative started -->  
+                                    <p:tab title="Representative">
+                                    <div class="card shadow mb-4">
+                                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                             
+                                        </div>
+                                        <!-- Card Body -->
+                                        <div class="card-body">
+                                            <f:view>  
+                                                <h:form> 
+                                                    <p:panelGrid columns="6">
+                                                        <p:outputLabel value="Repcustomertype:" for="repcustomertype" />
+                                                        <p:inputText id="repcustomertype" value="#{representativeController.selected.repcustomertype}" title="Repcustomertype" />
+                                                        <p:outputLabel value="Repfirstname:" for="repfirstname" />
+                                                        <p:inputText id="repfirstname" value="#{representativeController.selected.repfirstname}" title="Repfirstname" />
+                                                        <p:outputLabel value="Repmiddlename:" for="repmiddlename" />
+                                                        <p:inputText id="repmiddlename" value="#{representativeController.selected.repmiddlename}" title="Repmiddlename" />
+                                                        <p:outputLabel value="Replastname:" for="replastname" />
+                                                        <p:inputText id="replastname" value="#{representativeController.selected.replastname}" title="Replastname" />
+                                                        <p:outputLabel value="Repcountry:" for="repcountry" />
+                                                        <p:inputText id="repcountry" value="#{representativeController.selected.repcountry}" title="Repcountry" />
+                                                        <p:outputLabel value="Repsex:" for="repsex" />
+                                                        <p:inputText id="repsex" value="#{representativeController.selected.repsex}" title="Repsex" />
+                                                        <p:outputLabel value="Rephousenumber:" for="rephousenumber" />
+                                                        <p:inputText id="rephousenumber" value="#{representativeController.selected.rephousenumber}" title="Rephousenumber" />
+                                                        <p:outputLabel value="Repphone:" for="repphone" />
+                                                        <p:inputText id="repphone" value="#{representativeController.selected.repphone}" title="Repphone" />
+                                                        <p:outputLabel value="Reptinnumber:" for="reptinnumber" />
+                                                        <p:inputText id="reptinnumber" value="#{representativeController.selected.reptinnumber}" title="Reptinnumber" />
+                                                     
+                                                    </p:panelGrid>
+                                                     
+                                                    
+                                                    <div class="index-btn-wrapper" style="width: 12%">  
+                                                        <h:commandButton style="padding: 3px;border-radius: 3px;" class="index-btn" actionListener="#{representativeController.insert()}" value="Save" /> 
+                                                    </div>
+                                                </h:form>
+ 
+                                            </f:view>
+
+                                        </div>
+                                    </div> 
+                                    </p:tab>
+                                    <!-- Representative ended -->  
+                                    
+                                     <!-- Property started -->  
+                                    <p:tab title="Property">
+                                    <div class="card shadow mb-4">
+                                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                            
+                                        </div>
+                                        <!-- Card Body -->
+                                        <div class="card-body">
+                                            <f:view>  
+                                                <h:form> 
+                                                    <p:panelGrid columns="4" style="width: 50%">
+                                                        <p:outputLabel value="Propertyname: "  />
+                                                        <p:selectBooleanCheckbox class="checkme" onchange="showVehicle(this.checked)" itemLabel="Vehicle"/>
+                                                        <p:selectBooleanCheckbox onchange="showHouse(this.checked)" itemLabel="House"  />
+                                                        <p:selectBooleanCheckbox onchange="showOrg(this.checked)" itemLabel="Organization"/>
+                                                    </p:panelGrid>
+                                                    
+                                                    <br/>
+                                                    
+                                                   <div id="propertyVehicle" class="propertyVehicle" style="display: none;">
+                                                    <p:panel  toggleable="true"  header="Vehicle detail" >  
+                                                        <p:panelGrid columns="4" class="properyGrid property-vehicle">
+                                                            <p:outputLabel value="#{bundle.CreatePropertyLabel_motornumber}" for="motornumber" />
+                                                            <p:inputText id="motornumber" value="#{propertyController.selected.motornumber}" title="#{bundle.CreatePropertyTitle_motornumber}" />
+
+                                                            <p:outputLabel value="#{bundle.CreatePropertyLabel_chansinumber}" for="chansinumber" />
+                                                            <p:inputText id="chansinumber" value="#{propertyController.selected.chansinumber}" title="#{bundle.CreatePropertyTitle_chansinumber}" />
+
+                                                            <p:outputLabel value="#{bundle.CreatePropertyLabel_librenumber}" for="librenumber" />
+                                                            <p:inputText id="librenumber" value="#{propertyController.selected.librenumber}" title="#{bundle.CreatePropertyTitle_librenumber}" />
+
+                                                            <p:outputLabel value="#{bundle.CreatePropertyLabel_code}" for="code" />
+                                                            <p:inputText id="code" value="#{propertyController.selected.code}" title="#{bundle.CreatePropertyTitle_code}" />
+
+                                                            <p:outputLabel value="#{bundle.CreatePropertyLabel_platenumber}" for="platenumber" />
+                                                            <p:inputText id="platenumber" value="#{propertyController.selected.platenumber}" title="#{bundle.CreatePropertyTitle_platenumber}" />
+
+                                                            <p:outputLabel value="#{bundle.CreatePropertyLabel_vehicletype}" for="vehicletype" />
+                                                            <p:inputText id="vehicletype" value="#{propertyController.selected.vehicletype}" title="#{bundle.CreatePropertyTitle_vehicletype}" />
+
+                                                        </p:panelGrid>
+                                                    </p:panel>
+                                                </div>
+
+
+                                                <div id="propertyHouse" class="propertyHouse" style="display: none;">
+                                                    <br/>
+                                                    <br/>
+                                                    <p:panel  toggleable="true"  header="Residence detail" > 
+                                                        <p:panelGrid columns="4" class="properyGrid propertyHouse">
+                                                            <p:outputLabel value="#{bundle.CreatePropertyLabel_housenumber}" for="residencehousenumber" />
+                                                            <p:inputText id="residencehousenumber" value="#{propertyController.selected.housenumber}" title="#{bundle.CreatePropertyTitle_housenumber}" />
+
+                                                            <p:outputLabel value="#{bundle.CreatePropertyLabel_residencearea}" for="residencearea" />
+                                                            <p:inputText id="residencearea" value="#{propertyController.selected.residencearea}" title="#{bundle.CreatePropertyTitle_residencearea}" />
+
+                                                            <p:outputLabel value="#{bundle.CreatePropertyLabel_housetype}" for="housetype" />
+                                                            <p:inputText id="housetype" value="#{propertyController.selected.housetype}" title="#{bundle.CreatePropertyTitle_housetype}" />
+
+                                                        </p:panelGrid>
+                                                    </p:panel>
+                                                </div>
+
+
+                                                <div id="propertyOrg" class="propertyOrg" style="display: none;">
+                                                    <br/>
+                                                    <br/>
+                                                    <p:panel  toggleable="true"  header="Organization detail" > 
+                                                        <p:panelGrid columns="4" class="properyGrid propertyOrg">
+
+                                                            <p:outputLabel value="#{bundle.CreatePropertyLabel_companyname}" for="companyname" />
+                                                            <p:inputText id="companyname" value="#{propertyController.selected.companyname}" title="#{bundle.CreatePropertyTitle_companyname}" />
+
+                                                            <p:outputLabel value="#{bundle.CreatePropertyLabel_businessregno}" for="businessregno" />
+                                                            <p:inputText id="businessregno" value="#{propertyController.selected.businessregno}" title="#{bundle.CreatePropertyTitle_businessregno}" />
+
+                                                            <p:outputLabel value="#{bundle.CreatePropertyLabel_businessliceno}" for="businessliceno" />
+                                                            <p:inputText id="businessliceno" value="#{propertyController.selected.businessliceno}" title="#{bundle.CreatePropertyTitle_businessliceno}" />
+
+                                                            <p:outputLabel value="#{bundle.CreatePropertyLabel_tinno}" for="tinno" />
+                                                            <p:inputText id="tinno" value="#{propertyController.selected.tinno}" title="#{bundle.CreatePropertyTitle_tinno}" />
+
+                                                            <p:outputLabel value="#{bundle.CreatePropertyLabel_businesscategory}" for="businesscategory" />
+                                                            <p:inputText id="businesscategory" value="#{propertyController.selected.businesscategory}" title="#{bundle.CreatePropertyTitle_businesscategory}" />
+
+                                                            <p:outputLabel value="#{bundle.CreatePropertyLabel_detail}" for="detail" />
+                                                            <p:inputText id="detail" value="#{propertyController.selected.detail}" title="#{bundle.CreatePropertyTitle_detail}" />
+
+                                                        </p:panelGrid>
+                                                    </p:panel>
+                                                     
+                                                    <div class="index-btn-wrapper" style="width: 12%">  
+                                                        <h:commandButton style="padding: 3px;border-radius: 3px;" class="index-btn" actionListener="#{propertyController.insert()}" value="Save" /> 
+                                                    </div>
+                                                </div>
+                                                </h:form>
+ 
+                                            </f:view>
+
+                                        </div>
+                                    </div> 
+                                    </p:tab>
+                                    <!-- property started -->  
+                                </p:tabView> 
+                        
                             </p:card>
 
                         </div>
@@ -331,7 +343,9 @@
                     </div>
 
 
-                </div>  
+                </div> 
+
+            </h:form> 
         </ui:define>
     </ui:composition>
 

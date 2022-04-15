@@ -15,6 +15,7 @@ import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -36,8 +37,11 @@ public class GrantorController implements Serializable {
         rand.setSeed(12345); 
         System.out.println("Code : "+rand.nextInt());
         selected.setCasecode(""+rand.nextInt());
+        
         this.ejbFacade.create(selected);
-        this.selected = new Grantor();
+        this.selected = new Grantor(); 
+        
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(" Grantor Registered successfully!"));
     }
      
     //Add Rows Dynamically  
