@@ -1,117 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="720" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fb6e0bed-0dad-4954-baa2-5eb52874d1e4">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fcf98b21-5c19-4447-8176-efc66ce980b6">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<parameter name="RECIEVER_NAME" class="java.lang.String"/>
-	<parameter name="LETTER_SUBJECT" class="java.lang.String"/>
-	<parameter name="LETTER_ONE" class="java.lang.String"/>
-	<parameter name="LETTER_NINE_REGARDS" class="java.lang.String"/>
-	<parameter name="LETTER_TEN_CC" class="java.lang.String"/>
-	<parameter name="LETTER_REFERENCE_NUMBER" class="java.lang.String"/>
+	<parameter name="LETTER" class="java.lang.String"/>
+	<parameter name="LETTER_T" class="java.lang.String"/>
 	<queryString language="SQL">
-		<![CDATA[SELECT * FROM cases;]]>
+		<![CDATA[select]]>
 	</queryString>
-	<field name="id" class="java.lang.Integer"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="619" splitType="Stretch">
-			<frame>
-				<reportElement x="0" y="0" width="555" height="81" uuid="3ba69f22-c96d-4fdf-908c-ca8b2e738e5c"/>
-				<image>
-					<reportElement x="0" y="0" width="555" height="81" uuid="18723320-4142-4b8e-9399-0797e951f152"/>
-					<imageExpression><![CDATA["/home/habtamu/NetBeansProjects/header.png"]]></imageExpression>
-				</image>
-			</frame>
-			<staticText>
-				<reportElement x="28" y="146" width="23" height="20" uuid="833afcdc-69d4-420d-a472-161a8b99433d"/>
-				<textElement verticalAlignment="Middle">
-					<font isBold="true"/>
+		<band height="327" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="555" height="77" uuid="5465c11d-af6d-4ebf-8a3d-9510f0ff57f7"/>
+				<imageExpression><![CDATA["/home/habtamu/Pictures/Screenshot from 2022-04-16 10-44-17.png"]]></imageExpression>
+			</image>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="51" y="99" width="479" height="20" uuid="a20c1761-e119-4587-a94e-0e3dc8fea6c6"/>
+				<textElement markup="html">
+					<font isPdfEmbedded="true"/>
 				</textElement>
-				<text><![CDATA[To :]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="332" y="81" width="90" height="20" uuid="b4d21281-583e-4b41-ac82-a44a75b146e4"/>
-				<textElement verticalAlignment="Bottom">
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[Reference No. :]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="332" y="113" width="38" height="22" uuid="bb75128f-0981-4959-8eb1-a5f807716d95"/>
-				<textElement verticalAlignment="Bottom">
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[Date :]]></text>
-			</staticText>
-			<line>
-				<reportElement x="422" y="101" width="100" height="1" uuid="d43941cd-afcc-44e9-8f50-0f6ecd12405f"/>
-			</line>
-			<line>
-				<reportElement x="370" y="134" width="152" height="1" uuid="076b6180-795e-4b82-9a95-b7e18aa375cf"/>
-			</line>
-			<textField pattern="dd/MM/yyyy">
-				<reportElement x="370" y="113" width="152" height="20" uuid="7cffcd91-a720-4e39-8b6c-54db06a24c7b"/>
-				<textElement verticalAlignment="Bottom"/>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				<textFieldExpression><![CDATA["developed by you and other team members. The proposal has "+ 
+"been subjected to rigorous evaluation by panel of assessors and "+
+"recommended for funding "+"<b>"+$P{LETTER}+"</b>" + " A computer is a digital electronic machine that can be programmed to carry out sequences of arithmetic or logical operations (computation) automatically."]]></textFieldExpression>
 			</textField>
-			<line>
-				<reportElement x="62" y="275" width="105" height="1" uuid="35f8e39a-0c65-4902-8982-5fcb129a9589"/>
-			</line>
-			<staticText>
-				<reportElement x="62" y="255" width="132" height="20" uuid="7d74e9e1-8cff-42c5-9258-2687ddcb2edd"/>
-				<textElement verticalAlignment="Bottom"/>
-				<text><![CDATA[University of Gondar ]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="137" y="288" width="57" height="20" uuid="015ae87d-9e15-40e2-b232-13b3ed5d5c8f"/>
-				<textElement verticalAlignment="Bottom">
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[Subject :]]></text>
-			</staticText>
-			<line>
-				<reportElement x="194" y="308" width="328" height="1" uuid="c822fc01-2d49-4bb6-8b51-7ce607e79055"/>
-			</line>
-			<textField>
-				<reportElement x="51" y="156" width="175" height="99" uuid="87e0536f-b5d7-436b-9045-929202349773"/>
-				<textFieldExpression><![CDATA[$P{RECIEVER_NAME}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="28" y="320" width="494" height="197" uuid="4ffb1f49-50b8-4937-950f-8956db0c3269"/>
-				<textElement markup="none">
-					<font size="11" isBold="false"/>
-					<paragraph lineSpacing="1_1_2"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{LETTER_ONE}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="376" y="533" width="126" height="20" uuid="405d3013-e545-439e-80cc-e6a7e41a5300"/>
-				<textFieldExpression><![CDATA[$P{LETTER_NINE_REGARDS}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="28" y="553" width="186" height="66" uuid="60c53674-1581-49ac-8fa3-4c84094bab64"/>
-				<textFieldExpression><![CDATA[$P{LETTER_TEN_CC}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="422" y="82" width="114" height="20" uuid="acdc4e7b-d969-4557-8e38-f7b0e8804a5d"/>
-				<textElement verticalAlignment="Bottom" markup="html"/>
-				<textFieldExpression><![CDATA[$P{LETTER_REFERENCE_NUMBER}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="194" y="288" width="328" height="20" uuid="3be98c7c-3604-4d1e-bbbe-ba1f4272ed29"/>
-				<textElement verticalAlignment="Bottom" markup="html"/>
-				<textFieldExpression><![CDATA["<b>"+$P{LETTER_SUBJECT}+"</b>"]]></textFieldExpression>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="51" y="119" width="479" height="20" uuid="060e43cf-a84b-412a-92f9-464ef4746bca"/>
+				<textFieldExpression><![CDATA[$P{LETTER_T}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>
 	<pageFooter>
-		<band height="82">
+		<band height="123" splitType="Stretch">
+			<textField>
+				<reportElement x="428" y="99" width="80" height="20" uuid="4da151d5-4893-4fd1-9f12-0b432f639c18"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="508" y="99" width="40" height="20" uuid="ff30fe31-d414-4432-8e7c-a1302217d112"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
 			<image>
-				<reportElement x="0" y="0" width="555" height="82" uuid="ade9cf98-816a-4838-964b-651f0df23083"/>
-				<imageExpression><![CDATA["/home/habtamu/NetBeansProjects/footer.png"]]></imageExpression>
+				<reportElement x="0" y="0" width="557" height="88" uuid="0add40b4-4317-4dd4-a4f4-676f222f70b9"/>
+				<imageExpression><![CDATA["/home/habtamu/Pictures/footer.png"]]></imageExpression>
 			</image>
 		</band>
 	</pageFooter>

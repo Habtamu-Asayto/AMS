@@ -2,23 +2,33 @@ package com.database;
 
 import com.database.util.JsfUtil;
 import com.database.util.JsfUtil.PersistAction;
+import java.io.IOException;
+import java.io.InputStream;
 
 import java.io.Serializable;
+import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
-import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.inject.Named; 
+import javax.faces.bean.ViewScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
-import javax.faces.convert.FacesConverter;
+import javax.faces.convert.FacesConverter; 
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.primefaces.event.FilesUploadEvent;
+import org.primefaces.model.file.UploadedFile;
 
 @Named("witnessController")
-@SessionScoped
+@ViewScoped
 public class WitnessController implements Serializable {
 
     @EJB
@@ -26,6 +36,66 @@ public class WitnessController implements Serializable {
     private List<Witness> items = null;
     private Witness selected;
 
+    private UploadedFile file;
+
+    public UploadedFile getFile() {
+        return file;
+    }
+
+    public void setFile(UploadedFile file) {
+        this.file = file;
+        System.out.println("File Size : "+file.getSize());
+    }
+    
+    @PostConstruct
+    public void init(){
+        selected = new Witness();
+    } 
+    
+    public void importWitness(FilesUploadEvent event){
+        System.out.println("File Size : "+file.getSize());
+        this.file = (UploadedFile) event.getFiles();
+        if(file.getSize() > 0){
+            try {
+                // poi-ooxml
+                InputStream inputStream = file.getInputStream();
+                XSSFWorkbook lib = new XSSFWorkbook(inputStream);
+                Sheet sheet = lib.getSheetAt(0);
+                Iterator<Row> iterator = sheet.iterator();
+                int i=0;
+                while(iterator.hasNext()) {
+                    Row currentRow = iterator.next();
+                    if(i>0) {
+                        if(currentRow.getCell(0)!= null &&
+                           currentRow.getCell(1)!= null &&
+                           currentRow.getCell(2)!= null &&
+                           currentRow.getCell(3)!= null &&
+                           currentRow.getCell(4)!= null ){
+                            selected.setFullname(currentRow.getCell(0).getStringCellValue());
+                            selected.setEmail(currentRow.getCell(1).getStringCellValue());
+                            selected.setPhone(currentRow.getCell(2).getStringCellValue());
+                            selected.setAddress(currentRow.getCell(3).getStringCellValue());
+                            selected.setAnswer(currentRow.getCell(4).getStringCellValue());
+                            ejbFacade.create(selected);
+                            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Success", "Table Successfully Imported"));
+                        }
+                        else{
+                            break;
+                        }
+                    }
+                    i++;
+                }
+                
+                
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
+        }else {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error", "There is Error"));
+        }
+    }
+    
+    
     public WitnessController() {
     }
 
