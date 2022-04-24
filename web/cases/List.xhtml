@@ -19,17 +19,23 @@
                      
                      <p:commandButton ajax="false" value="Cases Report" actionListener="#{casesController.printPDF()}"/>
                      
+                     <!--
                       <h:form enctype="multipart/form-data">
                         <p:growl id="messages" showDetail="true"/>
                           <p:fileUpload 
-                                value="#{personController.file}"
+                                value="{personController.file}"
                                 mode="advanced"
                                 multiple="false"
                                 sizeLimit="102400" allowTypes="/(\.|\/)(xlsx)$/"
                                 invalidSizeMessage="Maximum file size allowed is 100 KB"
                                 invalidFileMessage="only .xlsx file is allowed" 
-                                listener="#{personController.upload}"/>  
-                     </h:form>
+                                listener="{personController.upload}"/>  
+                     -->
+                      <h:form enctype="multipart/form-data">
+                          <p:fileUpload value="#{personController.file}" mode="simple" skinSimple="true"/>
+
+                          <p:commandButton value="Submit" ajax="false" action="#{personController.upload}" styleClass="p-mt-3 ui-button-outlined p-d-block"/>
+                      </h:form>  
                  </h2>
                 <p:panel header="#{bundle.ListCasesTitle} of all cases">
                     <p:dataTable id="datalist" value="#{casesController.items}" var="item"

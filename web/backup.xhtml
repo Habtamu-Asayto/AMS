@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form id="form" >
+            <p:commandButton action="#{jBackupController.executeCommand('backup')}" value="Backup database"/> 
+            <p:fileUpload style="margin-left: 1%" listener="#{restoeDB.upload}" label="Restore" auto="true" mode="simple" skinSimple="true"/>
+        
+            
+        </h:form>
+        
+        <h:form>
+            <p:commandButton value="Start"
+                             onclick="PF('pbAjaxLong').start();PF('startButton3').disable()"
+                             widgetVar="startButton3" actionListener="#{progressBarView.longRunning}" styleClass="p-mr-2"/>
+            <p:commandButton value="Cancel" action="#{progressBarView.cancel}"
+                             oncomplete="PF('pbAjaxLong').cancel();PF('startButton3').enable()" styleClass="ui-button-outlined"/>
+
+            <p:progressBar widgetVar="pbAjaxLong" ajax="true" value="#{progressBarView.progress2}"
+                           labelTemplate="{value}%" styleClass="p-mt-3" global="false" interval="500">
+            <p:ajax event="complete" listener="#{progressBarView.onComplete}" update="growl"
+                    oncomplete="PF('startButton3').enable()" />
+            </p:progressBar>
+        </h:form>
+    </h:body>
+</html>
+
