@@ -7,26 +7,33 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        <h:form id="form" >
-            <p:commandButton action="#{jBackupController.executeCommand('backup')}" value="Backup database"/> 
-            <p:fileUpload style="margin-left: 1%" listener="#{restoeDB.upload}" label="Restore" auto="true" mode="simple" skinSimple="true"/>
+        <h:form>
+            <p:growl id="growl"/>
+            <p:commandButton value="Backup database"
+                    onclick="PF('pbAjaxLong').start();PF('backupButton').disable()"
+                    widgetVar="backupButton" 
+                    action="#{jBackupController.executeCommand('restore')}"
+                    styleClass="p-mr-2"/> 
+            <p:commandButton value="Cancel" action="#{jBackupController.cancel}"
+                         oncomplete="PF('pbAjaxLong').cancel();PF('backupButton').enable()" 
+                         styleClass="ui-button-outlined"/>
+            
+              
+            
+             <p:progressBar widgetVar="pbAjaxLong" ajax="true" value="#{jBackupController.progress2}"
+                           labelTemplate="{value}%" styleClass="p-mt-3" global="false" interval="500">
+                 <p:ajax event="complete" listener="#{jBackupController.onComplete}" 
+                         update="growl"
+                    oncomplete="PF('backupButton').enable()" />
+            </p:progressBar>
+            
+            
+            <p:fileUpload style="margin-left: 1%" listener="{restoeDB.upload}" label="Restore" auto="true" mode="simple" skinSimple="true"/> 
         
             
         </h:form>
         
-        <h:form>
-            <p:commandButton value="Start"
-                             onclick="PF('pbAjaxLong').start();PF('startButton3').disable()"
-                             widgetVar="startButton3" actionListener="#{progressBarView.longRunning}" styleClass="p-mr-2"/>
-            <p:commandButton value="Cancel" action="#{progressBarView.cancel}"
-                             oncomplete="PF('pbAjaxLong').cancel();PF('startButton3').enable()" styleClass="ui-button-outlined"/>
-
-            <p:progressBar widgetVar="pbAjaxLong" ajax="true" value="#{progressBarView.progress2}"
-                           labelTemplate="{value}%" styleClass="p-mt-3" global="false" interval="500">
-            <p:ajax event="complete" listener="#{progressBarView.onComplete}" update="growl"
-                    oncomplete="PF('startButton3').enable()" />
-            </p:progressBar>
-        </h:form>
+      
     </h:body>
 </html>
 

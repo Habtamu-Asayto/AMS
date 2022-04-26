@@ -23,6 +23,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter; 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import net.sf.jasperreports.engine.JRException;
@@ -276,15 +277,19 @@ public class CasesController implements Serializable {
         wit = ejbWitnessFacade.findByCaseId(caseId);
         return wit;
     }
-    // Print PDF, ... , ...... using Jasper report
+    // Print PDF, ... , ...... using Jasper report ==== 1
     public void printPDF() throws JRException, IOException{
         String fileName = "cases.pdf";
         String jasperPath = "/resources/letter.jasper";
          
         Map<String, Object> parameter = new HashMap<>();
+       
         parameter.put("LETTER", "A computer is a programmable electronic device that accepts raw data as input and processes it with a set of instructions (a program) to produce the result as output. It renders output just after performing mathematical and logical operations and can save the output for future use.");  
-        parameter.put("LETTER_T", "It renders output just after performing mathematical and logical operations and can save the output for future use.");        
-      
+        parameter.put("TITLE", "Detail about Computer");
+        parameter.put("IMAGE", "/resources/leaf_banner_green.png");
+        
+        //parameter.put("IMAGE", this.getServletContext().getRealPath("/")+"/leaf_banner_green.png");
+        
         this.PDF(parameter, jasperPath, items, fileName);
     }
     public void PDF(Map<String, Object> params, String jasperPath, List<?> dataSource, String fileName) throws JRException, IOException{
@@ -293,10 +298,10 @@ public class CasesController implements Serializable {
         JRBeanCollectionDataSource source = new JRBeanCollectionDataSource(dataSource, false);
         JasperPrint print = JasperFillManager.fillReport(file.getPath(), params, source);
         HttpServletResponse response = (HttpServletResponse)FacesContext.getCurrentInstance().getExternalContext().getResponse();
-        //response.addHeader("content-disposition", "attachment;filename="+fileName);
+        //response.addHeader("content-disposition", "attachment;filename="+fileName); 
         ServletOutputStream stream = response.getOutputStream(); 
         JasperExportManager.exportReportToPdfStream(print, stream);
         FacesContext.getCurrentInstance().responseComplete();
     }
-     
+      
 }

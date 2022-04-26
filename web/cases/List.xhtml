@@ -18,7 +18,7 @@
                 <h2>
                      
                      <p:commandButton ajax="false" value="Cases Report" actionListener="#{casesController.printPDF()}"/>
-                     
+                      
                      <!--
                       <h:form enctype="multipart/form-data">
                         <p:growl id="messages" showDetail="true"/>
@@ -31,8 +31,8 @@
                                 invalidFileMessage="only .xlsx file is allowed" 
                                 listener="{personController.upload}"/>  
                      -->
-                      <h:form enctype="multipart/form-data">
-                          <p:fileUpload value="#{personController.file}" mode="simple" skinSimple="true"/>
+                     <h:form enctype="multipart/form-data">
+                          <p:fileUpload  style="margin-left: 29%"  value="#{personController.file}" mode="simple" skinSimple="true"/>
 
                           <p:commandButton value="Submit" ajax="false" action="#{personController.upload}" styleClass="p-mt-3 ui-button-outlined p-d-block"/>
                       </h:form>  

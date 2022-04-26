@@ -1,52 +1,99 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fcf98b21-5c19-4447-8176-efc66ce980b6">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="173412be-123d-45a0-a559-49a2b83d84da">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
 	<parameter name="LETTER" class="java.lang.String"/>
-	<parameter name="LETTER_T" class="java.lang.String"/>
+	<parameter name="TITLE" class="java.lang.String"/>
+	<parameter name="IMAGE" class="java.lang.String"/>
 	<queryString language="SQL">
-		<![CDATA[select]]>
+		<![CDATA[SELECT * FROM products;]]>
 	</queryString>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="327" splitType="Stretch">
+		<band height="322" splitType="Stretch">
 			<image>
-				<reportElement x="0" y="0" width="555" height="77" uuid="5465c11d-af6d-4ebf-8a3d-9510f0ff57f7"/>
-				<imageExpression><![CDATA["/home/habtamu/Pictures/Screenshot from 2022-04-16 10-44-17.png"]]></imageExpression>
+				<reportElement x="275" y="0" width="300" height="64" uuid="168f6b70-2947-442e-b7b6-36740569ef87"/>
+				<imageExpression><![CDATA[$P{IMAGE}]]></imageExpression>
 			</image>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="51" y="99" width="479" height="20" uuid="a20c1761-e119-4587-a94e-0e3dc8fea6c6"/>
-				<textElement markup="html">
-					<font isPdfEmbedded="true"/>
+			<line>
+				<reportElement x="11" y="64" width="277" height="1" uuid="97c613cf-c160-4b99-bbe0-fc3f0bf168cf"/>
+				<graphicElement>
+					<pen lineStyle="Dotted" lineColor="#CCCCCC"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="11" y="28" width="264" height="20" uuid="daf21022-ab33-400e-bc04-8130f57ee7ea"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="15" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["developed by you and other team members. The proposal has "+ 
-"been subjected to rigorous evaluation by panel of assessors and "+
-"recommended for funding "+"<b>"+$P{LETTER}+"</b>" + " A computer is a digital electronic machine that can be programmed to carry out sequences of arithmetic or logical operations (computation) automatically."]]></textFieldExpression>
+				<text><![CDATA[Display Image of Jasper report]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="394" y="81" width="35" height="16" uuid="ffaaf0c1-4aa5-457e-9f28-f334e1f2cecd"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="11" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Date : ]]></text>
+			</staticText>
+			<line>
+				<reportElement x="429" y="97" width="126" height="1" uuid="57fc5059-9de1-428d-8133-f2cc6c676f8a"/>
+				<graphicElement>
+					<pen lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="429" y="81" width="126" height="16" uuid="f786cfbb-12a9-4b11-a750-ac1ac09b617f"/>
+				<textElement verticalAlignment="Bottom">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="56" y="155" width="437" height="1" uuid="0764191f-8064-4831-8ee4-32501e944dd6"/>
+				<graphicElement>
+					<pen lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="56" y="137" width="437" height="20" uuid="84808535-80d9-4ee9-b4c8-44edb5440e2a"/>
+				<textElement verticalAlignment="Bottom" markup="html">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{TITLE}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="51" y="119" width="479" height="20" uuid="060e43cf-a84b-412a-92f9-464ef4746bca"/>
-				<textFieldExpression><![CDATA[$P{LETTER_T}]]></textFieldExpression>
+				<reportElement positionType="Float" x="35" y="167" width="481" height="19" uuid="fcc31487-6aa6-4c00-920e-fd5d613444ad"/>
+				<textElement verticalAlignment="Bottom" markup="html">
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{LETTER}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
 	<pageFooter>
-		<band height="123" splitType="Stretch">
+		<band height="21" splitType="Stretch">
 			<textField>
-				<reportElement x="428" y="99" width="80" height="20" uuid="4da151d5-4893-4fd1-9f12-0b432f639c18"/>
+				<reportElement x="436" y="0" width="80" height="20" uuid="4b59f2d3-4a0e-4e12-ba71-82bc57e454c5"/>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement x="508" y="99" width="40" height="20" uuid="ff30fe31-d414-4432-8e7c-a1302217d112"/>
+				<reportElement x="516" y="0" width="40" height="20" uuid="4af7e3a0-6c86-4d1a-b4cf-7147f16641f5"/>
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
-			<image>
-				<reportElement x="0" y="0" width="557" height="88" uuid="0add40b4-4317-4dd4-a4f4-676f222f70b9"/>
-				<imageExpression><![CDATA["/home/habtamu/Pictures/footer.png"]]></imageExpression>
-			</image>
 		</band>
 	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
 </jasperReport>
