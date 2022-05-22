@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ServiceDeliveryofficeEditDlg" widgetVar="ServiceDeliveryofficeEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditServiceDeliveryofficeTitle}">
+            <h:form id="ServiceDeliveryofficeEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{serviceDeliveryofficeController.selected != null}">
+                     
+                        <p:outputLabel value="#{bundle.EditServiceDeliveryofficeLabel_nameamharic}" for="nameamharic" />
+                        <p:inputText id="nameamharic" value="#{serviceDeliveryofficeController.selected.nameamharic}" title="#{bundle.EditServiceDeliveryofficeTitle_nameamharic}" />
+                        <p:outputLabel value="#{bundle.EditServiceDeliveryofficeLabel_nameenglish}" for="nameenglish" />
+                        <p:inputText id="nameenglish" value="#{serviceDeliveryofficeController.selected.nameenglish}" title="#{bundle.EditServiceDeliveryofficeTitle_nameenglish}" />
+                        <p:outputLabel value="#{bundle.EditServiceDeliveryofficeLabel_phonenumber}" for="phonenumber" />
+                        <p:inputText id="phonenumber" value="#{serviceDeliveryofficeController.selected.phonenumber}" title="#{bundle.EditServiceDeliveryofficeTitle_phonenumber}" />
+                        <p:outputLabel value="#{bundle.EditServiceDeliveryofficeLabel_descriptionamharic}" for="descriptionamharic" />
+                        <p:inputText id="descriptionamharic" value="#{serviceDeliveryofficeController.selected.descriptionamharic}" title="#{bundle.EditServiceDeliveryofficeTitle_descriptionamharic}" />
+                        <p:outputLabel value="#{bundle.EditServiceDeliveryofficeLabel_descriptionenglish}" for="descriptionenglish" />
+                        <p:inputText id="descriptionenglish" value="#{serviceDeliveryofficeController.selected.descriptionenglish}" title="#{bundle.EditServiceDeliveryofficeTitle_descriptionenglish}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{serviceDeliveryofficeController.update}" value="#{bundle.Save}" update="display,:ServiceDeliveryofficeListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ServiceDeliveryofficeEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ServiceDeliveryofficeEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

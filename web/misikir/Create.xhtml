@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MisikirCreateDlg" widgetVar="MisikirCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateMisikirTitle}">
+            <h:form id="MisikirCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{misikirController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateMisikirLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{misikirController.selected.id}" title="#{bundle.CreateMisikirTitle_id}" required="true" requiredMessage="#{bundle.CreateMisikirRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.CreateMisikirLabel_firtstname}" for="firtstname" />
+                        <p:inputText id="firtstname" value="#{misikirController.selected.firtstname}" title="#{bundle.CreateMisikirTitle_firtstname}" />
+                        <p:outputLabel value="#{bundle.CreateMisikirLabel_middlename}" for="middlename" />
+                        <p:inputText id="middlename" value="#{misikirController.selected.middlename}" title="#{bundle.CreateMisikirTitle_middlename}" />
+                        <p:outputLabel value="#{bundle.CreateMisikirLabel_lastname}" for="lastname" />
+                        <p:inputText id="lastname" value="#{misikirController.selected.lastname}" title="#{bundle.CreateMisikirTitle_lastname}" />
+                        <p:outputLabel value="#{bundle.CreateMisikirLabel_password}" for="password" />
+                        <p:inputText id="password" value="#{misikirController.selected.password}" title="#{bundle.CreateMisikirTitle_password}" />
+                        <p:outputLabel value="#{bundle.CreateMisikirLabel_email}" for="email" />
+                        <p:inputText id="email" value="#{misikirController.selected.email}" title="#{bundle.CreateMisikirTitle_email}" />
+                        <p:outputLabel value="#{bundle.CreateMisikirLabel_phoneNumber}" for="phoneNumber" />
+                        <p:inputText id="phoneNumber" value="#{misikirController.selected.phoneNumber}" title="#{bundle.CreateMisikirTitle_phoneNumber}" />
+                        <p:outputLabel value="#{bundle.CreateMisikirLabel_housePhoneNumber}" for="housePhoneNumber" />
+                        <p:inputText id="housePhoneNumber" value="#{misikirController.selected.housePhoneNumber}" title="#{bundle.CreateMisikirTitle_housePhoneNumber}" />
+                        <p:outputLabel value="#{bundle.CreateMisikirLabel_status}" for="status" />
+                        <p:inputText id="status" value="#{misikirController.selected.status}" title="#{bundle.CreateMisikirTitle_status}" />
+                        <p:outputLabel value="#{bundle.CreateMisikirLabel_kebele}" for="kebele" />
+                        <p:inputText id="kebele" value="#{misikirController.selected.kebele}" title="#{bundle.CreateMisikirTitle_kebele}" />
+                        <p:outputLabel value="#{bundle.CreateMisikirLabel_idNumber}" for="idNumber" />
+                        <p:inputText id="idNumber" value="#{misikirController.selected.idNumber}" title="#{bundle.CreateMisikirTitle_idNumber}" />
+                        <p:outputLabel value="#{bundle.CreateMisikirLabel_houseNumber}" for="houseNumber" />
+                        <p:inputText id="houseNumber" value="#{misikirController.selected.houseNumber}" title="#{bundle.CreateMisikirTitle_houseNumber}" />
+                        <p:outputLabel value="#{bundle.CreateMisikirLabel_pobox}" for="pobox" />
+                        <p:inputText id="pobox" value="#{misikirController.selected.pobox}" title="#{bundle.CreateMisikirTitle_pobox}" />
+                        <p:outputLabel value="#{bundle.CreateMisikirLabel_dateOfBirth}" for="dateOfBirth" />
+                        <p:inputText id="dateOfBirth" value="#{misikirController.selected.dateOfBirth}" title="#{bundle.CreateMisikirTitle_dateOfBirth}" />
+                        <p:outputLabel value="#{bundle.CreateMisikirLabel_sex}" for="sex" />
+                        <p:inputText id="sex" value="#{misikirController.selected.sex}" title="#{bundle.CreateMisikirTitle_sex}" />
+                        <p:outputLabel value="#{bundle.CreateMisikirLabel_role}" for="role" />
+                        <p:inputTextarea rows="4" cols="30" id="role" value="#{misikirController.selected.role}" title="#{bundle.CreateMisikirTitle_role}" />
+                        <p:outputLabel value="#{bundle.CreateMisikirLabel_organizationname}" for="organizationname" />
+                        <p:inputText id="organizationname" value="#{misikirController.selected.organizationname}" title="#{bundle.CreateMisikirTitle_organizationname}" />
+                        <p:outputLabel value="#{bundle.CreateMisikirLabel_casenumber}" for="casenumber" />
+                        <p:inputText id="casenumber" value="#{misikirController.selected.casenumber}" title="#{bundle.CreateMisikirTitle_casenumber}" />
+                        <p:outputLabel value="#{bundle.CreateMisikirLabel_nationality}" for="nationality" />
+                        <p:selectOneMenu id="nationality" value="#{misikirController.selected.nationality}" >
+                            <f:selectItems value="#{nationalitiesController.itemsAvailableSelectOne}"
+                                           var="nationalityItem"
+                                           itemValue="#{nationalityItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateMisikirLabel_organizationType}" for="organizationType" />
+                        <p:selectOneMenu id="organizationType" value="#{misikirController.selected.organizationType}" >
+                            <f:selectItems value="#{officetypesController.itemsAvailableSelectOne}"
+                                           var="organizationTypeItem"
+                                           itemValue="#{organizationTypeItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateMisikirLabel_region}" for="region" />
+                        <p:selectOneMenu id="region" value="#{misikirController.selected.region}" >
+                            <f:selectItems value="#{regionsController.itemsAvailableSelectOne}"
+                                           var="regionItem"
+                                           itemValue="#{regionItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateMisikirLabel_title}" for="title" />
+                        <p:selectOneMenu id="title" value="#{misikirController.selected.title}" >
+                            <f:selectItems value="#{titlerankController.itemsAvailableSelectOne}"
+                                           var="titleItem"
+                                           itemValue="#{titleItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateMisikirLabel_woreda}" for="woreda" />
+                        <p:selectOneMenu id="woreda" value="#{misikirController.selected.woreda}" >
+                            <f:selectItems value="#{weredasController.itemsAvailableSelectOne}"
+                                           var="woredaItem"
+                                           itemValue="#{woredaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateMisikirLabel_zone}" for="zone" />
+                        <p:selectOneMenu id="zone" value="#{misikirController.selected.zone}" >
+                            <f:selectItems value="#{zonesController.itemsAvailableSelectOne}"
+                                           var="zoneItem"
+                                           itemValue="#{zoneItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{misikirController.create}" value="#{bundle.Save}" update="display,:MisikirListForm:datalist,:growl" oncomplete="handleSubmit(args,'MisikirCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="MisikirCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TewokayCreateDlg" widgetVar="TewokayCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateTewokayTitle}">
+            <h:form id="TewokayCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tewokayController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateTewokayLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{tewokayController.selected.id}" title="#{bundle.CreateTewokayTitle_id}" required="true" requiredMessage="#{bundle.CreateTewokayRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.CreateTewokayLabel_firtstname}" for="firtstname" />
+                        <p:inputText id="firtstname" value="#{tewokayController.selected.firtstname}" title="#{bundle.CreateTewokayTitle_firtstname}" />
+                        <p:outputLabel value="#{bundle.CreateTewokayLabel_middlename}" for="middlename" />
+                        <p:inputText id="middlename" value="#{tewokayController.selected.middlename}" title="#{bundle.CreateTewokayTitle_middlename}" />
+                        <p:outputLabel value="#{bundle.CreateTewokayLabel_lastname}" for="lastname" />
+                        <p:inputText id="lastname" value="#{tewokayController.selected.lastname}" title="#{bundle.CreateTewokayTitle_lastname}" />
+                        <p:outputLabel value="#{bundle.CreateTewokayLabel_password}" for="password" />
+                        <p:inputText id="password" value="#{tewokayController.selected.password}" title="#{bundle.CreateTewokayTitle_password}" />
+                        <p:outputLabel value="#{bundle.CreateTewokayLabel_email}" for="email" />
+                        <p:inputText id="email" value="#{tewokayController.selected.email}" title="#{bundle.CreateTewokayTitle_email}" />
+                        <p:outputLabel value="#{bundle.CreateTewokayLabel_phoneNumber}" for="phoneNumber" />
+                        <p:inputText id="phoneNumber" value="#{tewokayController.selected.phoneNumber}" title="#{bundle.CreateTewokayTitle_phoneNumber}" />
+                        <p:outputLabel value="#{bundle.CreateTewokayLabel_housePhoneNumber}" for="housePhoneNumber" />
+                        <p:inputText id="housePhoneNumber" value="#{tewokayController.selected.housePhoneNumber}" title="#{bundle.CreateTewokayTitle_housePhoneNumber}" />
+                        <p:outputLabel value="#{bundle.CreateTewokayLabel_status}" for="status" />
+                        <p:inputText id="status" value="#{tewokayController.selected.status}" title="#{bundle.CreateTewokayTitle_status}" />
+                        <p:outputLabel value="#{bundle.CreateTewokayLabel_kebele}" for="kebele" />
+                        <p:inputText id="kebele" value="#{tewokayController.selected.kebele}" title="#{bundle.CreateTewokayTitle_kebele}" />
+                        <p:outputLabel value="#{bundle.CreateTewokayLabel_idNumber}" for="idNumber" />
+                        <p:inputText id="idNumber" value="#{tewokayController.selected.idNumber}" title="#{bundle.CreateTewokayTitle_idNumber}" />
+                        <p:outputLabel value="#{bundle.CreateTewokayLabel_houseNumber}" for="houseNumber" />
+                        <p:inputText id="houseNumber" value="#{tewokayController.selected.houseNumber}" title="#{bundle.CreateTewokayTitle_houseNumber}" />
+                        <p:outputLabel value="#{bundle.CreateTewokayLabel_pobox}" for="pobox" />
+                        <p:inputText id="pobox" value="#{tewokayController.selected.pobox}" title="#{bundle.CreateTewokayTitle_pobox}" />
+                        <p:outputLabel value="#{bundle.CreateTewokayLabel_dateOfBirth}" for="dateOfBirth" />
+                        <p:inputText id="dateOfBirth" value="#{tewokayController.selected.dateOfBirth}" title="#{bundle.CreateTewokayTitle_dateOfBirth}" />
+                        <p:outputLabel value="#{bundle.CreateTewokayLabel_sex}" for="sex" />
+                        <p:inputText id="sex" value="#{tewokayController.selected.sex}" title="#{bundle.CreateTewokayTitle_sex}" />
+                        <p:outputLabel value="#{bundle.CreateTewokayLabel_role}" for="role" />
+                        <p:inputTextarea rows="4" cols="30" id="role" value="#{tewokayController.selected.role}" title="#{bundle.CreateTewokayTitle_role}" />
+                        <p:outputLabel value="#{bundle.CreateTewokayLabel_organizationname}" for="organizationname" />
+                        <p:inputText id="organizationname" value="#{tewokayController.selected.organizationname}" title="#{bundle.CreateTewokayTitle_organizationname}" />
+                        <p:outputLabel value="#{bundle.CreateTewokayLabel_nationality}" for="nationality" />
+                        <p:selectOneMenu id="nationality" value="#{tewokayController.selected.nationality}" >
+                            <f:selectItems value="#{nationalitiesController.itemsAvailableSelectOne}"
+                                           var="nationalityItem"
+                                           itemValue="#{nationalityItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateTewokayLabel_organizationType}" for="organizationType" />
+                        <p:selectOneMenu id="organizationType" value="#{tewokayController.selected.organizationType}" >
+                            <f:selectItems value="#{officetypesController.itemsAvailableSelectOne}"
+                                           var="organizationTypeItem"
+                                           itemValue="#{organizationTypeItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateTewokayLabel_region}" for="region" />
+                        <p:selectOneMenu id="region" value="#{tewokayController.selected.region}" >
+                            <f:selectItems value="#{regionsController.itemsAvailableSelectOne}"
+                                           var="regionItem"
+                                           itemValue="#{regionItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateTewokayLabel_title}" for="title" />
+                        <p:selectOneMenu id="title" value="#{tewokayController.selected.title}" >
+                            <f:selectItems value="#{titlerankController.itemsAvailableSelectOne}"
+                                           var="titleItem"
+                                           itemValue="#{titleItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateTewokayLabel_woreda}" for="woreda" />
+                        <p:selectOneMenu id="woreda" value="#{tewokayController.selected.woreda}" >
+                            <f:selectItems value="#{weredasController.itemsAvailableSelectOne}"
+                                           var="woredaItem"
+                                           itemValue="#{woredaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateTewokayLabel_zone}" for="zone" />
+                        <p:selectOneMenu id="zone" value="#{tewokayController.selected.zone}" >
+                            <f:selectItems value="#{zonesController.itemsAvailableSelectOne}"
+                                           var="zoneItem"
+                                           itemValue="#{zoneItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tewokayController.create}" value="#{bundle.Save}" update="display,:TewokayListForm:datalist,:growl" oncomplete="handleSubmit(args,'TewokayCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TewokayCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

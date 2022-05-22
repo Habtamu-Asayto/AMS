@@ -1,39 +1,64 @@
-<?xml version='1.0' encoding='UTF-8' ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html" 
       xmlns:p="http://primefaces.org/ui">
-    <h:head>
-        <title>Facelet Title</title>
-    </h:head>
-    <h:body>
-        <h:form>
-            <p:growl id="growl"/>
-            <p:commandButton value="Backup database"
-                    onclick="PF('pbAjaxLong').start();PF('backupButton').disable()"
-                    widgetVar="backupButton" 
-                    action="#{jBackupController.executeCommand('restore')}"
-                    styleClass="p-mr-2"/> 
-            <p:commandButton value="Cancel" action="#{jBackupController.cancel}"
-                         oncomplete="PF('pbAjaxLong').cancel();PF('backupButton').enable()" 
-                         styleClass="ui-button-outlined"/>
-            
-              
-            
-             <p:progressBar widgetVar="pbAjaxLong" ajax="true" value="#{jBackupController.progress2}"
-                           labelTemplate="{value}%" styleClass="p-mt-3" global="false" interval="500">
-                 <p:ajax event="complete" listener="#{jBackupController.onComplete}" 
-                         update="growl"
-                    oncomplete="PF('backupButton').enable()" />
-            </p:progressBar>
-            
-            
-            <p:fileUpload style="margin-left: 1%" listener="{restoeDB.upload}" label="Restore" auto="true" mode="simple" skinSimple="true"/> 
-        
-            
-        </h:form>
-        
-      
-    </h:body>
-</html>
 
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="Backup using progress bar"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            
+            <h2>Backup and Restore Database</h2>
+                <h:form>
+
+                    <p:commandButton value="Backup Database"
+                                     actionListener="#{jBackupController.startTaskBackup()}"
+                                     onclick="jsStartTask()"
+                                     update="taskResult"
+                                     widgetVar="taskButton"/>
+
+                    <p:commandButton style="margin-left: 2%" value="Restore Database"
+                                     actionListener="#{jBackupController.startTaskRestore()}"
+                                     onclick="jsStartTask()"
+                                     update="taskResult"
+                                     widgetVar="taskButton"/>
+                    <br/><br/>
+                    <p:progressBar  widgetVar="progressBar"
+                                    ajax="true"
+                                    interval="50"
+                                    value="#{jBackupController.progress}"
+                                    labelTemplate="{value}%"
+                                    global="false"
+                                    style="width:500px">
+
+                        <p:ajax event="complete"
+                                update="taskResult"
+                                oncomplete="jsOnComplete()"/>
+
+                    </p:progressBar>
+                    <h:outputText id="taskResult" value="#{jBackupController.result}"/>
+                </h:form>
+
+                <script type="text/javascript">
+                function jsOnComplete() {
+                    PF('taskButton').enable();
+                }
+
+                function jsStartTask() {
+                  PF('taskButton').disable();
+                  PF('progressBar').cancel();
+                  PF('progressBar').setValue(0);
+                  PF('progressBar').start();
+                }
+             </script>
+           
+        </ui:define>
+    </ui:composition>
+
+</html>

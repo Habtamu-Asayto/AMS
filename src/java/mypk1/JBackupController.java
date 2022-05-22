@@ -1,4 +1,10 @@
 package mypk1;
+ 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.concurrent.atomic.AtomicInteger; 
+import javax.faces.bean.ViewScoped; 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -7,82 +13,27 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
-import java.util.List;
-import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.context.FacesContext;
+import java.util.List; 
+import javax.faces.bean.ManagedBean; 
 
-/**
- *
- * @author jgilson
- */
 @ManagedBean
+@ViewScoped
 public class JBackupController {
+    
+  //Progress bar
+  private AtomicInteger progressInteger = new AtomicInteger();
+  private ExecutorService executorService;
   
-    static String  databaseName="jimsdb";
-    static String databasePassword="jims";
-
-    private Integer progress1;
-    private Integer progress2;
-         
+  //Backup
+    static String databaseName = "jimsdb";
+    static String databasePassword = "jims";
+    
     public JBackupController() {
-    }
-
-    public Integer getProgress1() {
-        return progress1;
-    }
-
-    public void setProgress1(Integer progress1) {
-        this.progress1 = progress1;
-    }
-
-    public Integer getProgress2() {
-        return progress2;
-    }
-
-    public void setProgress2(Integer progress2) {
-        this.progress2 = progress2;
+    
     }
     
-     public void longRunning() throws InterruptedException {
-        setProgress2(0);
-        Integer k = getProgress2();
-        while (k == null || k < 100) {
-            k = updateProgress(k);
-            setProgress2(k);
-            Thread.sleep(500);
-        }
-    }
-     
-     private static Integer updateProgress(Integer progress) {
-        if (progress == null) {
-            progress = 0;
-        }
-        else {
-            progress = progress + (int) (Math.random() * 35);
-
-            if (progress > 100) {
-                progress = 100;
-            }
-        }
-
-        return progress;
-    }
-
-    public void onComplete() {
-        executeCommand("backup");
-        //FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Progress Completed"));
-    }
-
-    public void cancel() {
-        progress1 = null;
-        progress2 = null;
-    }
-
     public void executeCommand(String type) {
-   
-   
- 
+    
         File backupFilePath = new File(System.getProperty("user.home")
                 + File.separator + "backup_" + databaseName);
 
@@ -162,5 +113,57 @@ public class JBackupController {
         }
         return commands;
     }
+    
+    //Progess Bar
+  public void startTaskBackup() {
+      executorService = Executors.newSingleThreadExecutor();
+      executorService.execute(this::startLongTaskBackup);
+  }
 
+  private void startLongTaskBackup() {
+      progressInteger.set(0);
+      for (int i = 0; i < 100; i++) {
+          progressInteger.getAndIncrement();
+          //simulating long running task
+          try {
+              Thread.sleep(ThreadLocalRandom.current().nextInt(1, 100));
+              executeCommand("backup");
+              
+          } catch (InterruptedException e) {
+              e.printStackTrace();
+          }
+      }
+      executorService.shutdownNow();
+      executorService = null;
+  }
+  
+   public void startTaskRestore() {
+      executorService = Executors.newSingleThreadExecutor();
+      executorService.execute(this::startLongTaskRestore);
+  }
+
+  private void startLongTaskRestore() {
+      progressInteger.set(0);
+      for (int i = 0; i < 100; i++) {
+          progressInteger.getAndIncrement();
+          //simulating long running task
+          try {
+              Thread.sleep(ThreadLocalRandom.current().nextInt(1, 100));
+              executeCommand("restore");
+              
+          } catch (InterruptedException e) {
+              e.printStackTrace();
+          }
+      }
+      executorService.shutdownNow();
+      executorService = null;
+  }
+
+  public int getProgress() {
+      return progressInteger.get();
+  }
+
+  public String getResult() {
+      return progressInteger.get() == 100 ? "task done" : "";
+  }
 }

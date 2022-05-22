@@ -68,11 +68,14 @@ public class ProductsController implements Serializable{
                         if(next.getCell(0)==null &&
                                next.getCell(1)!=null &&
                                next.getCell(2)!=null &&
-                               next.getCell(3)!=null){ 
+                               next.getCell(3)!=null &&
+                               next.getCell(4)!=null
+                                ){ 
                             products.setName(next.getCell(1).getStringCellValue()); 
                             date = next.getCell(2).getDateCellValue();
                             products.setProdate(date);
                             products.setPrice((int) next.getCell(3).getNumericCellValue());
+                            products.setBarcode((int) next.getCell(4).getNumericCellValue());
                             productsFacade.create(products);
                             System.out.println("Bravooo !!! ");
                         }

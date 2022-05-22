@@ -46,6 +46,9 @@
                         <p:outputLabel value="#{bundle.CreateAppointmentLabel_appointmenttime}" for="appointmenttime" />
                         <p:calendar id="appointmenttime" pattern="HH:mm:ss" value="#{appointmentController.selected.appointmenttime}" title="#{bundle.EditAppointmentTitle_appointmenttime}"  showOn="button"/>
                         
+                        <p:outputLabel value="Date and Time" for="appointmentdatetime" />
+                        <p:datePicker id="appointmentdatetime" value="#{appointmentController.date13}" showTime="true"/>
+                        
                         <p:outputLabel value="#{bundle.CreateAppointmentLabel_detail}" for="detail" />
                         <p:inputTextarea id="detail" value="#{appointmentController.selected.detail}" title="#{bundle.CreateAppointmentTitle_detail}" />
                     </p:panelGrid>

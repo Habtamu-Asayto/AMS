@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core" 
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
@@ -19,7 +19,7 @@
                     <p:dataTable id="datalist" value="#{usersController.items}" var="item"
                                  selectionMode="single" selection="#{usersController.selected}"
                                  paginator="true"
-                                 rowKey="#{item.username}"
+                                 rowKey="#{item.id}"
                                  rows="10"
                                  rowsPerPageTemplate="10,20,30,40,50"
                                  >
@@ -29,15 +29,120 @@
 
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListUsersTitle_username}"/>
+                                <h:outputText value="#{bundle.ListUsersTitle_id}"/>
                             </f:facet>
-                            <h:outputText value="#{item.username}"/>
+                            <h:outputText value="#{item.id}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListUsersTitle_password}"/>
+                                <h:outputText value="#{bundle.ListUsersTitle_firtstname}"/>
                             </f:facet>
-                            <h:outputText value="#{item.password}"/>
+                            <h:outputText value="#{item.firtstname} #{item.middlename} #{item.lastname
+} "/>
+                        </p:column>
+                    
+                       
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListUsersTitle_email}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.email}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListUsersTitle_status}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.status}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListUsersTitle_role}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.role}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListUsersTitle_phoneNumber}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.phoneNumber}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListUsersTitle_housePhoneNumber}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.housePhoneNumber}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListUsersTitle_kebele}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.kebele}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListUsersTitle_idNumber}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idNumber}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListUsersTitle_houseNumber}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.houseNumber}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListUsersTitle_pobox}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.pobox}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListUsersTitle_dateOfBirth}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dateOfBirth}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListUsersTitle_title}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.title}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListUsersTitle_sex}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.sex}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListUsersTitle_nationality}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nationality}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListUsersTitle_organizationType}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.organizationType}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListUsersTitle_region}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.region}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListUsersTitle_woreda}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.woreda}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListUsersTitle_zone}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.zone}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{usersController.prepareCreate}" update=":UsersCreateForm" oncomplete="PF('UsersCreateDialog').show()"/>

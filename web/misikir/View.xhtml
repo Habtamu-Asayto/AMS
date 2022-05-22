@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MisikirViewDlg" widgetVar="MisikirViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewMisikirTitle}">
+            <h:form id="MisikirViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{misikirController.selected != null}">
+                        <h:outputText value="#{bundle.ViewMisikirLabel_id}"/>
+                        <h:outputText value="#{misikirController.selected.id}" title="#{bundle.ViewMisikirTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewMisikirLabel_firtstname}"/>
+                        <h:outputText value="#{misikirController.selected.firtstname}" title="#{bundle.ViewMisikirTitle_firtstname}"/>
+                        <h:outputText value="#{bundle.ViewMisikirLabel_middlename}"/>
+                        <h:outputText value="#{misikirController.selected.middlename}" title="#{bundle.ViewMisikirTitle_middlename}"/>
+                        <h:outputText value="#{bundle.ViewMisikirLabel_lastname}"/>
+                        <h:outputText value="#{misikirController.selected.lastname}" title="#{bundle.ViewMisikirTitle_lastname}"/>
+                        <h:outputText value="#{bundle.ViewMisikirLabel_password}"/>
+                        <h:outputText value="#{misikirController.selected.password}" title="#{bundle.ViewMisikirTitle_password}"/>
+                        <h:outputText value="#{bundle.ViewMisikirLabel_email}"/>
+                        <h:outputText value="#{misikirController.selected.email}" title="#{bundle.ViewMisikirTitle_email}"/>
+                        <h:outputText value="#{bundle.ViewMisikirLabel_phoneNumber}"/>
+                        <h:outputText value="#{misikirController.selected.phoneNumber}" title="#{bundle.ViewMisikirTitle_phoneNumber}"/>
+                        <h:outputText value="#{bundle.ViewMisikirLabel_housePhoneNumber}"/>
+                        <h:outputText value="#{misikirController.selected.housePhoneNumber}" title="#{bundle.ViewMisikirTitle_housePhoneNumber}"/>
+                        <h:outputText value="#{bundle.ViewMisikirLabel_status}"/>
+                        <h:outputText value="#{misikirController.selected.status}" title="#{bundle.ViewMisikirTitle_status}"/>
+                        <h:outputText value="#{bundle.ViewMisikirLabel_kebele}"/>
+                        <h:outputText value="#{misikirController.selected.kebele}" title="#{bundle.ViewMisikirTitle_kebele}"/>
+                        <h:outputText value="#{bundle.ViewMisikirLabel_idNumber}"/>
+                        <h:outputText value="#{misikirController.selected.idNumber}" title="#{bundle.ViewMisikirTitle_idNumber}"/>
+                        <h:outputText value="#{bundle.ViewMisikirLabel_houseNumber}"/>
+                        <h:outputText value="#{misikirController.selected.houseNumber}" title="#{bundle.ViewMisikirTitle_houseNumber}"/>
+                        <h:outputText value="#{bundle.ViewMisikirLabel_pobox}"/>
+                        <h:outputText value="#{misikirController.selected.pobox}" title="#{bundle.ViewMisikirTitle_pobox}"/>
+                        <h:outputText value="#{bundle.ViewMisikirLabel_dateOfBirth}"/>
+                        <h:outputText value="#{misikirController.selected.dateOfBirth}" title="#{bundle.ViewMisikirTitle_dateOfBirth}"/>
+                        <h:outputText value="#{bundle.ViewMisikirLabel_sex}"/>
+                        <h:outputText value="#{misikirController.selected.sex}" title="#{bundle.ViewMisikirTitle_sex}"/>
+                        <h:outputText value="#{bundle.ViewMisikirLabel_role}"/>
+                        <h:outputText value="#{misikirController.selected.role}" title="#{bundle.ViewMisikirTitle_role}"/>
+                        <h:outputText value="#{bundle.ViewMisikirLabel_organizationname}"/>
+                        <h:outputText value="#{misikirController.selected.organizationname}" title="#{bundle.ViewMisikirTitle_organizationname}"/>
+                        <h:outputText value="#{bundle.ViewMisikirLabel_casenumber}"/>
+                        <h:outputText value="#{misikirController.selected.casenumber}" title="#{bundle.ViewMisikirTitle_casenumber}"/>
+                        <h:outputText value="#{bundle.ViewMisikirLabel_nationality}"/>
+                        <h:outputText value="#{misikirController.selected.nationality}" title="#{bundle.ViewMisikirTitle_nationality}"/>
+                        <h:outputText value="#{bundle.ViewMisikirLabel_organizationType}"/>
+                        <h:outputText value="#{misikirController.selected.organizationType}" title="#{bundle.ViewMisikirTitle_organizationType}"/>
+                        <h:outputText value="#{bundle.ViewMisikirLabel_region}"/>
+                        <h:outputText value="#{misikirController.selected.region}" title="#{bundle.ViewMisikirTitle_region}"/>
+                        <h:outputText value="#{bundle.ViewMisikirLabel_title}"/>
+                        <h:outputText value="#{misikirController.selected.title}" title="#{bundle.ViewMisikirTitle_title}"/>
+                        <h:outputText value="#{bundle.ViewMisikirLabel_woreda}"/>
+                        <h:outputText value="#{misikirController.selected.woreda}" title="#{bundle.ViewMisikirTitle_woreda}"/>
+                        <h:outputText value="#{bundle.ViewMisikirLabel_zone}"/>
+                        <h:outputText value="#{misikirController.selected.zone}" title="#{bundle.ViewMisikirTitle_zone}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="MisikirViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

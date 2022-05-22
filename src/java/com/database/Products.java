@@ -33,7 +33,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Products.findByIdproduct", query = "SELECT p FROM Products p WHERE p.idproduct = :idproduct"),
     @NamedQuery(name = "Products.findByName", query = "SELECT p FROM Products p WHERE p.name = :name"),
     @NamedQuery(name = "Products.findByProdate", query = "SELECT p FROM Products p WHERE p.prodate = :prodate"),
-    @NamedQuery(name = "Products.findByPrice", query = "SELECT p FROM Products p WHERE p.price = :price")})
+    @NamedQuery(name = "Products.findByPrice", query = "SELECT p FROM Products p WHERE p.price = :price"),
+    @NamedQuery(name = "Products.findByBarcode", query = "SELECT p FROM Products p WHERE p.barcode = :barcode"),
+})
 public class Products implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -56,6 +58,9 @@ public class Products implements Serializable {
     @NotNull
     @Column(name = "price")
     private int price;
+    @Basic(optional = false) 
+    @Column(name = "barcode")
+    private int barcode;
 
     public Products() {
     }
@@ -103,6 +108,14 @@ public class Products implements Serializable {
         this.price = price;
     }
 
+    public int getBarcode() {
+        return barcode;
+    }
+
+    public void setBarcode(int barcode) {
+        this.barcode = barcode;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;

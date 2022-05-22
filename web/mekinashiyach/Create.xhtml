@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MekinashiyachCreateDlg" widgetVar="MekinashiyachCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateMekinashiyachTitle}">
+            <h:form id="MekinashiyachCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="6" rendered="#{mekinashiyachController.selected != null}">
+                    
+                        <p:outputLabel value="#{bundle.CreateMekinashiyachLabel_shachname}" for="shachname" />
+                        <p:inputText id="shachname" value="#{mekinashiyachController.selected.shachname}" title="#{bundle.CreateMekinashiyachTitle_shachname}" />
+                        <p:outputLabel value="#{bundle.CreateMekinashiyachLabel_shachfname}" for="shachfname" />
+                        <p:inputText id="shachfname" value="#{mekinashiyachController.selected.shachfname}" title="#{bundle.CreateMekinashiyachTitle_shachfname}" />
+                        <p:outputLabel value="#{bundle.CreateMekinashiyachLabel_shachlastname}" for="shachlastname" />
+                        <p:inputText id="shachlastname" value="#{mekinashiyachController.selected.shachlastname}" title="#{bundle.CreateMekinashiyachTitle_shachlastname}" />
+                        <p:outputLabel value="#{bundle.CreateMekinashiyachLabel_gezhname}" for="gezhname" />
+                        <p:inputText id="gezhname" value="#{mekinashiyachController.selected.gezhname}" title="#{bundle.CreateMekinashiyachTitle_gezhname}" />
+                        <p:outputLabel value="#{bundle.CreateMekinashiyachLabel_gezhfname}" for="gezhfname" />
+                        <p:inputText id="gezhfname" value="#{mekinashiyachController.selected.gezhfname}" title="#{bundle.CreateMekinashiyachTitle_gezhfname}" />
+                        <p:outputLabel value="#{bundle.CreateMekinashiyachLabel_gezhlastname}" for="gezhlastname" />
+                        <p:inputText id="gezhlastname" value="#{mekinashiyachController.selected.gezhlastname}" title="#{bundle.CreateMekinashiyachTitle_gezhlastname}" />
+                    </p:panelGrid>
+                         <p:panelGrid columns="2" rendered="#{mekinashiyachController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateMekinashiyachLabel_targakutr}" for="targakutr" />
+                        <p:inputText id="targakutr" value="#{mekinashiyachController.selected.targakutr}" title="#{bundle.CreateMekinashiyachTitle_targakutr}" />
+                        <p:outputLabel value="#{bundle.CreateMekinashiyachLabel_chancikutr}" for="chancikutr" />
+                        <p:inputText id="chancikutr" value="#{mekinashiyachController.selected.chancikutr}" title="#{bundle.CreateMekinashiyachTitle_chancikutr}" />
+                        <p:outputLabel value="#{bundle.CreateMekinashiyachLabel_motorkutr}" for="motorkutr" />
+                        <p:inputText id="motorkutr" value="#{mekinashiyachController.selected.motorkutr}" title="#{bundle.CreateMekinashiyachTitle_motorkutr}" />
+                        <p:outputLabel value="#{bundle.CreateMekinashiyachLabel_yebrmetenm}" for="yebrmetenm" />
+                        <p:inputText id="yebrmetenm" value="#{mekinashiyachController.selected.yebrmetenm}" title="#{bundle.CreateMekinashiyachTitle_yebrmetenm}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{mekinashiyachController.create}" value="#{bundle.Save}" update="display,:MekinashiyachListForm:datalist,:growl" oncomplete="handleSubmit(args,'MekinashiyachCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="MekinashiyachCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

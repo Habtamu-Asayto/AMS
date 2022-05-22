@@ -1,0 +1,523 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <ui:composition template="/template.xhtml">
+    <ui:define name="title">
+            <h:outputText value="#{bundle.CreateFinancesettlmentTitle}"></h:outputText>
+    </ui:define>
+        <f:metadata >
+            <f:event   listener="#{senedochenatebekochController.onLoadInitialization()}" type="preRenderView" />
+        </f:metadata>
+ <ui:define name="body">
+ <p:messages id="msgs" showDetail="true" showSummary="false" >
+                <p:effect type="pulsate" event="load" delay="500" /></p:messages>
+     <p:outputLabel  id="info" value="Editing For Case Number ==> #{senedochenatebekochController.casenumber}" />
+             
+            <h:form rendered="#{senedochenatebekochController.renderoldeditbutton}" style="float: right" id="search">
+              
+                <p:inputNumber leadingZero="deny"  requiredMessage="Please Enter correct number only" required="true" placeholder="#{bundle.searchcaselabel}" value="#{senedochenatebekochController.searchcasenumber}" id="searchcasenumber" /><!-- comment -->
+                <p:commandButton value="Search"    actionListener="#{senedochenatebekochController.searchbCaseNumber(senedochenatebekochController.searchcasenumber)}"  update="allform,:info"  />
+          
+            </h:form>
+            <br></br>
+            
+            
+            <p:tabView id="allform"  dynamic="true" activeIndex="0">
+                <p:ajax event="tabChange" listener="#{senedochenatebekochController.onTabChange}"  update=":msgs,allform" />
+   
+                <p:tab id="personal" title="Wokay">
+ <h:form id="UsersCreateForm">
+                    <p:panel    toggleable="true"  header="አገልግሎት ጠያቂ " > 
+                         <h:panelGroup id="display">
+ <p:panelGrid columns="6"   >
+                                    <p:outputLabel value="#{bundle.CreateMeritizazandabetutaLabel_regionid}" for="region" />
+                                    <p:selectOneMenu panelStyleClass="hideDisabled" filter="true" filterMatchMode="contains"  id="region" value="#{wekayController.selected.region}" required="true" requiredMessage="#{bundle.EditMeritizazandabetutaRequiredMessage_regionid}">
+                                        <p:ajax  update="zone" listener="#{zonesController.getZonesByRegion(wekayController.selected.region.id)}" />
+                                        <f:selectItem itemLabel="እባክዎን ክልል ይምረጡ" itemValue="#{null}"/>  
+
+                                        <f:selectItems value="#{regionsController.itemsAvailableSelectOne}"
+                                                       var="regionidItem"
+
+                                                       itemValue="#{regionidItem}"/>
+                                    </p:selectOneMenu>
+
+                                    <p:outputLabel value="#{bundle.CreateMeritizazandabetutaLabel_zoneid}" for="zone" />
+                                    <p:selectOneMenu panelStyleClass="hideDisabled" filter="true" filterMatchMode="contains"  id="zone" value="#{wekayController.selected.zone}" required="true" requiredMessage="#{bundle.EditMeritizazandabetutaRequiredMessage_zoneid}">
+                                        <p:ajax update="woreda" event="change"/>
+                                        <f:selectItem itemLabel="እባክዎን ዞን ይምረጡ" itemValue="#{null}"/>
+                                        <f:selectItems value="#{zonesController.getZonesByRegion(wekayController.selected.region.id)}"
+                                                       var="zoneidItem"
+
+                                                       itemValue="#{zoneidItem}"/>
+                                    </p:selectOneMenu>
+                                    <p:outputLabel value="ወረዳ" for="woreda" />
+
+                                    <p:selectOneMenu  panelStyleClass="hideDisabled" filter="true" filterMatchMode="contains"  id="woreda" value="#{wekayController.selected.woreda}" required="true" requiredMessage="#{bundle.EditMebtnatkmmastebekyefetabherafetatemfayRequiredMessage_kesashweredaid}">
+                                        <f:selectItem itemLabel="እባክዎን ወረዳ ይምረጡ" itemValue="#{null}"/>
+                                        <f:selectItems value="#{weredasController.itemsAvailableSelectOne}"
+                                                       var="woredaidItem" 
+                                                       itemDisabled="#{woredaidItem.zoneid != wekayController.selected.zone}"
+                                                       itemValue="#{woredaidItem}"/>
+                                    </p:selectOneMenu>
+
+                                </p:panelGrid>
+                                <p:panelGrid columns="4" >
+                                    <p:outputLabel value="#{bundle.CreateUsersLabel_organizationType}" for="organizationType" />
+                                    <p:selectOneMenu id="organizationType" value="#{wekayController.selected.organizationType}" >
+                                        <p:ajax  event="change"   listener="#{wekayController.selected.setStatus('Enabled')}" update="per" />      
+                                        <f:selectItem itemLabel="Select Organization Type" itemValue="#{null}" />
+                                        <f:selectItems value="#{officetypesController.itemsAvailableSelectOne}"
+                                                       var="organizationTypeItem"
+                                                       itemValue="#{organizationTypeItem}"/>
+                                    </p:selectOneMenu>
+                                </p:panelGrid>
+
+                                <h:panelGroup id="per"  >
+                                    <p:panelGrid columns="2" rendered="#{wekayController.selected.organizationType.name.equalsIgnoreCase('ድርጂት')}" id="xy" >
+                                        <p:outputLabel value="Organization Name" for="title" />
+                                        <p:inputText id="organizationname" value="#{wekayController.selected.organizationname}" title="#{bundle.CreateUsersTitle_firtstname}" />
+                                    </p:panelGrid>
+                                    <p:panelGrid columns="8" rendered="#{wekayController.selected.organizationType.name.equalsIgnoreCase('ግለሰብ')}" id="x" >
+                                        <p:outputLabel value="#{bundle.CreateUsersLabel_title}" for="title" />
+                                        <p:selectOneMenu id="title" value="#{wekayController.selected.title}" >
+                                            <f:selectItems value="#{titlerankController.itemsAvailableSelectOne}"
+                                                           var="titlerankItem"
+                                                           itemValue="#{titlerankItem}"/>
+                                        </p:selectOneMenu>
+
+                                        <p:outputLabel value="#{bundle.CreateUsersLabel_firtstname}" for="firtstname" />
+                                        <p:inputText id="firtstname" value="#{wekayController.selected.firtstname}" title="#{bundle.CreateUsersTitle_firtstname}" />
+                                        <p:outputLabel value="#{bundle.CreateUsersLabel_middlename}" for="middlename" />
+                                        <p:inputText id="middlename" value="#{wekayController.selected.middlename}" title="#{bundle.CreateUsersTitle_middlename}" />
+                                        <p:outputLabel value="#{bundle.CreateUsersLabel_lastname}" for="lastname" />
+                                        <p:inputText id="lastname" value="#{wekayController.selected.lastname}" title="#{bundle.CreateUsersTitle_lastname}" />
+
+                                        <p:outputLabel value="#{bundle.CreateUsersLabel_sex}" for="sex" />
+
+                                        <p:selectOneRadio id="sex" value="#{wekayController.selected.sex}"  >
+                                            <f:selectItem itemLabel="Male" itemValue="Male"  />
+                                            <f:selectItem itemLabel="Female" itemValue="Female"  />
+
+                                            <f:validateRequired for="sex"/>
+                                        </p:selectOneRadio>
+
+                                        <p:outputLabel value="#{bundle.CreateUsersLabel_dateOfBirth}" for="dateOfBirth" />
+                                        <p:inputText id="dateOfBirth" value="#{wekayController.selected.dateOfBirth}" title="#{bundle.CreateUsersTitle_dateOfBirth}" />
+                                    </p:panelGrid>  
+                                </h:panelGroup>
+                                <p:panelGrid columns="6" >
+                                    <p:outputLabel value="#{bundle.CreateUsersLabel_kebele}" for="kebele" />
+                                    <p:inputText id="kebele" value="#{wekayController.selected.kebele}" title="#{bundle.CreateUsersTitle_kebele}" />
+                                    <p:outputLabel value="#{bundle.CreateUsersLabel_idNumber}" for="idNumber" />
+                                    <p:inputText id="idNumber" value="#{wekayController.selected.idNumber}" title="#{bundle.CreateUsersTitle_idNumber}" />
+                                    <p:outputLabel value="#{bundle.CreateUsersLabel_houseNumber}" for="houseNumber" />
+                                    <p:inputText id="houseNumber" value="#{wekayController.selected.houseNumber}" title="#{bundle.CreateUsersTitle_houseNumber}" />
+                                    <p:outputLabel value="#{bundle.CreateUsersLabel_pobox}" for="pobox" />
+                                    <p:inputText id="pobox" value="#{wekayController.selected.pobox}" title="#{bundle.CreateUsersTitle_pobox}" />
+                                    <p:outputLabel value="#{bundle.CreateUsersLabel_phoneNumber}" for="phoneNumber" />
+                                    <p:inputMask mask="(+251) 999-99-9999"  id="phoneNumber" value="#{wekayController.selected.phoneNumber}" />
+
+                                    <p:outputLabel value="#{bundle.CreateUsersLabel_housePhoneNumber}" for="housePhoneNumber" />
+                                    <p:inputText id="housePhoneNumber" value="#{wekayController.selected.housePhoneNumber}" title="#{bundle.CreateUsersTitle_housePhoneNumber}" />
+
+                                </p:panelGrid><!-- comment -->   
+                                <p:commandButton actionListener="#{wekayController.create(senedochenatebekochController.casenumber)}" value="#{bundle.Save}"  update=":msgs,@([id$=wekaydata]),@([id$=allform])" />
+        <p:commandButton id="wekreg" rendered="#{wekayController.renderupdatebutton}" actionListener="#{wekayController.update()}" value="#{bundle.update}" update="@([id$=UsersCreateForm]),:msgs" />
+                                
+                            </h:panelGroup>
+
+                        </p:panel></h:form>
+       <h:form id="wekaydata">
+                            <p:panel header="Yeteowaky zrzr">
+ <p:dataGrid emptyMessage="No Tewekay"   id="datalist" value="#{wekayController.findByCaseId(senedochenatebekochController.casenumber)}" var="item"  columns="10" layout="grid"
+ >
+ <p:panel header="#{item.firtstname }" style="text-align:center">
+                                        <h:panelGrid columns="1" style="width:100%" >
+
+                                            <p> #{item.title} #{item.firtstname} #{item.middlename} #{item.lastname}</p>
+                                            <h:panelGrid columns="2" >
+                                                <p:column>
+                                                  
+                                                     <p:commandButton id="editButton"  actionListener="#{wekayController.updatebyid(item)}" value="#{bundle.update}" update="@([id$=UsersCreateForm]),datalist" />
+                                                </p:column>
+                                                <p:column>
+                                                    <p:commandButton actionListener="#{wekayController.destroyById(item)}" value="Delete" update="datalist,:msgs" ></p:commandButton>
+                                                </p:column>
+                                            </h:panelGrid>
+
+                                        </h:panelGrid>
+                                    </p:panel>
+
+                                </p:dataGrid> 
+                               
+                            </p:panel>
+
+                        </h:form>
+      
+.
+                </p:tab>
+                <p:tab   disabled="#{(wekayController.findByCaseId(senedochenatebekochController.casenumber).size() == 0)}"  id="wuklan" title="Wuklna">
+                    <p:panel header="Wuklan Data" > 
+                        <h:form id="mekinaForm">
+                            <h:panelGroup id="displayt">
+
+                                <p:panelGrid columns="2" >
+                                    <p:outputLabel value="#{bundle.CreateMekinashiyachLabel_targakutr}" for="targakutr" />
+                                    <p:inputText id="targakutr" value="#{mekinashiyachController.selected.targakutr}" title="#{bundle.CreateMekinashiyachTitle_targakutr}" />
+                                    <p:outputLabel value="#{bundle.CreateMekinashiyachLabel_chancikutr}" for="chancikutr" />
+                                    <p:inputText id="chancikutr" value="#{mekinashiyachController.selected.chancikutr}" title="#{bundle.CreateMekinashiyachTitle_chancikutr}" />
+                                    <p:outputLabel value="#{bundle.CreateMekinashiyachLabel_motorkutr}" for="motorkutr" />
+                                    <p:inputText id="motorkutr" value="#{mekinashiyachController.selected.motorkutr}" title="#{bundle.CreateMekinashiyachTitle_motorkutr}" />
+                                    <p:outputLabel value="#{bundle.CreateMekinashiyachLabel_yebrmetenm}" for="yebrmetenm" />
+                                    <p:inputText id="yebrmetenm" value="#{mekinashiyachController.selected.yebrmetenm}" title="#{bundle.CreateMekinashiyachTitle_yebrmetenm}" />
+                                </p:panelGrid>
+
+                                <p:commandButton   actionListener="#{mekinashiyachController.create(senedochenatebekochController.casenumber)}" value="#{bundle.Save}" update="datalist,mekreg,@([id$=allform]),:msgs" />
+                                <p:commandButton id="mekreg" rendered="#{mekinashiyachController.renderupdatebutton}" actionListener="#{mekinashiyachController.update()}" value="#{bundle.update}" update="@([id$=mekinaForm]),datalist,:msgs" />
+                            
+                            </h:panelGroup>
+
+
+                            <p:panel styleClass="ui-noborder" header="Yeteowaky zrzr">
+
+
+                                <p:dataGrid emptyMessage="No Tewekay"    id="datalist" value="#{mekinashiyachController.findByCaseId(senedochenatebekochController.casenumber)}" var="item"  columns="10" layout="grid"
+
+
+                                            >
+
+
+                                    <p:panel header="#{item.chancikutr }" style="text-align:center">
+                                        <h:panelGrid columns="1" style="width:100%" >
+
+                                            <p>Motor Kutr: #{item.motorkutr}</p>
+                                            <p>yebrmeten: #{item.yebrmetenm}</p>
+                                            <h:panelGrid columns="2" >
+                                                <p:column>
+                                                </p:column>
+                                                <p:column>
+                                                    <p:commandButton actionListener="#{mekinashiyachController.updatebyid(item)}" update="@([id$=mekinaForm])"  value="Edit" /><!-- comment --> 
+
+                                                    <p:commandButton actionListener="#{mekinashiyachController.destroyById(item)}" value="Delete" update="datalist,:msgs,@([id$=mekinaForm])" ></p:commandButton>
+                                                </p:column>
+                                            </h:panelGrid>
+
+                                        </h:panelGrid>
+                                    </p:panel>
+
+                                </p:dataGrid> 
+
+                            </p:panel>
+                        </h:form>
+                    </p:panel>
+                </p:tab>
+   
+                <p:tab disabled="#{(mekinashiyachController.findByCaseId(senedochenatebekochController.casenumber).size() == 0)}"  id="tewokay" title="Tewekay">
+                    <p:panel    toggleable="true"  header="አገልግሎት ጠያቂ " > 
+                        <h:form id="TewekayUsersCreateForm">
+                            <h:panelGroup id="display">
+
+                                <p:panelGrid columns="8"  >
+                                    <p:outputLabel value="#{bundle.CreateMeritizazandabetutaLabel_regionid}" for="region" />
+                                    <p:selectOneMenu panelStyleClass="hideDisabled" filter="true" filterMatchMode="contains"  id="region" value="#{tewokayController.selected.region}" required="true" requiredMessage="#{bundle.EditMeritizazandabetutaRequiredMessage_regionid}">
+                                        <p:ajax  update="zone" listener="#{zonesController.getZonesByRegion(tewokayController.selected.region.id)}" />
+                                        <f:selectItem itemLabel="እባክዎን ክልል ይምረጡ" itemValue="#{null}"/>  
+
+                                        <f:selectItems value="#{regionsController.itemsAvailableSelectOne}"
+                                                       var="regionidItem"
+
+                                                       itemValue="#{regionidItem}"/>
+                                    </p:selectOneMenu>
+
+                                    <p:outputLabel value="#{bundle.CreateMeritizazandabetutaLabel_zoneid}" for="zone" />
+                                    <p:selectOneMenu panelStyleClass="hideDisabled" filter="true" filterMatchMode="contains"  id="zone" value="#{tewokayController.selected.zone}" required="true" requiredMessage="#{bundle.EditMeritizazandabetutaRequiredMessage_zoneid}">
+                                        <p:ajax update="woreda" event="change"/>
+                                        <f:selectItem itemLabel="እባክዎን ዞን ይምረጡ" itemValue="#{null}"/>
+                                        <f:selectItems value="#{zonesController.getZonesByRegion(tewokayController.selected.region.id)}"
+                                                       var="zoneidItem"
+
+                                                       itemValue="#{zoneidItem}"/>
+                                    </p:selectOneMenu>
+                                    <p:outputLabel value="ወረዳ" for="woreda" />
+
+                                    <p:selectOneMenu  panelStyleClass="hideDisabled" filter="true" filterMatchMode="contains"  id="woreda" value="#{tewokayController.selected.woreda}" required="true" requiredMessage="#{bundle.EditMebtnatkmmastebekyefetabherafetatemfayRequiredMessage_kesashweredaid}">
+                                        <f:selectItem itemLabel="እባክዎን ወረዳ ይምረጡ" itemValue="#{null}"/>
+                                        <f:selectItems value="#{weredasController.itemsAvailableSelectOne}"
+                                                       var="woredaidItem" 
+                                                       itemDisabled="#{woredaidItem.zoneid != tewokayController.selected.zone}"
+                                                       itemValue="#{woredaidItem}"/>
+                                    </p:selectOneMenu>
+
+                                </p:panelGrid>
+                                <p:panelGrid columns="4" >
+                                    <p:outputLabel value="#{bundle.CreateUsersLabel_organizationType}" for="organizationType" />
+                                    <p:selectOneMenu id="organizationType" value="#{tewokayController.selected.organizationType}" >
+                                        <p:ajax  event="change"   listener="#{tewokayController.selected.setStatus('Enabled')}" update="per" />      
+                                        <f:selectItem itemLabel="Select Organization Type" itemValue="#{null}" />
+                                        <f:selectItems value="#{officetypesController.itemsAvailableSelectOne}"
+                                                       var="organizationTypeItem"
+                                                       itemValue="#{organizationTypeItem}"/>
+                                    </p:selectOneMenu>
+                                </p:panelGrid>
+
+                                <h:panelGroup id="per"  >
+                                    <p:panelGrid columns="2" rendered="#{tewokayController.selected.organizationType.name.equalsIgnoreCase('ድርጂት')}" id="xy" >
+                                        <p:outputLabel value="Organization Name" for="title" />
+                                        <p:inputText id="organizationname" value="#{tewokayController.selected.organizationname}" title="#{bundle.CreateUsersTitle_firtstname}" />
+                                    </p:panelGrid>
+                                    <p:panelGrid columns="8" rendered="#{tewokayController.selected.organizationType.name.equalsIgnoreCase('ግለሰብ')}" id="x" >
+                                        <p:outputLabel value="#{bundle.CreateUsersLabel_title}" for="title" />
+                                        <p:selectOneMenu id="title" value="#{tewokayController.selected.title}" >
+                                            <f:selectItems value="#{titlerankController.itemsAvailableSelectOne}"
+                                                           var="titlerankItem"
+                                                           itemValue="#{titlerankItem}"/>
+                                        </p:selectOneMenu>
+
+                                        <p:outputLabel value="#{bundle.CreateUsersLabel_firtstname}" for="firtstname" />
+                                        <p:inputText id="firtstname" value="#{tewokayController.selected.firtstname}" title="#{bundle.CreateUsersTitle_firtstname}" />
+                                        <p:outputLabel value="#{bundle.CreateUsersLabel_middlename}" for="middlename" />
+                                        <p:inputText id="middlename" value="#{tewokayController.selected.middlename}" title="#{bundle.CreateUsersTitle_middlename}" />
+                                        <p:outputLabel value="#{bundle.CreateUsersLabel_lastname}" for="lastname" />
+                                        <p:inputText id="lastname" value="#{tewokayController.selected.lastname}" title="#{bundle.CreateUsersTitle_lastname}" />
+
+                                        <p:outputLabel value="#{bundle.CreateUsersLabel_sex}" for="sex" />
+
+                                        <p:selectOneRadio id="sex" value="#{tewokayController.selected.sex}"  >
+                                            <f:selectItem itemLabel="Male" itemValue="Male"  />
+                                            <f:selectItem itemLabel="Female" itemValue="Female"  />
+
+                                            <f:validateRequired for="sex"/>
+                                        </p:selectOneRadio>
+
+                                        <p:outputLabel value="#{bundle.CreateUsersLabel_dateOfBirth}" for="dateOfBirth" />
+                                        <p:inputText id="dateOfBirth" value="#{tewokayController.selected.dateOfBirth}" title="#{bundle.CreateUsersTitle_dateOfBirth}" />
+                                    </p:panelGrid>  
+                                </h:panelGroup>
+                                <p:panelGrid columns="6" >
+                                    <p:outputLabel value="#{bundle.CreateUsersLabel_kebele}" for="kebele" />
+                                    <p:inputText id="kebele" value="#{tewokayController.selected.kebele}" title="#{bundle.CreateUsersTitle_kebele}" />
+                                    <p:outputLabel value="#{bundle.CreateUsersLabel_idNumber}" for="idNumber" />
+                                    <p:inputText id="idNumber" value="#{tewokayController.selected.idNumber}" title="#{bundle.CreateUsersTitle_idNumber}" />
+                                    <p:outputLabel value="#{bundle.CreateUsersLabel_houseNumber}" for="houseNumber" />
+                                    <p:inputText id="houseNumber" value="#{tewokayController.selected.houseNumber}" title="#{bundle.CreateUsersTitle_houseNumber}" />
+                                    <p:outputLabel value="#{bundle.CreateUsersLabel_pobox}" for="pobox" />
+                                    <p:inputText id="pobox" value="#{tewokayController.selected.pobox}" title="#{bundle.CreateUsersTitle_pobox}" />
+                                    <p:outputLabel value="#{bundle.CreateUsersLabel_phoneNumber}" for="phoneNumber" />
+                                    <p:inputMask mask="(+251) 999-99-9999"  id="phoneNumber" value="#{tewokayController.selected.phoneNumber}" />
+
+                                    <p:outputLabel value="#{bundle.CreateUsersLabel_housePhoneNumber}" for="housePhoneNumber" />
+                                    <p:inputText id="housePhoneNumber" value="#{tewokayController.selected.housePhoneNumber}" title="#{bundle.CreateUsersTitle_housePhoneNumber}" />
+
+                                </p:panelGrid><!-- comment -->   
+     <p:commandButton actionListener="#{tewokayController.create(senedochenatebekochController.casenumber)}" value="#{bundle.Save}" update=":msgs,@([id$=tewokaydatalist])" />
+     <p:commandButton id="tewkayupdate" rendered="#{tewokayController.renderupdatebutton}" actionListener="#{tewokayController.update()}" value="#{bundle.update}" update="@([id$=misikirUsersCreateForm]),@([id$=tewokaydatalist]),:msgs" />
+                            
+                            </h:panelGroup>
+                        </h:form>
+                        
+
+ <h:form id="tewokaydatalist">
+                            <p:panel header="Yeteowaky zrzr">
+
+
+                                <p:dataGrid emptyMessage="No Tewekay"   id="datalist" value="#{tewokayController.findByCaseId(senedochenatebekochController.casenumber)}" var="item"  columns="10" layout="grid"
+
+
+                                            >
+    <p:panel header="#{item.firtstname }" style="text-align:center">
+                                        <h:panelGrid columns="1" style="width:100%" >
+
+                                            <p> #{item.title} #{item.firtstname} #{item.middlename} #{item.lastname}</p>
+                                            <h:panelGrid columns="2" >
+                                                <p:column>
+                                                  <p:commandButton actionListener="#{tewokayController.updatebyid(item)}" update="@([id$=TewekayUsersCreateForm])"  value="Edit" /><!-- comment --> 
+                                                </p:column>
+                                                <p:column>
+                                                    <p:commandButton actionListener="#{tewokayController.destroyById(item)}" value="Delete" update="@([id$=tewokaydatalist]),:msgs" ></p:commandButton>
+                                                </p:column>
+                                            </h:panelGrid>
+
+                                        </h:panelGrid>
+                                    </p:panel>
+
+                                </p:dataGrid> 
+
+                            </p:panel>
+ </h:form>
+                    </p:panel>
+            
+
+                </p:tab>
+                <p:tab disabled="#{(tewokayController.findByCaseId(senedochenatebekochController.casenumber).size() == 0)}" id="misikir" title="misikir">
+                    <p:panel    toggleable="true"  header="አገልግሎት ጠያቂ " > 
+                        <h:form id="misikirUsersCreateForm">
+                            <h:panelGroup id="display">
+                                    <p:panelGrid columns="8"  >
+                                    <p:outputLabel value="#{bundle.CreateMeritizazandabetutaLabel_regionid}" for="region" />
+                                    <p:selectOneMenu panelStyleClass="hideDisabled" filter="true" filterMatchMode="contains"  id="region" value="#{misikirController.selected.region}" required="true" requiredMessage="#{bundle.EditMeritizazandabetutaRequiredMessage_regionid}">
+                                        <p:ajax  update="zone" listener="#{zonesController.getZonesByRegion(misikirController.selected.region.id)}" />
+                                        <f:selectItem itemLabel="እባክዎን ክልል ይምረጡ" itemValue="#{null}"/>  
+
+                                        <f:selectItems value="#{regionsController.itemsAvailableSelectOne}"
+                                                       var="regionidItem"
+
+                                                       itemValue="#{regionidItem}"/>
+                                    </p:selectOneMenu>
+
+                                    <p:outputLabel value="#{bundle.CreateMeritizazandabetutaLabel_zoneid}" for="zone" />
+                                    <p:selectOneMenu panelStyleClass="hideDisabled" filter="true" filterMatchMode="contains"  id="zone" value="#{misikirController.selected.zone}" required="true" requiredMessage="#{bundle.EditMeritizazandabetutaRequiredMessage_zoneid}">
+                                        <p:ajax update="woreda" event="change"/>
+                                        <f:selectItem itemLabel="እባክዎን ዞን ይምረጡ" itemValue="#{null}"/>
+                                        <f:selectItems value="#{zonesController.getZonesByRegion(misikirController.selected.region.id)}"
+                                                       var="zoneidItem"
+
+                                                       itemValue="#{zoneidItem}"/>
+                                    </p:selectOneMenu>
+                                    <p:outputLabel value="ወረዳ" for="woreda" />
+
+                                    <p:selectOneMenu  panelStyleClass="hideDisabled" filter="true" filterMatchMode="contains"  id="woreda" value="#{misikirController.selected.woreda}" required="true" requiredMessage="#{bundle.EditMebtnatkmmastebekyefetabherafetatemfayRequiredMessage_kesashweredaid}">
+                                        <f:selectItem itemLabel="እባክዎን ወረዳ ይምረጡ" itemValue="#{null}"/>
+                                        <f:selectItems value="#{weredasController.itemsAvailableSelectOne}"
+                                                       var="woredaidItem" 
+                                                       itemDisabled="#{woredaidItem.zoneid != misikirController.selected.zone}"
+                                                       itemValue="#{woredaidItem}"/>
+                                    </p:selectOneMenu>
+
+                                </p:panelGrid>
+                                <p:panelGrid columns="4" >
+                                    <p:outputLabel value="#{bundle.CreateUsersLabel_organizationType}" for="organizationType" />
+                                    <p:selectOneMenu id="organizationType" value="#{misikirController.selected.organizationType}" >
+                                        <p:ajax  event="change"   listener="#{misikirController.selected.setStatus('Enabled')}" update="per" />      
+                                        <f:selectItem itemLabel="Select Organization Type" itemValue="#{null}" />
+                                        <f:selectItems value="#{officetypesController.itemsAvailableSelectOne}"
+                                                       var="organizationTypeItem"
+                                                       itemValue="#{organizationTypeItem}"/>
+                                    </p:selectOneMenu>
+                                </p:panelGrid>
+
+                                <h:panelGroup id="per"  >
+                                    <p:panelGrid columns="2" rendered="#{misikirController.selected.organizationType.name.equalsIgnoreCase('ድርጂት')}" id="xy" >
+                                        <p:outputLabel value="Organization Name" for="title" />
+                                        <p:inputText id="organizationname" value="#{misikirController.selected.organizationname}" title="#{bundle.CreateUsersTitle_firtstname}" />
+                                    </p:panelGrid>
+                                    <p:panelGrid columns="8" rendered="#{misikirController.selected.organizationType.name.equalsIgnoreCase('ግለሰብ')}" id="x" >
+                                        <p:outputLabel value="#{bundle.CreateUsersLabel_title}" for="title" />
+                                        <p:selectOneMenu id="title" value="#{misikirController.selected.title}" >
+                                            <f:selectItems value="#{titlerankController.itemsAvailableSelectOne}"
+                                                           var="titlerankItem"
+                                                           itemValue="#{titlerankItem}"/>
+                                        </p:selectOneMenu>
+
+                                        <p:outputLabel value="#{bundle.CreateUsersLabel_firtstname}" for="firtstname" />
+                                        <p:inputText id="firtstname" value="#{misikirController.selected.firtstname}" title="#{bundle.CreateUsersTitle_firtstname}" />
+                                        <p:outputLabel value="#{bundle.CreateUsersLabel_middlename}" for="middlename" />
+                                        <p:inputText id="middlename" value="#{misikirController.selected.middlename}" title="#{bundle.CreateUsersTitle_middlename}" />
+                                        <p:outputLabel value="#{bundle.CreateUsersLabel_lastname}" for="lastname" />
+                                        <p:inputText id="lastname" value="#{misikirController.selected.lastname}" title="#{bundle.CreateUsersTitle_lastname}" />
+
+                                        <p:outputLabel value="#{bundle.CreateUsersLabel_sex}" for="sex" />
+
+                                        <p:selectOneRadio id="sex" value="#{misikirController.selected.sex}"  >
+                                            <f:selectItem itemLabel="Male" itemValue="Male"  />
+                                            <f:selectItem itemLabel="Female" itemValue="Female"  />
+
+                                            <f:validateRequired for="sex"/>
+                                        </p:selectOneRadio>
+
+                                        <p:outputLabel value="#{bundle.CreateUsersLabel_dateOfBirth}" for="dateOfBirth" />
+                                        <p:inputText id="dateOfBirth" value="#{misikirController.selected.dateOfBirth}" title="#{bundle.CreateUsersTitle_dateOfBirth}" />
+                                    </p:panelGrid>  
+                                </h:panelGroup>
+                                <p:panelGrid columns="6" >
+                                    <p:outputLabel value="#{bundle.CreateUsersLabel_kebele}" for="kebele" />
+                                    <p:inputText id="kebele" value="#{misikirController.selected.kebele}" title="#{bundle.CreateUsersTitle_kebele}" />
+                                    <p:outputLabel value="#{bundle.CreateUsersLabel_idNumber}" for="idNumber" />
+                                    <p:inputText id="idNumber" value="#{misikirController.selected.idNumber}" title="#{bundle.CreateUsersTitle_idNumber}" />
+                                    <p:outputLabel value="#{bundle.CreateUsersLabel_houseNumber}" for="houseNumber" />
+                                    <p:inputText id="houseNumber" value="#{misikirController.selected.houseNumber}" title="#{bundle.CreateUsersTitle_houseNumber}" />
+                                    <p:outputLabel value="#{bundle.CreateUsersLabel_pobox}" for="pobox" />
+                                    <p:inputText id="pobox" value="#{misikirController.selected.pobox}" title="#{bundle.CreateUsersTitle_pobox}" />
+                                    <p:outputLabel value="#{bundle.CreateUsersLabel_phoneNumber}" for="phoneNumber" />
+                                    <p:inputMask mask="(+251) 999-99-9999"  id="phoneNumber" value="#{misikirController.selected.phoneNumber}" />
+
+                                    <p:outputLabel value="#{bundle.CreateUsersLabel_housePhoneNumber}" for="housePhoneNumber" />
+                                    <p:inputText id="housePhoneNumber" value="#{misikirController.selected.housePhoneNumber}" title="#{bundle.CreateUsersTitle_housePhoneNumber}" />
+
+                                </p:panelGrid><!-- comment -->   
+              <p:commandButton actionListener="#{misikirController.create(senedochenatebekochController.casenumber)}" value="#{bundle.Save}" update=":msgs,@([id$=misikirdata])" />
+               <p:commandButton id="tewreg" rendered="#{misikirController.renderupdatebutton}" actionListener="#{misikirController.update()}" value="#{bundle.update}" update="@([id$=misikirUsersCreateForm]),@([id$=misikirdata]),:msgs" />
+                            
+                            </h:panelGroup>
+
+
+
+                
+
+                        </h:form>
+                    </p:panel>
+    <h:form id="misikirdata">
+                            <p:panel header="Yeteowaky zrzr">
+ <p:dataGrid emptyMessage="No Temisikir"   id="datalist" value="#{misikirController.findByCaseId(senedochenatebekochController.casenumber)}" var="item"  columns="10" layout="grid"
+ >
+ <p:panel header="#{item.firtstname }" style="text-align:center">
+                                        <h:panelGrid columns="1" style="width:100%" >
+
+                                            <p> #{item.title} #{item.firtstname} #{item.middlename} #{item.lastname}</p>
+                                            <h:panelGrid columns="2" >
+                                                <p:column>
+                                                  <p:commandButton actionListener="#{misikirController.updatebyid(item)}" update="@([id$=misikirUsersCreateForm])"  value="Edit" /><!-- comment --> 
+
+                                                </p:column>
+                                                <p:column>
+                                                    <p:commandButton actionListener="#{misikirController.destroyById(item)}" value="Delete" update="datalist,:msgs" ></p:commandButton>
+                                                </p:column>
+                                            </h:panelGrid>
+
+                                        </h:panelGrid>
+                                    </p:panel>
+
+                                </p:dataGrid> 
+                               
+                            </p:panel>
+
+                        </h:form>
+                </p:tab>
+                      <p:tab   id="agelglotmeteyekia" title="Agelglot Meteyekia">
+                    <p:panel header="Agelglot Meteyekia" > 
+                        <h:form id="agelglotForm">
+                            <h:panelGroup id="displayt">
+
+                                <p:panelGrid columns="2" >
+                                    <p:outputLabel value="Service Delivery Office"/>
+                                    <p:selectOneMenu id="seriviceoffice" value="#{senedochenatebekochController.selected.seriviceoffice}" >
+                                       
+                                        <f:selectItem itemLabel="Select Office" itemValue="#{null}" />
+                                        <f:selectItems value="#{serviceDeliveryofficeController.itemsAvailableSelectOne}"
+                                                       var="serviceDeliveryofficeItem"
+                                                       itemValue="#{serviceDeliveryofficeItem}"/>
+                                    </p:selectOneMenu>
+                                </p:panelGrid>
+
+                                <p:commandButton   actionListener="#{senedochenatebekochController.create(senedochenatebekochController.casenumber,'Habtamu')}" value="#{bundle.Save}" update=":msgs" />
+                             
+                            </h:panelGroup>
+
+
+                           
+                        </h:form>
+                    </p:panel>
+                </p:tab>
+            
+            
+            
+            
+            </p:tabView>
+
+        </ui:define>
+    </ui:composition>
+</html>

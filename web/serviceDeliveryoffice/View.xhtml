@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ServiceDeliveryofficeViewDlg" widgetVar="ServiceDeliveryofficeViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewServiceDeliveryofficeTitle}">
+            <h:form id="ServiceDeliveryofficeViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{serviceDeliveryofficeController.selected != null}">
+                       
+                        <h:outputText value="#{bundle.ViewServiceDeliveryofficeLabel_nameamharic}"/>
+                        <h:outputText value="#{serviceDeliveryofficeController.selected.nameamharic}" title="#{bundle.ViewServiceDeliveryofficeTitle_nameamharic}"/>
+                        <h:outputText value="#{bundle.ViewServiceDeliveryofficeLabel_nameenglish}"/>
+                        <h:outputText value="#{serviceDeliveryofficeController.selected.nameenglish}" title="#{bundle.ViewServiceDeliveryofficeTitle_nameenglish}"/>
+                        <h:outputText value="#{bundle.ViewServiceDeliveryofficeLabel_phonenumber}"/>
+                        <h:outputText value="#{serviceDeliveryofficeController.selected.phonenumber}" title="#{bundle.ViewServiceDeliveryofficeTitle_phonenumber}"/>
+                        <h:outputText value="#{bundle.ViewServiceDeliveryofficeLabel_descriptionamharic}"/>
+                        <h:outputText value="#{serviceDeliveryofficeController.selected.descriptionamharic}" title="#{bundle.ViewServiceDeliveryofficeTitle_descriptionamharic}"/>
+                        <h:outputText value="#{bundle.ViewServiceDeliveryofficeLabel_descriptionenglish}"/>
+                        <h:outputText value="#{serviceDeliveryofficeController.selected.descriptionenglish}" title="#{bundle.ViewServiceDeliveryofficeTitle_descriptionenglish}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ServiceDeliveryofficeViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

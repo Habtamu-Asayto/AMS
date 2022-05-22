@@ -284,10 +284,8 @@ public class CasesController implements Serializable {
          
         Map<String, Object> parameter = new HashMap<>();
        
-        parameter.put("LETTER", "A computer is a programmable electronic device that accepts raw data as input and processes it with a set of instructions (a program) to produce the result as output. It renders output just after performing mathematical and logical operations and can save the output for future use.");  
-        parameter.put("TITLE", "Detail about Computer");
-        parameter.put("IMAGE", "/resources/leaf_banner_green.png");
-        
+        parameter.put("LETTER", "ሁለት");  
+        parameter.put("TITLE", "ሁለት");  
         //parameter.put("IMAGE", this.getServletContext().getRealPath("/")+"/leaf_banner_green.png");
         
         this.PDF(parameter, jasperPath, items, fileName);

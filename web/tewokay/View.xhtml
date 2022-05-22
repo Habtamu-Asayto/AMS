@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TewokayViewDlg" widgetVar="TewokayViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewTewokayTitle}">
+            <h:form id="TewokayViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tewokayController.selected != null}">
+                        <h:outputText value="#{bundle.ViewTewokayLabel_id}"/>
+                        <h:outputText value="#{tewokayController.selected.id}" title="#{bundle.ViewTewokayTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewTewokayLabel_firtstname}"/>
+                        <h:outputText value="#{tewokayController.selected.firtstname}" title="#{bundle.ViewTewokayTitle_firtstname}"/>
+                        <h:outputText value="#{bundle.ViewTewokayLabel_middlename}"/>
+                        <h:outputText value="#{tewokayController.selected.middlename}" title="#{bundle.ViewTewokayTitle_middlename}"/>
+                        <h:outputText value="#{bundle.ViewTewokayLabel_lastname}"/>
+                        <h:outputText value="#{tewokayController.selected.lastname}" title="#{bundle.ViewTewokayTitle_lastname}"/>
+                        <h:outputText value="#{bundle.ViewTewokayLabel_password}"/>
+                        <h:outputText value="#{tewokayController.selected.password}" title="#{bundle.ViewTewokayTitle_password}"/>
+                        <h:outputText value="#{bundle.ViewTewokayLabel_email}"/>
+                        <h:outputText value="#{tewokayController.selected.email}" title="#{bundle.ViewTewokayTitle_email}"/>
+                        <h:outputText value="#{bundle.ViewTewokayLabel_phoneNumber}"/>
+                        <h:outputText value="#{tewokayController.selected.phoneNumber}" title="#{bundle.ViewTewokayTitle_phoneNumber}"/>
+                        <h:outputText value="#{bundle.ViewTewokayLabel_housePhoneNumber}"/>
+                        <h:outputText value="#{tewokayController.selected.housePhoneNumber}" title="#{bundle.ViewTewokayTitle_housePhoneNumber}"/>
+                        <h:outputText value="#{bundle.ViewTewokayLabel_status}"/>
+                        <h:outputText value="#{tewokayController.selected.status}" title="#{bundle.ViewTewokayTitle_status}"/>
+                        <h:outputText value="#{bundle.ViewTewokayLabel_kebele}"/>
+                        <h:outputText value="#{tewokayController.selected.kebele}" title="#{bundle.ViewTewokayTitle_kebele}"/>
+                        <h:outputText value="#{bundle.ViewTewokayLabel_idNumber}"/>
+                        <h:outputText value="#{tewokayController.selected.idNumber}" title="#{bundle.ViewTewokayTitle_idNumber}"/>
+                        <h:outputText value="#{bundle.ViewTewokayLabel_houseNumber}"/>
+                        <h:outputText value="#{tewokayController.selected.houseNumber}" title="#{bundle.ViewTewokayTitle_houseNumber}"/>
+                        <h:outputText value="#{bundle.ViewTewokayLabel_pobox}"/>
+                        <h:outputText value="#{tewokayController.selected.pobox}" title="#{bundle.ViewTewokayTitle_pobox}"/>
+                        <h:outputText value="#{bundle.ViewTewokayLabel_dateOfBirth}"/>
+                        <h:outputText value="#{tewokayController.selected.dateOfBirth}" title="#{bundle.ViewTewokayTitle_dateOfBirth}"/>
+                        <h:outputText value="#{bundle.ViewTewokayLabel_sex}"/>
+                        <h:outputText value="#{tewokayController.selected.sex}" title="#{bundle.ViewTewokayTitle_sex}"/>
+                        <h:outputText value="#{bundle.ViewTewokayLabel_role}"/>
+                        <h:outputText value="#{tewokayController.selected.role}" title="#{bundle.ViewTewokayTitle_role}"/>
+                        <h:outputText value="#{bundle.ViewTewokayLabel_organizationname}"/>
+                        <h:outputText value="#{tewokayController.selected.organizationname}" title="#{bundle.ViewTewokayTitle_organizationname}"/>
+                        <h:outputText value="#{bundle.ViewTewokayLabel_nationality}"/>
+                        <h:outputText value="#{tewokayController.selected.nationality}" title="#{bundle.ViewTewokayTitle_nationality}"/>
+                        <h:outputText value="#{bundle.ViewTewokayLabel_organizationType}"/>
+                        <h:outputText value="#{tewokayController.selected.organizationType}" title="#{bundle.ViewTewokayTitle_organizationType}"/>
+                        <h:outputText value="#{bundle.ViewTewokayLabel_region}"/>
+                        <h:outputText value="#{tewokayController.selected.region}" title="#{bundle.ViewTewokayTitle_region}"/>
+                        <h:outputText value="#{bundle.ViewTewokayLabel_title}"/>
+                        <h:outputText value="#{tewokayController.selected.title}" title="#{bundle.ViewTewokayTitle_title}"/>
+                        <h:outputText value="#{bundle.ViewTewokayLabel_woreda}"/>
+                        <h:outputText value="#{tewokayController.selected.woreda}" title="#{bundle.ViewTewokayTitle_woreda}"/>
+                        <h:outputText value="#{bundle.ViewTewokayLabel_zone}"/>
+                        <h:outputText value="#{tewokayController.selected.zone}" title="#{bundle.ViewTewokayTitle_zone}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="TewokayViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

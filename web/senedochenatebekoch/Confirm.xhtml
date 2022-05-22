@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SenedochenatebekochConfirmDlg" widgetVar="SenedochenatebekochConfirmDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditSenedochenatebekochTitle}">
+            <h:form id="SenedochenatebekochConfirmForm">
+                <h:panelGroup id="display">
+                             <p:panelGrid columns="4" rendered="#{senedochenatebekochController.selected != null}">
+                         <p:outputLabel value="#{bundle.CreateSenedochenatebekochLabel_casenumber}" for="casenumber" />
+                        <p:outputLabel  id="casenumber" value="#{senedochenatebekochController.selected.casenumber}" title="#{bundle.CreateSenedochenatebekochTitle_casenumber}" />
+                        <p:outputLabel value="#{bundle.CreateSenedochenatebekochLabel_gelgalotyetesetebetken}" for="gelgalotyetesetebetken" />
+                        <p:outputLabel id="gelgalotyetesetebetken" value="#{senedochenatebekochController.selected.gelgalotyetesetebetken}" title="#{bundle.CreateSenedochenatebekochTitle_gelgalotyetesetebetken}" />
+                        <p:outputLabel value="#{bundle.CreateSenedochenatebekochLabel_filekutr}" for="filekutr" />
+                        <p:inputText id="filekutr" value="#{senedochenatebekochController.selected.filekutr}" title="#{bundle.CreateSenedochenatebekochTitle_filekutr}" />
+                        <p:outputLabel value="#{bundle.CreateSenedochenatebekochLabel_mezgebuyetekemetebetbota}" for="mezgebuyetekemetebetbota" />
+                        <p:inputText id="mezgebuyetekemetebetbota" value="#{senedochenatebekochController.selected.mezgebuyetekemetebetbota}" title="#{bundle.CreateSenedochenatebekochTitle_mezgebuyetekemetebetbota}" />
+                        <p:outputLabel value="#{bundle.CreateSenedochenatebekochLabel_getbzat}" for="getbzat" />
+                        <p:inputText id="getbzat" value="#{senedochenatebekochController.selected.getbzat}" title="#{bundle.CreateSenedochenatebekochTitle_getbzat}" />
+                       
+                        <p:outputLabel value="#{bundle.CreateSenedochenatebekochLabel_filepath}" for="filepath" />
+                        <p:inputText id="filepath" value="#{senedochenatebekochController.selected.filepath}" title="#{bundle.CreateSenedochenatebekochTitle_filepath}" />
+                       
+                        <p:outputLabel value="#{bundle.CreateSenedochenatebekochLabel_amount}" for="amount" />
+                        <p:inputText id="amount" value="#{senedochenatebekochController.selected.amount}" title="#{bundle.CreateSenedochenatebekochTitle_amount}" />
+     
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{senedochenatebekochController.update(Loginjustice.loggeduser)}" value="#{bundle.Save}" update="display,:SenedochenatebekochListForm:datalist,:growl" oncomplete="handleSubmit(args, 'SenedochenatebekochConfirmDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SenedochenatebekochConfirmDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

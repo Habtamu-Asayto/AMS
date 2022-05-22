@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="WekayCreateDlg" widgetVar="WekayCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateWekayTitle}">
+            <h:form id="WekayCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{wekayController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateWekayLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{wekayController.selected.id}" title="#{bundle.CreateWekayTitle_id}" required="true" requiredMessage="#{bundle.CreateWekayRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.CreateWekayLabel_firtstname}" for="firtstname" />
+                        <p:inputText id="firtstname" value="#{wekayController.selected.firtstname}" title="#{bundle.CreateWekayTitle_firtstname}" />
+                        <p:outputLabel value="#{bundle.CreateWekayLabel_middlename}" for="middlename" />
+                        <p:inputText id="middlename" value="#{wekayController.selected.middlename}" title="#{bundle.CreateWekayTitle_middlename}" />
+                        <p:outputLabel value="#{bundle.CreateWekayLabel_lastname}" for="lastname" />
+                        <p:inputText id="lastname" value="#{wekayController.selected.lastname}" title="#{bundle.CreateWekayTitle_lastname}" />
+                        <p:outputLabel value="#{bundle.CreateWekayLabel_password}" for="password" />
+                        <p:inputText id="password" value="#{wekayController.selected.password}" title="#{bundle.CreateWekayTitle_password}" />
+                        <p:outputLabel value="#{bundle.CreateWekayLabel_email}" for="email" />
+                        <p:inputText id="email" value="#{wekayController.selected.email}" title="#{bundle.CreateWekayTitle_email}" />
+                        <p:outputLabel value="#{bundle.CreateWekayLabel_phoneNumber}" for="phoneNumber" />
+                        <p:inputText id="phoneNumber" value="#{wekayController.selected.phoneNumber}" title="#{bundle.CreateWekayTitle_phoneNumber}" />
+                        <p:outputLabel value="#{bundle.CreateWekayLabel_housePhoneNumber}" for="housePhoneNumber" />
+                        <p:inputText id="housePhoneNumber" value="#{wekayController.selected.housePhoneNumber}" title="#{bundle.CreateWekayTitle_housePhoneNumber}" />
+                        <p:outputLabel value="#{bundle.CreateWekayLabel_status}" for="status" />
+                        <p:inputText id="status" value="#{wekayController.selected.status}" title="#{bundle.CreateWekayTitle_status}" />
+                        <p:outputLabel value="#{bundle.CreateWekayLabel_kebele}" for="kebele" />
+                        <p:inputText id="kebele" value="#{wekayController.selected.kebele}" title="#{bundle.CreateWekayTitle_kebele}" />
+                        <p:outputLabel value="#{bundle.CreateWekayLabel_idNumber}" for="idNumber" />
+                        <p:inputText id="idNumber" value="#{wekayController.selected.idNumber}" title="#{bundle.CreateWekayTitle_idNumber}" />
+                        <p:outputLabel value="#{bundle.CreateWekayLabel_houseNumber}" for="houseNumber" />
+                        <p:inputText id="houseNumber" value="#{wekayController.selected.houseNumber}" title="#{bundle.CreateWekayTitle_houseNumber}" />
+                        <p:outputLabel value="#{bundle.CreateWekayLabel_pobox}" for="pobox" />
+                        <p:inputText id="pobox" value="#{wekayController.selected.pobox}" title="#{bundle.CreateWekayTitle_pobox}" />
+                        <p:outputLabel value="#{bundle.CreateWekayLabel_dateOfBirth}" for="dateOfBirth" />
+                        <p:inputText id="dateOfBirth" value="#{wekayController.selected.dateOfBirth}" title="#{bundle.CreateWekayTitle_dateOfBirth}" />
+                        <p:outputLabel value="#{bundle.CreateWekayLabel_sex}" for="sex" />
+                        <p:inputText id="sex" value="#{wekayController.selected.sex}" title="#{bundle.CreateWekayTitle_sex}" />
+                        <p:outputLabel value="#{bundle.CreateWekayLabel_role}" for="role" />
+                        <p:inputTextarea rows="4" cols="30" id="role" value="#{wekayController.selected.role}" title="#{bundle.CreateWekayTitle_role}" />
+                        <p:outputLabel value="#{bundle.CreateWekayLabel_organizationname}" for="organizationname" />
+                        <p:inputText id="organizationname" value="#{wekayController.selected.organizationname}" title="#{bundle.CreateWekayTitle_organizationname}" />
+                        <p:outputLabel value="#{bundle.CreateWekayLabel_nationality}" for="nationality" />
+                        <p:selectOneMenu id="nationality" value="#{wekayController.selected.nationality}" >
+                            <f:selectItems value="#{nationalitiesController.itemsAvailableSelectOne}"
+                                           var="nationalityItem"
+                                           itemValue="#{nationalityItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateWekayLabel_organizationType}" for="organizationType" />
+                        <p:selectOneMenu id="organizationType" value="#{wekayController.selected.organizationType}" >
+                            <f:selectItems value="#{officetypesController.itemsAvailableSelectOne}"
+                                           var="organizationTypeItem"
+                                           itemValue="#{organizationTypeItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateWekayLabel_region}" for="region" />
+                        <p:selectOneMenu id="region" value="#{wekayController.selected.region}" >
+                            <f:selectItems value="#{regionsController.itemsAvailableSelectOne}"
+                                           var="regionItem"
+                                           itemValue="#{regionItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateWekayLabel_title}" for="title" />
+                        <p:selectOneMenu id="title" value="#{wekayController.selected.title}" >
+                            <f:selectItems value="#{titlerankController.itemsAvailableSelectOne}"
+                                           var="titleItem"
+                                           itemValue="#{titleItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateWekayLabel_woreda}" for="woreda" />
+                        <p:selectOneMenu id="woreda" value="#{wekayController.selected.woreda}" >
+                            <f:selectItems value="#{weredasController.itemsAvailableSelectOne}"
+                                           var="woredaItem"
+                                           itemValue="#{woredaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateWekayLabel_zone}" for="zone" />
+                        <p:selectOneMenu id="zone" value="#{wekayController.selected.zone}" >
+                            <f:selectItems value="#{zonesController.itemsAvailableSelectOne}"
+                                           var="zoneItem"
+                                           itemValue="#{zoneItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{wekayController.create}" value="#{bundle.Save}" update="display,:WekayListForm:datalist,:growl" oncomplete="handleSubmit(args,'WekayCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="WekayCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

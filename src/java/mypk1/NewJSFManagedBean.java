@@ -94,14 +94,15 @@ public class NewJSFManagedBean {
     public NewJSFManagedBean() {
     }
     
-    public void mylogin(){
+    public void mylogin(){ 
+        
         final Logger logger = Logger.getLogger(NewJSFManagedBean.class); 
         logger.debug(this.name + " is Trying to Login");
          
         HttpServletRequest obj = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         try {
-            obj.login(name, password); 
-
+            
+            obj.login(name, password);  
             logger.debug("User Logged using username : "+this.name); 
             session.setAttribute("name", this.name);
             if(obj.isUserInRole("Admin")){

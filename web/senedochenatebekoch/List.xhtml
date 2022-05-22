@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListSenedochenatebekochTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="SenedochenatebekochListForm">
+             
+                <h1 align="center" style="color: blue">ሰነዶች እና ጠበቆች ማረጋገጫና ምዝገባ የስራ ሂደት</h1>
+          <p:outputPanel  style="float: right" rendered="#{((session.getValue('role') eq 'Admin') or  (session.getValue('role') eq 'department Head')  or  (session.getValue('role') eq 'postgraduate coordinator') or  (session.getValue('role') eq 'Dean'))}">   
+  
+     <h:commandLink>
+        <p:graphicImage name="/images/excel.png"  style="width: 30px;height: 30px"/>
+        <p:dataExporter type="xls" target="datalist" fileName="Tebekoch and Senedoch" pageOnly="true"/>
+        
+    </h:commandLink>
+ 
+    <h:commandLink>
+        <p:graphicImage name="/images/pdf.png"  style="width: 30px;height: 30px" />
+        <p:dataExporter type="pdf" target="datalist" fileName="thesis List" pageOnly="true" />
+    </h:commandLink>
+                   </p:outputPanel>    
+                <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" action="#{senedochenatebekochController.returnpage('/senedochenatebekoch/register_DRAS.xhtml',false)}"/>
+                <p:commandButton id="edButton" icon="ui-icon-plus"   value="#{bundle.Oldfile}"  action="#{senedochenatebekochController.returnpage('/senedochenatebekoch/register_DRAS.xhtml',true)}"/>
+                 
+                
+                <p:dataTable id="datalist" value="#{senedochenatebekochController.items}" var="item"
+                                 selectionMode="single" selection="#{senedochenatebekochController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.id}"
+                                 rows="10"  
+                                 rowIndexVar="index"
+                                 widgetVar="fileTable"
+                                 rowsPerPageTemplate="10,20,30,40,50">
+
+                        <p:ajax event="rowSelect"   update="SenedochenatebekochListForm:createButton printButton statusButton confirmButton   deleteButton"/>
+                        <p:ajax event="rowUnselect" update="SenedochenatebekochListForm:createButton printButton statusButton confirmButton   deleteButton"/>
+            <f:facet name="header">
+                <p:outputPanel>
+                  <h:outputText value="Search All Fileds  " />
+                  <p:inputText id="globalFilter" onkeyup="PF('fileTable').filter()" style="width:150px" placeholder="Enter Key word"/>
+                </p:outputPanel>
+        </f:facet>
+       <p:column   width="30" style="text-align:left">
+            <f:facet name="header">
+                <h:outputText value="Index " />
+            </f:facet>
+            <h:outputText value="#{index + 1}" />
+       </p:column> 
+                        
+                        <p:column headerText="Wekay">
+                            
+                            <p:dataGrid emptyMessage="No Tewekay"   id="datalist" value="#{wekayController.findByCaseId(item.casenumber)}" var="wek"  columns="10" layout="grid"
+ >
+
+                              #{wek.firtstname}        #{wek.middlename}       #{wek.lastname} 
+                       
+
+                            </p:dataGrid> 
+                        </p:column>
+                          
+                        <p:column headerText="Wuklna">
+                            
+                            <p:dataGrid emptyMessage="No Tewekay"   id="datalistwuklna" value="#{mekinashiyachController.findByCaseId(item.casenumber)}" var="mek"  columns="10" layout="grid">
+
+                              Plate Number: #{mek.targakutr}      
+                              Motor Number: #{mek.motorkutr}      
+                              Chansi Number:#{mek.chancikutr} 
+                       
+
+                            </p:dataGrid> 
+                            
+                        </p:column><!-- comment -->
+                          
+                        <p:column headerText="Tewokay">
+                            
+                            <p:dataGrid emptyMessage="No Tewekay"   id="datalisttewokay" value="#{tewekayController.findByCaseId(item.casenumber)}" var="tewek"  columns="10" layout="grid"
+ >
+
+                              #{tewek.firtstname}        #{tewek.middlename}       #{tewek.lastname} 
+                       
+
+                            </p:dataGrid> 
+                            
+                        </p:column>
+                          
+                        <p:column headerText="Misikir">
+                            
+                            <p:dataGrid emptyMessage="No Misikir"   id="datalistmisikir" value="#{misikirController.findByCaseId(item.casenumber)}" var="mis"  columns="10" layout="grid"
+ >
+
+                              #{mis.firtstname}        #{mis.middlename}       #{mis.lastname} 
+                       
+
+                            </p:dataGrid> 
+                        </p:column>
+                           <p:column >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSenedochenatebekochTitle_servicedeliveryoffice}"/>
+                            </f:facet>
+                               <h:outputText value="#{item.seriviceoffice.nameamharic}"/>
+                        </p:column>
+                        <p:column filterBy="#{item.casenumber}" filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSenedochenatebekochTitle_casenumber}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.casenumber}"/>
+                        </p:column>
+                        
+                        <p:column filterBy="#{item.filekutr}" filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSenedochenatebekochTitle_filekutr}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.filekutr}"/>
+                        </p:column>
+                    
+                     
+                        <p:column filterBy="#{item.gelgalotyetesetebetken}" filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSenedochenatebekochTitle_gelgalotyetesetebetken}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.glgalotyetekebetken}"/>
+                        </p:column> 
+            
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSenedochenatebekochTitle_getbzat}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.getbzat}"/>
+                        </p:column>
+                    
+                       
+                         <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="የተከፈለ የገንዘብ መጠን"/>
+                            </f:facet>
+                             <h:outputText value="#{item.amount}"/>
+                        </p:column>
+                                    <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSenedochenatebekochTitle_mezgebuyetekemetebetbota}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.mezgebuyetekemetebetbota}"/>
+                        </p:column>
+                          <p:column  exportable="false" >   
+                          
+                             <f:facet name="header">
+                                <h:outputText value="File"/>
+                            </f:facet>
+                           
+                              <p:commandLink rendered="#{item.filepath != null}"  style="color: blue;font-family: verdina"  value="open file "  onstart="this.form.target = '_blank'" immediate="true"
+                                                 actionListener="#{filedownloads.openFile(item.filepath)}"
+                                 ajax="false" />           
+                   <br></br>
+                 <p:commandLink  rendered="#{item.filepath != null}" value="Download" ajax="false"  style="color: blue;font-family: verdina"   actionListener="#{filedownloads.fileuploadpath(item.filepath)}"   >
+                  <p:fileDownload value="#{filedownloads.file}"  />
+                         </p:commandLink>
+                                 
+                          </p:column>
+                        <p:column  exportable="false" colspan="2" >   
+                          
+                             <f:facet name="header">
+                                <h:outputText value="Operations"/>
+                            </f:facet>
+                            
+                            <p:commandLink  id="confirmButton"  class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"   update=":SenedochenatebekochConfirmForm" oncomplete="PF('SenedochenatebekochConfirmDialog').show()"  >
+                                  
+                                <f:setPropertyActionListener  value="#{item}" target="#{senedochenatebekochController.selected}" />
+                                <i class="fas fa-plus fa-sm text-white-50"></i> Confirm
+                                   
+                            </p:commandLink >
+                          
+                             <p:commandLink  id="printButton"  class="d-none d-sm-inline-block btn btn-sm btn-warning shadow-sm"   actionListener="#{senedochenatebekochController.destroy}" update=":growl,datalist" >
+                                  <f:setPropertyActionListener  value="#{item}" target="#{senedochenatebekochController.selected}" />
+                                    <i class="fas fa-plus fa-sm text-white-50"></i> #{bundle.Print}
+                                   
+                                   </p:commandLink >   
+                           
+                             <p:commandLink  id="deleteButton"  class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"   actionListener="#{senedochenatebekochController.destroy}" update=":growl,datalist" >
+                                  <f:setPropertyActionListener  value="#{item}" target="#{senedochenatebekochController.selected}" />
+                                    <i
+                                class="fas fa-plus fa-sm text-white-50"></i> #{bundle.Delete}
+                                     <p:confirm parent="y" header="Confirmation" message="Are You Sure You Want to Delete?" icon="ui-icon-alert" />
+                                   </p:commandLink >   
+                                   <p:commandLink  id="statusButton"  class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm"   action="#{senedochenatebekochController.returnpageconfirm('confirm_DRAS.xhtml')}"  >
+                                  <f:setPropertyActionListener  value="#{item}" target="#{senedochenatebekochController.selected}" />
+                                    <i
+                                class="fas fa-plus fa-sm text-white-50"></i> #{bundle.Status}
+                           
+                                   </p:commandLink >   
+                          
+                                
+                       </p:column>
+                    </p:dataTable>
+              <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                 <div align="center">
+        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                 </div>
+             </p:confirmDialog>  
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="Confirm.xhtml"/>
+           
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

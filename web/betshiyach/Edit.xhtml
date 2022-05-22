@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="BetshiyachEditDlg" widgetVar="BetshiyachEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditBetshiyachTitle}">
+            <h:form id="BetshiyachEditForm">
+               <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{betshiyachController.selected != null}">
+                   
+                        <p:outputLabel value="#{bundle.CreateBetshiyachLabel_cartakutr}" for="cartakutr" />
+                        <p:inputText id="cartakutr" value="#{betshiyachController.selected.cartakutr}" title="#{bundle.CreateBetshiyachTitle_cartakutr}" />
+                    </p:panelGrid>
+                       <p:panelGrid columns="6" rendered="#{betshiyachController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateBetshiyachLabel_shachname}" for="shachname" />
+                        <p:inputText id="shachname" value="#{betshiyachController.selected.shachname}" title="#{bundle.CreateBetshiyachTitle_shachname}" />
+                        <p:outputLabel value="#{bundle.CreateBetshiyachLabel_shachfname}" for="shachfname" />
+                        <p:inputText id="shachfname" value="#{betshiyachController.selected.shachfname}" title="#{bundle.CreateBetshiyachTitle_shachfname}" />
+                        <p:outputLabel value="#{bundle.CreateBetshiyachLabel_shachlastname}" for="shachlastname" />
+                        <p:inputText id="shachlastname" value="#{betshiyachController.selected.shachlastname}" title="#{bundle.CreateBetshiyachTitle_shachlastname}" />
+                        <p:outputLabel value="#{bundle.CreateBetshiyachLabel_gezhname}" for="gezhname" />
+                        <p:inputText id="gezhname" value="#{betshiyachController.selected.gezhname}" title="#{bundle.CreateBetshiyachTitle_gezhname}" />
+                        <p:outputLabel value="#{bundle.CreateBetshiyachLabel_gezhfname}" for="gezhfname" />
+                        <p:inputText id="gezhfname" value="#{betshiyachController.selected.gezhfname}" title="#{bundle.CreateBetshiyachTitle_gezhfname}" />
+                        <p:outputLabel value="#{bundle.CreateBetshiyachLabel_gezhlastname}" for="gezhlastname" />
+                        <p:inputText id="gezhlastname" value="#{betshiyachController.selected.gezhlastname}" title="#{bundle.CreateBetshiyachTitle_gezhlastname}" />
+                       </p:panelGrid>
+                     <p:panelGrid columns="2" rendered="#{betshiyachController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateBetshiyachLabel_yebrmetenm}" for="yebrmetenm" />
+                        <p:inputText id="yebrmetenm" value="#{betshiyachController.selected.yebrmetenm}" title="#{bundle.CreateBetshiyachTitle_yebrmetenm}" />
+                        <p:outputLabel value="#{bundle.CreateBetshiyachLabel_yebotawadrasha}" for="yebotawadrasha" />
+                        <p:inputText id="yebotawadrasha" value="#{betshiyachController.selected.yebotawadrasha}" title="#{bundle.CreateBetshiyachTitle_yebotawadrasha}" />
+                        <p:outputLabel value="#{bundle.CreateBetshiyachLabel_botasifat}" for="botasifat" />
+                        <p:inputText id="botasifat" value="#{betshiyachController.selected.botasifat}" title="#{bundle.CreateBetshiyachTitle_botasifat}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{betshiyachController.update}" value="#{bundle.Save}" update="display,:BetshiyachListForm:datalist,:growl" oncomplete="handleSubmit(args, 'BetshiyachEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="BetshiyachEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

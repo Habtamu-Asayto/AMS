@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MekinashiyachViewDlg" widgetVar="MekinashiyachViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewMekinashiyachTitle}">
+            <h:form id="MekinashiyachViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{mekinashiyachController.selected != null}">
+                        <h:outputText value="#{bundle.ViewMekinashiyachLabel_id}"/>
+                        <h:outputText value="#{mekinashiyachController.selected.id}" title="#{bundle.ViewMekinashiyachTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewMekinashiyachLabel_shachname}"/>
+                        <h:outputText value="#{mekinashiyachController.selected.shachname}" title="#{bundle.ViewMekinashiyachTitle_shachname}"/>
+                        <h:outputText value="#{bundle.ViewMekinashiyachLabel_shachfname}"/>
+                        <h:outputText value="#{mekinashiyachController.selected.shachfname}" title="#{bundle.ViewMekinashiyachTitle_shachfname}"/>
+                        <h:outputText value="#{bundle.ViewMekinashiyachLabel_shachlastname}"/>
+                        <h:outputText value="#{mekinashiyachController.selected.shachlastname}" title="#{bundle.ViewMekinashiyachTitle_shachlastname}"/>
+                        <h:outputText value="#{bundle.ViewMekinashiyachLabel_gezhname}"/>
+                        <h:outputText value="#{mekinashiyachController.selected.gezhname}" title="#{bundle.ViewMekinashiyachTitle_gezhname}"/>
+                        <h:outputText value="#{bundle.ViewMekinashiyachLabel_gezhfname}"/>
+                        <h:outputText value="#{mekinashiyachController.selected.gezhfname}" title="#{bundle.ViewMekinashiyachTitle_gezhfname}"/>
+                        <h:outputText value="#{bundle.ViewMekinashiyachLabel_gezhlastname}"/>
+                        <h:outputText value="#{mekinashiyachController.selected.gezhlastname}" title="#{bundle.ViewMekinashiyachTitle_gezhlastname}"/>
+                        <h:outputText value="#{bundle.ViewMekinashiyachLabel_targakutr}"/>
+                        <h:outputText value="#{mekinashiyachController.selected.targakutr}" title="#{bundle.ViewMekinashiyachTitle_targakutr}"/>
+                        <h:outputText value="#{bundle.ViewMekinashiyachLabel_chancikutr}"/>
+                        <h:outputText value="#{mekinashiyachController.selected.chancikutr}" title="#{bundle.ViewMekinashiyachTitle_chancikutr}"/>
+                        <h:outputText value="#{bundle.ViewMekinashiyachLabel_motorkutr}"/>
+                        <h:outputText value="#{mekinashiyachController.selected.motorkutr}" title="#{bundle.ViewMekinashiyachTitle_motorkutr}"/>
+                        <h:outputText value="#{bundle.ViewMekinashiyachLabel_yebrmetenm}"/>
+                        <h:outputText value="#{mekinashiyachController.selected.yebrmetenm}" title="#{bundle.ViewMekinashiyachTitle_yebrmetenm}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="MekinashiyachViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

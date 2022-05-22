@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="WekayViewDlg" widgetVar="WekayViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewWekayTitle}">
+            <h:form id="WekayViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{wekayController.selected != null}">
+                        <h:outputText value="#{bundle.ViewWekayLabel_id}"/>
+                        <h:outputText value="#{wekayController.selected.id}" title="#{bundle.ViewWekayTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewWekayLabel_firtstname}"/>
+                        <h:outputText value="#{wekayController.selected.firtstname}" title="#{bundle.ViewWekayTitle_firtstname}"/>
+                        <h:outputText value="#{bundle.ViewWekayLabel_middlename}"/>
+                        <h:outputText value="#{wekayController.selected.middlename}" title="#{bundle.ViewWekayTitle_middlename}"/>
+                        <h:outputText value="#{bundle.ViewWekayLabel_lastname}"/>
+                        <h:outputText value="#{wekayController.selected.lastname}" title="#{bundle.ViewWekayTitle_lastname}"/>
+                        <h:outputText value="#{bundle.ViewWekayLabel_password}"/>
+                        <h:outputText value="#{wekayController.selected.password}" title="#{bundle.ViewWekayTitle_password}"/>
+                        <h:outputText value="#{bundle.ViewWekayLabel_email}"/>
+                        <h:outputText value="#{wekayController.selected.email}" title="#{bundle.ViewWekayTitle_email}"/>
+                        <h:outputText value="#{bundle.ViewWekayLabel_phoneNumber}"/>
+                        <h:outputText value="#{wekayController.selected.phoneNumber}" title="#{bundle.ViewWekayTitle_phoneNumber}"/>
+                        <h:outputText value="#{bundle.ViewWekayLabel_housePhoneNumber}"/>
+                        <h:outputText value="#{wekayController.selected.housePhoneNumber}" title="#{bundle.ViewWekayTitle_housePhoneNumber}"/>
+                        <h:outputText value="#{bundle.ViewWekayLabel_status}"/>
+                        <h:outputText value="#{wekayController.selected.status}" title="#{bundle.ViewWekayTitle_status}"/>
+                        <h:outputText value="#{bundle.ViewWekayLabel_kebele}"/>
+                        <h:outputText value="#{wekayController.selected.kebele}" title="#{bundle.ViewWekayTitle_kebele}"/>
+                        <h:outputText value="#{bundle.ViewWekayLabel_idNumber}"/>
+                        <h:outputText value="#{wekayController.selected.idNumber}" title="#{bundle.ViewWekayTitle_idNumber}"/>
+                        <h:outputText value="#{bundle.ViewWekayLabel_houseNumber}"/>
+                        <h:outputText value="#{wekayController.selected.houseNumber}" title="#{bundle.ViewWekayTitle_houseNumber}"/>
+                        <h:outputText value="#{bundle.ViewWekayLabel_pobox}"/>
+                        <h:outputText value="#{wekayController.selected.pobox}" title="#{bundle.ViewWekayTitle_pobox}"/>
+                        <h:outputText value="#{bundle.ViewWekayLabel_dateOfBirth}"/>
+                        <h:outputText value="#{wekayController.selected.dateOfBirth}" title="#{bundle.ViewWekayTitle_dateOfBirth}"/>
+                        <h:outputText value="#{bundle.ViewWekayLabel_sex}"/>
+                        <h:outputText value="#{wekayController.selected.sex}" title="#{bundle.ViewWekayTitle_sex}"/>
+                        <h:outputText value="#{bundle.ViewWekayLabel_role}"/>
+                        <h:outputText value="#{wekayController.selected.role}" title="#{bundle.ViewWekayTitle_role}"/>
+                        <h:outputText value="#{bundle.ViewWekayLabel_organizationname}"/>
+                        <h:outputText value="#{wekayController.selected.organizationname}" title="#{bundle.ViewWekayTitle_organizationname}"/>
+                        <h:outputText value="#{bundle.ViewWekayLabel_nationality}"/>
+                        <h:outputText value="#{wekayController.selected.nationality}" title="#{bundle.ViewWekayTitle_nationality}"/>
+                        <h:outputText value="#{bundle.ViewWekayLabel_organizationType}"/>
+                        <h:outputText value="#{wekayController.selected.organizationType}" title="#{bundle.ViewWekayTitle_organizationType}"/>
+                        <h:outputText value="#{bundle.ViewWekayLabel_region}"/>
+                        <h:outputText value="#{wekayController.selected.region}" title="#{bundle.ViewWekayTitle_region}"/>
+                        <h:outputText value="#{bundle.ViewWekayLabel_title}"/>
+                        <h:outputText value="#{wekayController.selected.title}" title="#{bundle.ViewWekayTitle_title}"/>
+                        <h:outputText value="#{bundle.ViewWekayLabel_woreda}"/>
+                        <h:outputText value="#{wekayController.selected.woreda}" title="#{bundle.ViewWekayTitle_woreda}"/>
+                        <h:outputText value="#{bundle.ViewWekayLabel_zone}"/>
+                        <h:outputText value="#{wekayController.selected.zone}" title="#{bundle.ViewWekayTitle_zone}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="WekayViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

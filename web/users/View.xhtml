@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html" 
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition>
@@ -11,10 +12,50 @@
             <h:form id="UsersViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{usersController.selected != null}">
-                        <h:outputText value="#{bundle.ViewUsersLabel_username}"/>
-                        <h:outputText value="#{usersController.selected.username}" title="#{bundle.ViewUsersTitle_username}"/>
+                        <h:outputText value="#{bundle.ViewUsersLabel_id}"/>
+                        <h:outputText value="#{usersController.selected.id}" title="#{bundle.ViewUsersTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewUsersLabel_firtstname}"/>
+                        <h:outputText value="#{usersController.selected.firtstname}" title="#{bundle.ViewUsersTitle_firtstname}"/>
+                        <h:outputText value="#{bundle.ViewUsersLabel_middlename}"/>
+                        <h:outputText value="#{usersController.selected.middlename}" title="#{bundle.ViewUsersTitle_middlename}"/>
+                        <h:outputText value="#{bundle.ViewUsersLabel_lastname}"/>
+                        <h:outputText value="#{usersController.selected.lastname}" title="#{bundle.ViewUsersTitle_lastname}"/>
                         <h:outputText value="#{bundle.ViewUsersLabel_password}"/>
                         <h:outputText value="#{usersController.selected.password}" title="#{bundle.ViewUsersTitle_password}"/>
+                        <h:outputText value="#{bundle.ViewUsersLabel_email}"/>
+                        <h:outputText value="#{usersController.selected.email}" title="#{bundle.ViewUsersTitle_email}"/>
+                        <h:outputText value="#{bundle.ViewUsersLabel_status}"/>
+                        <h:outputText value="#{usersController.selected.status}" title="#{bundle.ViewUsersTitle_status}"/>
+                        <h:outputText value="#{bundle.ViewUsersLabel_role}"/>
+                        <h:outputText value="#{usersController.selected.role}" title="#{bundle.ViewUsersTitle_role}"/>
+                        <h:outputText value="#{bundle.ViewUsersLabel_phoneNumber}"/>
+                        <h:outputText value="#{usersController.selected.phoneNumber}" title="#{bundle.ViewUsersTitle_phoneNumber}"/>
+                        <h:outputText value="#{bundle.ViewUsersLabel_housePhoneNumber}"/>
+                        <h:outputText value="#{usersController.selected.housePhoneNumber}" title="#{bundle.ViewUsersTitle_housePhoneNumber}"/>
+                        <h:outputText value="#{bundle.ViewUsersLabel_kebele}"/>
+                        <h:outputText value="#{usersController.selected.kebele}" title="#{bundle.ViewUsersTitle_kebele}"/>
+                        <h:outputText value="#{bundle.ViewUsersLabel_idNumber}"/>
+                        <h:outputText value="#{usersController.selected.idNumber}" title="#{bundle.ViewUsersTitle_idNumber}"/>
+                        <h:outputText value="#{bundle.ViewUsersLabel_houseNumber}"/>
+                        <h:outputText value="#{usersController.selected.houseNumber}" title="#{bundle.ViewUsersTitle_houseNumber}"/>
+                        <h:outputText value="#{bundle.ViewUsersLabel_pobox}"/>
+                        <h:outputText value="#{usersController.selected.pobox}" title="#{bundle.ViewUsersTitle_pobox}"/>
+                        <h:outputText value="#{bundle.ViewUsersLabel_dateOfBirth}"/>
+                        <h:outputText value="#{usersController.selected.dateOfBirth}" title="#{bundle.ViewUsersTitle_dateOfBirth}"/>
+                        <h:outputText value="#{bundle.ViewUsersLabel_title}"/>
+                        <h:outputText value="#{usersController.selected.title}" title="#{bundle.ViewUsersTitle_title}"/>
+                        <h:outputText value="#{bundle.ViewUsersLabel_sex}"/>
+                        <h:outputText value="#{usersController.selected.sex}" title="#{bundle.ViewUsersTitle_sex}"/>
+                        <h:outputText value="#{bundle.ViewUsersLabel_nationality}"/>
+                        <h:outputText value="#{usersController.selected.nationality}" title="#{bundle.ViewUsersTitle_nationality}"/>
+                        <h:outputText value="#{bundle.ViewUsersLabel_organizationType}"/>
+                        <h:outputText value="#{usersController.selected.organizationType}" title="#{bundle.ViewUsersTitle_organizationType}"/>
+                        <h:outputText value="#{bundle.ViewUsersLabel_region}"/>
+                        <h:outputText value="#{usersController.selected.region}" title="#{bundle.ViewUsersTitle_region}"/>
+                        <h:outputText value="#{bundle.ViewUsersLabel_woreda}"/>
+                        <h:outputText value="#{usersController.selected.woreda}" title="#{bundle.ViewUsersTitle_woreda}"/>
+                        <h:outputText value="#{bundle.ViewUsersLabel_zone}"/>
+                        <h:outputText value="#{usersController.selected.zone}" title="#{bundle.ViewUsersTitle_zone}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="UsersViewDialog.hide()"/>
                 </h:panelGroup>

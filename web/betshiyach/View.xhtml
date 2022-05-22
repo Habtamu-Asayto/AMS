@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="BetshiyachViewDlg" widgetVar="BetshiyachViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewBetshiyachTitle}">
+            <h:form id="BetshiyachViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{betshiyachController.selected != null}">
+                        <h:outputText value="#{bundle.ViewBetshiyachLabel_id}"/>
+                        <h:outputText value="#{betshiyachController.selected.id}" title="#{bundle.ViewBetshiyachTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewBetshiyachLabel_cartakutr}"/>
+                        <h:outputText value="#{betshiyachController.selected.cartakutr}" title="#{bundle.ViewBetshiyachTitle_cartakutr}"/>
+                        <h:outputText value="#{bundle.ViewBetshiyachLabel_shachname}"/>
+                        <h:outputText value="#{betshiyachController.selected.shachname}" title="#{bundle.ViewBetshiyachTitle_shachname}"/>
+                        <h:outputText value="#{bundle.ViewBetshiyachLabel_shachfname}"/>
+                        <h:outputText value="#{betshiyachController.selected.shachfname}" title="#{bundle.ViewBetshiyachTitle_shachfname}"/>
+                        <h:outputText value="#{bundle.ViewBetshiyachLabel_shachlastname}"/>
+                        <h:outputText value="#{betshiyachController.selected.shachlastname}" title="#{bundle.ViewBetshiyachTitle_shachlastname}"/>
+                        <h:outputText value="#{bundle.ViewBetshiyachLabel_gezhname}"/>
+                        <h:outputText value="#{betshiyachController.selected.gezhname}" title="#{bundle.ViewBetshiyachTitle_gezhname}"/>
+                        <h:outputText value="#{bundle.ViewBetshiyachLabel_gezhfname}"/>
+                        <h:outputText value="#{betshiyachController.selected.gezhfname}" title="#{bundle.ViewBetshiyachTitle_gezhfname}"/>
+                        <h:outputText value="#{bundle.ViewBetshiyachLabel_gezhlastname}"/>
+                        <h:outputText value="#{betshiyachController.selected.gezhlastname}" title="#{bundle.ViewBetshiyachTitle_gezhlastname}"/>
+                        <h:outputText value="#{bundle.ViewBetshiyachLabel_yebrmetenm}"/>
+                        <h:outputText value="#{betshiyachController.selected.yebrmetenm}" title="#{bundle.ViewBetshiyachTitle_yebrmetenm}"/>
+                        <h:outputText value="#{bundle.ViewBetshiyachLabel_yebotawadrasha}"/>
+                        <h:outputText value="#{betshiyachController.selected.yebotawadrasha}" title="#{bundle.ViewBetshiyachTitle_yebotawadrasha}"/>
+                        <h:outputText value="#{bundle.ViewBetshiyachLabel_botasifat}"/>
+                        <h:outputText value="#{betshiyachController.selected.botasifat}" title="#{bundle.ViewBetshiyachTitle_botasifat}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="BetshiyachViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

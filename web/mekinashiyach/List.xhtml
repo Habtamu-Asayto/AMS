@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+  <ui:define name="title">
+            <h:outputText value="#{bundle.ListMekinashiyachTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="MekinashiyachListForm">
+                <p:panel header="#{bundle.ListMekinashiyachTitle}">
+                    <p:dataTable id="datalist" value="#{mekinashiyachController.items}" var="item"
+                                 selectionMode="single" selection="#{mekinashiyachController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.id}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+<f:facet name="header">
+                  <p:outputPanel>
+                <h:outputText value="Search All Fileds  " />
+                <p:inputText id="globalFilter" onkeyup="PF('fileTable').filter()" style="width:150px" placeholder="Enter Key word"/>
+            </p:outputPanel>
+                         </f:facet>
+                        <p:column   width="30" style="text-align:left">
+        <f:facet name="header">
+            <h:outputText value="Index " />
+        </f:facet>
+        <h:outputText 
+            value="#{index + 1}" />
+    </p:column> 
+                  
+                       
+                       
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMekinashiyachTitle_targakutr}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.targakutr}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMekinashiyachTitle_chancikutr}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.chancikutr}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMekinashiyachTitle_motorkutr}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.motorkutr}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMekinashiyachTitle_yebrmetenm}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.yebrmetenm}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{mekinashiyachController.prepareCreate}" update=":MekinashiyachCreateForm" oncomplete="PF('MekinashiyachCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":MekinashiyachViewForm" oncomplete="PF('MekinashiyachViewDialog').show()" disabled="#{empty mekinashiyachController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":MekinashiyachEditForm" oncomplete="PF('MekinashiyachEditDialog').show()" disabled="#{empty mekinashiyachController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{mekinashiyachController.destroy}" update=":growl,datalist" disabled="#{empty mekinashiyachController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

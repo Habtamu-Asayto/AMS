@@ -9,19 +9,14 @@
 	<style name="Detail" fontName="Arial" fontSize="12"/>
 	<parameter name="LETTER" class="java.lang.String"/>
 	<parameter name="TITLE" class="java.lang.String"/>
-	<parameter name="IMAGE" class="java.lang.String"/>
-	<queryString language="SQL">
+	<queryString>
 		<![CDATA[SELECT * FROM products;]]>
 	</queryString>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="322" splitType="Stretch">
-			<image>
-				<reportElement x="275" y="0" width="300" height="64" uuid="168f6b70-2947-442e-b7b6-36740569ef87"/>
-				<imageExpression><![CDATA[$P{IMAGE}]]></imageExpression>
-			</image>
+		<band height="304" splitType="Stretch">
 			<line>
 				<reportElement x="11" y="64" width="277" height="1" uuid="97c613cf-c160-4b99-bbe0-fc3f0bf168cf"/>
 				<graphicElement>
@@ -29,9 +24,9 @@
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="11" y="28" width="264" height="20" uuid="daf21022-ab33-400e-bc04-8130f57ee7ea"/>
+				<reportElement x="11" y="34" width="277" height="19" uuid="daf21022-ab33-400e-bc04-8130f57ee7ea"/>
 				<textElement verticalAlignment="Bottom">
-					<font size="15" isBold="true"/>
+					<font fontName="Ubuntu" size="15" isBold="true" pdfFontName="Times-Roman" pdfEncoding="Identity-H"/>
 				</textElement>
 				<text><![CDATA[Display Image of Jasper report]]></text>
 			</staticText>
@@ -61,16 +56,17 @@
 					<pen lineColor="#999999"/>
 				</graphicElement>
 			</line>
-			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="56" y="137" width="437" height="20" uuid="84808535-80d9-4ee9-b4c8-44edb5440e2a"/>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement positionType="Float" mode="Transparent" x="56" y="140" width="437" height="17" uuid="84808535-80d9-4ee9-b4c8-44edb5440e2a"/>
 				<textElement verticalAlignment="Bottom" markup="html">
-					<font size="11" isBold="true"/>
+					<font fontName="Abyssinica SIL" size="11" isBold="true" pdfFontName="Times-Roman" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{TITLE}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="35" y="167" width="481" height="19" uuid="fcc31487-6aa6-4c00-920e-fd5d613444ad"/>
 				<textElement verticalAlignment="Bottom" markup="html">
+					<font fontName="SansSerif" pdfFontName="Times-Roman" pdfEncoding="Identity-H"/>
 					<paragraph lineSpacing="1_1_2"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{LETTER}]]></textFieldExpression>
@@ -81,7 +77,7 @@
 		<band splitType="Stretch"/>
 	</pageHeader>
 	<pageFooter>
-		<band height="21" splitType="Stretch">
+		<band height="41" splitType="Stretch">
 			<textField>
 				<reportElement x="436" y="0" width="80" height="20" uuid="4b59f2d3-4a0e-4e12-ba71-82bc57e454c5"/>
 				<textElement textAlignment="Right"/>
